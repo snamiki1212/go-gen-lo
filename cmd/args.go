@@ -1,4 +1,4 @@
-package args
+package cmd
 
 import (
 	"fmt"
@@ -8,46 +8,46 @@ import (
 // TODO:
 // cmd --entity=User  --slice=UserVals --lo=Filter,Map --rename=Map:Loop    --no-extend
 // cmd --entity=*User --slice=UserPtrs --lo=Filter,Map --rename=Map:Loop    --no-extend
-type Arguments struct {
-	// Target Entity name
-	Entity string
+type arguments struct {
+	// Target entity name
+	entity string
 
 	// Entitty is pointer or not
-	IsPtrEntity bool
+	isPtrEntity bool
 
-	// Target Slice name
-	Slice string
+	// Target slice name
+	slice string
 
 	// Input file name
-	Input string
+	input string
 
 	// Output file name
-	Output string
+	output string
 
 	// Method name of lo to generate
 	// lo []string
 
 	// Mapping field name to accessor name
-	Rename map[string]string // key: lo method name, value: generated method name.
+	rename map[string]string // key: lo method name, value: generated method name.
 
 	// noExtend []string
 }
 
-var ArgRename []string
-var ArgEntity string
+var argRename []string
+var argEntity string
 
-var Args = Arguments{
-	Rename: map[string]string{},
+var args = arguments{
+	rename: map[string]string{},
 }
 
-func (a Arguments) DisplayEntity() string {
-	if a.IsPtrEntity {
-		return "*" + a.Entity
+func (a arguments) DisplayEntity() string {
+	if a.isPtrEntity {
+		return "*" + a.entity
 	}
-	return a.Entity
+	return a.entity
 }
 
-func (a *Arguments) loadRename(as []string) error {
+func (a *arguments) loadRename(as []string) error {
 	container := make([]error, 0)
 	for _, ac := range as {
 		pair := strings.Split(ac, ":")
@@ -56,7 +56,7 @@ func (a *Arguments) loadRename(as []string) error {
 			continue
 		}
 		src, dst := pair[0], pair[1]
-		a.Rename[src] = dst
+		a.rename[src] = dst
 	}
 	if len(container) != 0 {
 		return fmt.Errorf("%v", container)
@@ -64,23 +64,23 @@ func (a *Arguments) loadRename(as []string) error {
 	return nil
 }
 
-func (a *Arguments) loadEntity(e string) error {
-	a.IsPtrEntity = strings.HasPrefix(e, "*")
-	if a.IsPtrEntity {
+func (a *arguments) loadEntity(e string) error {
+	a.isPtrEntity = strings.HasPrefix(e, "*")
+	if a.isPtrEntity {
 		e = strings.TrimPrefix(e, "*")
 	}
-	a.Entity = e
+	a.entity = e
 	return nil
 }
 
-func (a *Arguments) Load() error {
+func (a *arguments) load() error {
 	// Load arguments
-	if err := a.loadRename(ArgRename); err != nil {
+	if err := a.loadRename(argRename); err != nil {
 		return fmt.Errorf("load accessor error: %w", err)
 	}
 
-	// Load Antity
-	if err := a.loadEntity(ArgEntity); err != nil {
+	// Load entity
+	if err := a.loadEntity(argEntity); err != nil {
 		return fmt.Errorf("load entity error: %w", err)
 	}
 	return nil
