@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"text/template"
-
-	"github.com/snamiki1212/go-gen-lo/internal/parser"
 )
 
 const templateBody = `
@@ -28,10 +26,10 @@ type templateMapper struct {
 }
 
 // Generate code
-func generate(data parser.Data) (string, error) {
-	pkgName := data.PkgName
-	sliceName := data.SliceName
-	infos := data.Fields
+func generate(data data) (string, error) {
+	pkgName := data.pkgName
+	sliceName := data.sliceName
+	infos := data.fields
 
 	if len(infos) == 0 {
 		return "", nil
