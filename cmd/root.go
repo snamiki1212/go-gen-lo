@@ -26,7 +26,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/snamiki1212/go-gen-lo/internal/writer"
 	"github.com/spf13/cobra"
 )
 
@@ -60,7 +59,7 @@ to quickly create a Cobra application.`,
 		}
 
 		// Write to output file
-		err = writer.Write(args.output, txt)
+		err = write(args.output, txt)
 		if err != nil {
 			return fmt.Errorf("write error: %w", err)
 		}
