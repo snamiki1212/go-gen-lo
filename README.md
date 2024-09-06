@@ -8,6 +8,15 @@ description...
 // TODO:
 ```
 
+## Spec
+
+v0
+
+- Filter / FilterByID
+- Map
+- KeyBy / KeyByID
+- Find / FindByID
+
 ## LICENSE
 
 [MIT](./LICENSE)
