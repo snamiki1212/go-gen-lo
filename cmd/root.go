@@ -27,6 +27,7 @@ import (
 	"os"
 
 	"github.com/snamiki1212/go-gen-lo/internal/args"
+	"github.com/snamiki1212/go-gen-lo/internal/parser"
 	"github.com/snamiki1212/go-gen-lo/internal/writer"
 	"github.com/spf13/cobra"
 )
@@ -49,7 +50,7 @@ to quickly create a Cobra application.`,
 		}
 
 		// Parse source code
-		dt, err := parse(args.Args, reader)
+		dt, err := parser.Parse(args.Args, parser.ReadeFile)
 		if err != nil {
 			return fmt.Errorf("parse error: %w", err)
 		}

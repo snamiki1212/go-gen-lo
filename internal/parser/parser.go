@@ -1,4 +1,4 @@
-package cmd
+package parser
 
 import (
 	"fmt"
@@ -12,17 +12,17 @@ import (
 )
 
 // Parse sorce code to own struct.
-func parse(args xargs.Arguments, reader func(path string) (*ast.File, error)) (data, error) {
+func Parse(args xargs.Arguments, reader func(path string) (*ast.File, error)) (Data, error) {
 	// Convert source code to ast
 	file, err := reader(args.Input)
 	if err != nil {
-		return data{}, fmt.Errorf("parse error: %w", err)
+		return Data{}, fmt.Errorf("parse error: %w", err)
 	}
 
 	// Parse ast
 	fields, err := parseFile(file, args)
 	if err != nil {
-		return data{}, err
+		return Data{}, err
 	}
 
 	// Convert ast to own struct
@@ -33,15 +33,15 @@ func parse(args xargs.Arguments, reader func(path string) (*ast.File, error)) (d
 	// exclude(args.fieldNamesToExclude).
 	// buildAccessor(newPluralizer(), args.accessors)
 
-	return data{
-		fields:    fs,
-		pkgName:   getPackageNameFromFile(file),
-		sliceName: args.Slice,
+	return Data{
+		Fields:    fs,
+		PkgName:   getPackageNameFromFile(file),
+		SliceName: args.Slice,
 	}, nil
 }
 
 // Read source code from file.
-func reader(path string) (*ast.File, error) {
+func ReadeFile(path string) (*ast.File, error) {
 	fset := token.NewFileSet()
 	return parser.ParseFile(fset, path, nil, parser.AllErrors)
 }
@@ -75,10 +75,10 @@ func parseFile(node *ast.File, args xargs.Arguments) ([]*ast.Field, error) {
 
 type (
 	// Data from parsed source code and will be used in code generation.
-	data struct {
-		fields    fields
-		pkgName   string
-		sliceName string
+	Data struct {
+		Fields    fields
+		PkgName   string
+		SliceName string
 	}
 	fields []field
 
