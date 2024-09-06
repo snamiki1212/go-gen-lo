@@ -54,7 +54,7 @@ to quickly create a Cobra application.`,
 		}
 
 		// Generate code
-		txt, err := internal.Generate(dt)
+		txt, err := internal.Generate(internal.Args, dt)
 		if err != nil {
 			return fmt.Errorf("generate error: %w", err)
 		}
