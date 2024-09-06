@@ -26,6 +26,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/snamiki1212/go-gen-lo/internal/args"
 	"github.com/snamiki1212/go-gen-lo/internal/writer"
 	"github.com/spf13/cobra"
 )
@@ -43,12 +44,12 @@ to quickly create a Cobra application.`,
 
 	RunE: func(cmd *cobra.Command, _ []string) error {
 		// Load arguments
-		if err := args.load(); err != nil {
+		if err := args.Args.Load(); err != nil {
 			return fmt.Errorf("load arguments error: %w", err)
 		}
 
 		// Parse source code
-		dt, err := parse(args, reader)
+		dt, err := parse(args.Args, reader)
 		if err != nil {
 			return fmt.Errorf("parse error: %w", err)
 		}
@@ -60,7 +61,7 @@ to quickly create a Cobra application.`,
 		}
 
 		// Write to output file
-		err = writer.Write(args.output, txt)
+		err = writer.Write(args.Args.Output, txt)
 		if err != nil {
 			return fmt.Errorf("write error: %w", err)
 		}
@@ -81,19 +82,19 @@ func Execute() {
 
 func init() {
 	// entity
-	rootCmd.Flags().StringVarP(&argEntity, "entity", "e", "", "target entity name. e.g. User or *User")
+	rootCmd.Flags().StringVarP(&args.ArgEntity, "entity", "e", "", "target entity name. e.g. User or *User")
 	_ = rootCmd.MarkFlagRequired("entity")
 
 	// slice
-	rootCmd.Flags().StringVarP(&args.slice, "slice", "s", "", "target slice name")
+	rootCmd.Flags().StringVarP(&args.Args.Slice, "slice", "s", "", "target slice name")
 	_ = rootCmd.MarkFlagRequired("slice")
 
 	// input
-	rootCmd.Flags().StringVarP(&args.input, "input", "i", "", "input file name")
+	rootCmd.Flags().StringVarP(&args.Args.Input, "input", "i", "", "input file name")
 	_ = rootCmd.MarkFlagRequired("input")
 
 	// output
-	rootCmd.Flags().StringVarP(&args.output, "output", "o", "", "output file name")
+	rootCmd.Flags().StringVarP(&args.Args.Output, "output", "o", "", "output file name")
 	_ = rootCmd.MarkFlagRequired("output")
 
 	// // rename
