@@ -40,6 +40,13 @@ var args = arguments{
 	rename: map[string]string{},
 }
 
+func (a arguments) DisplayEntity() string {
+	if a.isPtrEntity {
+		return "*" + a.entity
+	}
+	return a.entity
+}
+
 func (a *arguments) loadRename(as []string) error {
 	container := make([]error, 0)
 	for _, ac := range as {
@@ -49,7 +56,7 @@ func (a *arguments) loadRename(as []string) error {
 			continue
 		}
 		src, dst := pair[0], pair[1]
-		args.rename[src] = dst
+		a.rename[src] = dst
 	}
 	if len(container) != 0 {
 		return fmt.Errorf("%v", container)
@@ -68,12 +75,12 @@ func (a *arguments) loadEntity(e string) error {
 
 func (a *arguments) load() error {
 	// Load arguments
-	if err := args.loadRename(argRename); err != nil {
+	if err := a.loadRename(argRename); err != nil {
 		return fmt.Errorf("load accessor error: %w", err)
 	}
 
 	// Load entity
-	if err := args.loadEntity(argEntity); err != nil {
+	if err := a.loadEntity(argEntity); err != nil {
 		return fmt.Errorf("load entity error: %w", err)
 	}
 	return nil
