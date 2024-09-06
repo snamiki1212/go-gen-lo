@@ -43,24 +43,24 @@ to quickly create a Cobra application.`,
 
 	RunE: func(cmd *cobra.Command, _ []string) error {
 		// Load arguments
-		if err := args.load(); err != nil {
+		if err := internal.Args.Load(); err != nil {
 			return fmt.Errorf("load arguments error: %w", err)
 		}
 
 		// Parse source code
-		dt, err := parse(args, reader)
+		dt, err := internal.Parse(internal.Args, internal.Reader)
 		if err != nil {
 			return fmt.Errorf("parse error: %w", err)
 		}
 
 		// Generate code
-		txt, err := generate(dt)
+		txt, err := internal.Generate(dt)
 		if err != nil {
 			return fmt.Errorf("generate error: %w", err)
 		}
 
 		// Write to output file
-		err = internal.Write(args.output, txt)
+		err = internal.Write(internal.Args.Output, txt)
 		if err != nil {
 			return fmt.Errorf("write error: %w", err)
 		}
@@ -81,19 +81,19 @@ func Execute() {
 
 func init() {
 	// entity
-	rootCmd.Flags().StringVarP(&argEntity, "entity", "e", "", "target entity name. e.g. User or *User")
+	rootCmd.Flags().StringVarP(&internal.ArgEntity, "entity", "e", "", "target entity name. e.g. User or *User")
 	_ = rootCmd.MarkFlagRequired("entity")
 
 	// slice
-	rootCmd.Flags().StringVarP(&args.slice, "slice", "s", "", "target slice name")
+	rootCmd.Flags().StringVarP(&internal.Args.Slice, "slice", "s", "", "target slice name")
 	_ = rootCmd.MarkFlagRequired("slice")
 
 	// input
-	rootCmd.Flags().StringVarP(&args.input, "input", "i", "", "input file name")
+	rootCmd.Flags().StringVarP(&internal.Args.Input, "input", "i", "", "input file name")
 	_ = rootCmd.MarkFlagRequired("input")
 
 	// output
-	rootCmd.Flags().StringVarP(&args.output, "output", "o", "", "output file name")
+	rootCmd.Flags().StringVarP(&internal.Args.Output, "output", "o", "", "output file name")
 	_ = rootCmd.MarkFlagRequired("output")
 
 	// // rename

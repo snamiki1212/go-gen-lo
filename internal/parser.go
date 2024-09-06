@@ -1,4 +1,4 @@
-package cmd
+package internal
 
 import (
 	"fmt"
@@ -10,9 +10,9 @@ import (
 )
 
 // Parse sorce code to own struct.
-func parse(args arguments, reader func(path string) (*ast.File, error)) (data, error) {
+func Parse(args arguments, reader func(path string) (*ast.File, error)) (data, error) {
 	// Convert source code to ast
-	file, err := reader(args.input)
+	file, err := reader(args.Input)
 	if err != nil {
 		return data{}, fmt.Errorf("parse error: %w", err)
 	}
@@ -34,12 +34,12 @@ func parse(args arguments, reader func(path string) (*ast.File, error)) (data, e
 	return data{
 		fields:    fs,
 		pkgName:   getPackageNameFromFile(file),
-		sliceName: args.slice,
+		sliceName: args.Slice,
 	}, nil
 }
 
 // Read source code from file.
-func reader(path string) (*ast.File, error) {
+func Reader(path string) (*ast.File, error) {
 	fset := token.NewFileSet()
 	return parser.ParseFile(fset, path, nil, parser.AllErrors)
 }
@@ -50,15 +50,15 @@ func getPackageNameFromFile(node *ast.File) string { return node.Name.Name }
 // Parse file.
 func parseFile(node *ast.File, args arguments) ([]*ast.Field, error) {
 	// Find entity object
-	obj, ok := node.Scope.Objects[args.entity]
+	obj, ok := node.Scope.Objects[args.Entity]
 	if !ok {
-		return nil, fmt.Errorf("entity not found: %s", args.entity)
+		return nil, fmt.Errorf("entity not found: %s", args.Entity)
 	}
 
 	// Find entity
 	entity, ok := obj.Decl.(*ast.TypeSpec)
 	if !ok {
-		return nil, fmt.Errorf("invalid entity: %s", args.entity)
+		return nil, fmt.Errorf("invalid entity: %s", args.Entity)
 	}
 
 	// Find fields

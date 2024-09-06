@@ -1,4 +1,4 @@
-package cmd
+package internal
 
 import (
 	"bytes"
@@ -26,7 +26,7 @@ type templateMapper struct {
 }
 
 // Generate code
-func generate(data data) (string, error) {
+func Generate(data data) (string, error) {
 	pkgName := data.pkgName
 	sliceName := data.sliceName
 	infos := data.fields
