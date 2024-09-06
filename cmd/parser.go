@@ -6,7 +6,6 @@ import (
 	"go/parser"
 	"go/token"
 	"log"
-	"slices"
 	"strings"
 )
 
@@ -202,8 +201,8 @@ func (f field) display() string {
 }
 
 // Exclude fields by name.
-func (fs fields) exclude(targets []string) fields {
-	return slices.DeleteFunc(fs, func(f field) bool {
-		return slices.Contains(targets, f.Name)
-	})
-}
+// func (fs fields) exclude(targets []string) fields {
+// 	return slices.DeleteFunc(fs, func(f field) bool {
+// 		return slices.Contains(targets, f.Name)
+// 	})
+// }

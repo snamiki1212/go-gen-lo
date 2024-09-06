@@ -25,69 +25,9 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 
 	"github.com/spf13/cobra"
 )
-
-// TODO:
-// cmd --entity=User  --slice=UserVals --lo=Filter,Map --rename=Map:Loop    --no-extend
-// cmd --entity=*User --slice=UserPtrs --lo=Filter,Map --rename=Map:Loop    --no-extend
-type arguments struct {
-	// Target entity name
-	entity string
-
-	// TODO:
-	isPtrEntity bool
-
-	// Target slice name
-	slice string
-
-	// Input file name
-	input string
-
-	// Output file name
-	output string
-
-	// Method name of lo to generate
-	lo []string
-
-	// Mapping field name to accessor name
-	rename map[string]string // key: lo method name, value: generated method name.
-
-	// noExtend []string
-}
-
-var rename []string
-
-var args = arguments{
-	// rename: map[string]string{},
-}
-
-func (a *arguments) loadRename(as []string) error {
-	container := make([]error, 0)
-	for _, ac := range as {
-		pair := strings.Split(ac, ":")
-		if len(pair) != 2 {
-			container = append(container, fmt.Errorf("invalid rename: %s", ac))
-			continue
-		}
-		src, dst := pair[0], pair[1]
-		args.rename[src] = dst
-	}
-	if len(container) != 0 {
-		return fmt.Errorf("%v", container)
-	}
-	return nil
-}
-
-func loader() error {
-	// Load arguments
-	if err := args.loadRename(rename); err != nil {
-		return fmt.Errorf("load accessor error: %w", err)
-	}
-	return nil
-}
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -102,8 +42,8 @@ to quickly create a Cobra application.`,
 
 	RunE: func(cmd *cobra.Command, _ []string) error {
 		// Load arguments
-		if err := loader(); err != nil {
-			return fmt.Errorf("loader error: %w", err)
+		if err := args.load(); err != nil {
+			return fmt.Errorf("load arguments error: %w", err)
 		}
 
 		// Parse source code
@@ -140,7 +80,7 @@ func Execute() {
 
 func init() {
 	// entity
-	rootCmd.Flags().StringVarP(&args.entity, "entity", "e", "", "target entity name")
+	rootCmd.Flags().StringVarP(&argEntity, "entity", "e", "", "target entity name. e.g. User or *User")
 	_ = rootCmd.MarkFlagRequired("entity")
 
 	// slice
