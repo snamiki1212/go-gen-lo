@@ -81,7 +81,7 @@ func Execute() {
 
 func init() {
 	// entity
-	rootCmd.Flags().StringVarP(&internal.ArgEntity, "entity", "e", "", "target entity name. e.g. User or *User")
+	rootCmd.Flags().StringVarP(&internal.Args.RawEntity, "entity", "e", "", "target entity name. e.g. User or *User")
 	_ = rootCmd.MarkFlagRequired("entity")
 
 	// slice
@@ -97,5 +97,5 @@ func init() {
 	_ = rootCmd.MarkFlagRequired("output")
 
 	// // rename
-	// rootCmd.Flags().StringSliceVarP(&args.rename, "rename", "r", []string{}, "rename method e.g. --rename=Map:Loop")
+	// rootCmd.Flags().StringSliceVarP(&internal.Args.RawRename, "rename", "r", []string{}, "rename method e.g. --rename=Map:Loop")
 }

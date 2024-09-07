@@ -5,9 +5,6 @@ import (
 	"strings"
 )
 
-// TODO:
-// cmd --entity=User  --slice=UserVals --lo=Filter,Map --rename=Map:Loop    --no-extend
-// cmd --entity=*User --slice=UserPtrs --lo=Filter,Map --rename=Map:Loop    --no-extend
 type arguments struct {
 	// Target Entity name
 	Entity string
@@ -24,20 +21,32 @@ type arguments struct {
 	// Output file name
 	Output string
 
-	// Method name of lo to generate
-	// lo []string
+	// // Mapping field name to accessor name
+	// RenameMap map[string]string // key: lo method name, value: generated method name.
 
-	// Mapping field name to accessor name
-	Rename map[string]string // key: lo method name, value: generated method name.
+	// // Raw rename strings
+	// RawRename []string
 
-	// noExtend []string
+	// Raw entity
+	RawEntity string
 }
 
-var ArgRename []string
-var ArgEntity string
-
 var Args = arguments{
-	Rename: map[string]string{},
+	// RenameMap: map[string]string{},
+}
+
+func (a *arguments) Load() error {
+	// // Load rename
+	// if err := a.loadRename(a.RawRename); err != nil {
+	// 	return fmt.Errorf("load accessor error: %w", err)
+	// }
+
+	// Load entity
+	if err := a.loadEntity(a.RawEntity); err != nil {
+		return fmt.Errorf("load entity error: %w", err)
+	}
+
+	return nil
 }
 
 func (a arguments) DisplayEntity() string {
@@ -47,22 +56,22 @@ func (a arguments) DisplayEntity() string {
 	return a.Entity
 }
 
-func (a *arguments) loadRename(as []string) error {
-	container := make([]error, 0)
-	for _, ac := range as {
-		pair := strings.Split(ac, ":")
-		if len(pair) != 2 {
-			container = append(container, fmt.Errorf("invalid rename: %s", ac))
-			continue
-		}
-		src, dst := pair[0], pair[1]
-		a.Rename[src] = dst
-	}
-	if len(container) != 0 {
-		return fmt.Errorf("%v", container)
-	}
-	return nil
-}
+// func (a *arguments) loadRename(as []string) error {
+// 	container := make([]error, 0)
+// 	for _, ac := range as {
+// 		pair := strings.Split(ac, ":")
+// 		if len(pair) != 2 {
+// 			container = append(container, fmt.Errorf("invalid rename: %s", ac))
+// 			continue
+// 		}
+// 		src, dst := pair[0], pair[1]
+// 		a.RenameMap[src] = dst
+// 	}
+// 	if len(container) != 0 {
+// 		return fmt.Errorf("%v", container)
+// 	}
+// 	return nil
+// }
 
 func (a *arguments) loadEntity(e string) error {
 	a.IsPtrEntity = strings.HasPrefix(e, "*")
@@ -70,18 +79,5 @@ func (a *arguments) loadEntity(e string) error {
 		e = strings.TrimPrefix(e, "*")
 	}
 	a.Entity = e
-	return nil
-}
-
-func (a *arguments) Load() error {
-	// Load arguments
-	if err := a.loadRename(ArgRename); err != nil {
-		return fmt.Errorf("load accessor error: %w", err)
-	}
-
-	// Load entity
-	if err := a.loadEntity(ArgEntity); err != nil {
-		return fmt.Errorf("load entity error: %w", err)
-	}
 	return nil
 }
