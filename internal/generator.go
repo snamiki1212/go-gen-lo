@@ -13,9 +13,9 @@ const (
 	loMethodsMap    loMethods = "Map"
 )
 
-var loMethodsAll = []loMethods{loMethodsFilter, loMethodsMap}
+var loMethodAll = []loMethods{loMethodsFilter, loMethodsMap}
 
-var templates = map[loMethods]string{
+var loMethodTemplates = map[loMethods]string{
 	loMethodsFilter: `
 // Filter
 func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
@@ -30,28 +30,24 @@ func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Enti
 `,
 }
 
-// const templFilter = `
-// // Filter
-// func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
-// 	return lo.Filter(xs, predicate)
-// }
-// `
+type loMethodsExtend string
 
-// const templMap = `
-// // Map
-// func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
-// 	return lo.Map(xs, iteratee)
-// }
-// `
+const (
+	loMethodsExtendFilter loMethodsExtend = "FilterBy"
+)
 
-const templExtendFilter = `
+var loMethodExtendAll = []loMethodsExtend{loMethodsExtendFilter}
+
+var loMethodExtendTemplates = map[loMethodsExtend]string{
+	loMethodsExtendFilter: `
 // FilterBy{{ .Field }}
 func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice }} {
 	return lo.Filter(xs, func(item {{ .Entity }}, index int) bool {
 		return item.{{ .Field }} == {{ .Field }}
 	})
 }
-`
+`,
+}
 
 // Replace variable from key to value in template.
 type templateMapper struct {
@@ -79,12 +75,12 @@ func Generate(args arguments, data data) (string, error) {
 	txt += `import "github.com/samber/lo"` + "\n\n"
 
 	{
-		// append templates
+		// append loMethodTemplates
 		var doc bytes.Buffer
 
-		for _, method := range loMethodsAll {
-			// Get Template src
-			rawTp, ok := templates[method]
+		for _, method := range loMethodAll {
+			// Get template src
+			rawTp, ok := loMethodTemplates[method]
 			if !ok {
 				return "", fmt.Errorf("template not found: %s", method)
 			}
@@ -107,38 +103,30 @@ func Generate(args arguments, data data) (string, error) {
 	// append filter by
 	{
 		var doc bytes.Buffer
-		tp, err := template.New("").Parse(templExtendFilter)
-		if err != nil {
-			return "", fmt.Errorf("template parse error: %w", err)
-		}
-		for _, info := range infos {
-			data := &templateMapper{
-				Slice:  sliceName,
-				Entity: args.DisplayEntity(),
-				Type:   info.Type,
-				Field:  info.Name,
+		for _, method := range loMethodExtendAll {
+			// Get template src
+			rawTp, ok := loMethodExtendTemplates[method]
+			if !ok {
+				return "", fmt.Errorf("template not found: %s", method)
 			}
 
-			err = tp.Execute(&doc, data)
+			// New Template
+			tp, err := template.New("").Parse(rawTp)
 			if err != nil {
-				return "", fmt.Errorf("template execute error: %w", err)
+				return "", fmt.Errorf("template parse error: %w", err)
+			}
+
+			// Generate txt from template
+			for _, info := range infos {
+				data := &templateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: info.Type, Field: info.Name}
+				err = tp.Execute(&doc, data)
+				if err != nil {
+					return "", fmt.Errorf("template execute error: %w", err)
+				}
 			}
 		}
 		txt += doc.String()
 	}
 
 	return txt, nil
-}
-
-type tt struct{}
-
-func (t tt) Template() string {
-	return `
-	// FilterBy{{ .Field }}
-func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice }} {
-	return lo.Filter(xs, func(item {{ .Entity }}, index int) bool {
-		return item.{{ .Field }} == {{ .Field }}
-	})
-}
-	`
 }
