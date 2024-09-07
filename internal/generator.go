@@ -6,10 +6,19 @@ import (
 	"text/template"
 )
 
-const templateBody = `
+const templFilter = `
 // Filter
 func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
-	return lo.Filter(x, predicate)
+	return lo.Filter(xs, predicate)
+}
+`
+
+const templExtendFilter = `
+// FilterBy{{ .Field }}
+func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice }} {
+	return lo.Filter(xs, func(item {{ .Entity }}, index int) bool {
+		return item.{{ .Field }} == {{ .Field }}
+	})
 }
 `
 
@@ -38,26 +47,51 @@ func Generate(args arguments, data data) (string, error) {
 	txt += "package " + pkgName + "\n\n"
 	txt += `import "github.com/samber/lo"` + "\n\n"
 
-	// append templates
-	var doc bytes.Buffer
-	tp, err := template.New("").Parse(templateBody)
-	if err != nil {
-		return "", fmt.Errorf("template parse error: %w", err)
-	}
-	for _, info := range infos {
-		data := &templateMapper{
-			Slice:  sliceName,
-			Entity: args.DisplayEntity(),
-			Type:   info.Type,
-			Field:  info.Name,
-		}
-
-		err = tp.Execute(&doc, data)
+	{
+		// append templates
+		var doc bytes.Buffer
+		tp, err := template.New("").Parse(templFilter)
 		if err != nil {
-			return "", fmt.Errorf("template execute error: %w", err)
+			return "", fmt.Errorf("template parse error: %w", err)
 		}
+		for _, info := range infos {
+			data := &templateMapper{
+				Slice:  sliceName,
+				Entity: args.DisplayEntity(),
+				Type:   info.Type,
+				Field:  info.Name,
+			}
+
+			err = tp.Execute(&doc, data)
+			if err != nil {
+				return "", fmt.Errorf("template execute error: %w", err)
+			}
+		}
+		txt += doc.String()
 	}
-	txt += doc.String()
+
+	// append filter by
+	{
+		var doc bytes.Buffer
+		tp, err := template.New("").Parse(templExtendFilter)
+		if err != nil {
+			return "", fmt.Errorf("template parse error: %w", err)
+		}
+		for _, info := range infos {
+			data := &templateMapper{
+				Slice:  sliceName,
+				Entity: args.DisplayEntity(),
+				Type:   info.Type,
+				Field:  info.Name,
+			}
+
+			err = tp.Execute(&doc, data)
+			if err != nil {
+				return "", fmt.Errorf("template execute error: %w", err)
+			}
+		}
+		txt += doc.String()
+	}
 
 	return txt, nil
 }
