@@ -6,19 +6,43 @@ import (
 	"text/template"
 )
 
-const templFilter = `
+type loMethods string
+
+const (
+	loMethodsFilter loMethods = "Filter"
+	loMethodsMap    loMethods = "Map"
+)
+
+var loMethodsAll = []loMethods{loMethodsFilter, loMethodsMap}
+
+var templates = map[loMethods]string{
+	loMethodsFilter: `
 // Filter
 func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
 	return lo.Filter(xs, predicate)
 }
-`
-
-const templMap = `
+`,
+	loMethodsMap: `
 // Map
 func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
 	return lo.Map(xs, iteratee)
 }
-`
+`,
+}
+
+// const templFilter = `
+// // Filter
+// func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
+// 	return lo.Filter(xs, predicate)
+// }
+// `
+
+// const templMap = `
+// // Map
+// func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
+// 	return lo.Map(xs, iteratee)
+// }
+// `
 
 const templExtendFilter = `
 // FilterBy{{ .Field }}
@@ -57,43 +81,23 @@ func Generate(args arguments, data data) (string, error) {
 	{
 		// append templates
 		var doc bytes.Buffer
-		tp, err := template.New("").Parse(templFilter)
-		if err != nil {
-			return "", fmt.Errorf("template parse error: %w", err)
-		}
-		for _, info := range infos {
-			data := &templateMapper{
-				Slice:  sliceName,
-				Entity: args.DisplayEntity(),
-				Type:   info.Type,
-				Field:  info.Name,
+
+		for _, method := range loMethodsAll {
+			// Get Template src
+			rawTp, ok := templates[method]
+			if !ok {
+				return "", fmt.Errorf("template not found: %s", method)
 			}
 
-			err = tp.Execute(&doc, data)
+			// New Template
+			tp, err := template.New("").Parse(rawTp)
 			if err != nil {
-				return "", fmt.Errorf("template execute error: %w", err)
-			}
-		}
-		txt += doc.String()
-	}
-
-	{
-		// append templates
-		var doc bytes.Buffer
-		tp, err := template.New("").Parse(templMap)
-		if err != nil {
-			return "", fmt.Errorf("template parse error: %w", err)
-		}
-		for _, info := range infos {
-			data := &templateMapper{
-				Slice:  sliceName,
-				Entity: args.DisplayEntity(),
-				Type:   info.Type,
-				Field:  info.Name,
+				return "", fmt.Errorf("template parse error: %w", err)
 			}
 
-			err = tp.Execute(&doc, data)
-			if err != nil {
+			// Generate txt from template
+			data := &templateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
+			if err = tp.Execute(&doc, data); err != nil {
 				return "", fmt.Errorf("template execute error: %w", err)
 			}
 		}
@@ -124,4 +128,17 @@ func Generate(args arguments, data data) (string, error) {
 	}
 
 	return txt, nil
+}
+
+type tt struct{}
+
+func (t tt) Template() string {
+	return `
+	// FilterBy{{ .Field }}
+func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice }} {
+	return lo.Filter(xs, func(item {{ .Entity }}, index int) bool {
+		return item.{{ .Field }} == {{ .Field }}
+	})
+}
+	`
 }
