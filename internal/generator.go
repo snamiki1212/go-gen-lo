@@ -13,6 +13,13 @@ func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool
 }
 `
 
+const templMap = `
+// Map
+func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
+	return lo.Map(xs, iteratee)
+}
+`
+
 const templExtendFilter = `
 // FilterBy{{ .Field }}
 func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice }} {
@@ -51,6 +58,29 @@ func Generate(args arguments, data data) (string, error) {
 		// append templates
 		var doc bytes.Buffer
 		tp, err := template.New("").Parse(templFilter)
+		if err != nil {
+			return "", fmt.Errorf("template parse error: %w", err)
+		}
+		for _, info := range infos {
+			data := &templateMapper{
+				Slice:  sliceName,
+				Entity: args.DisplayEntity(),
+				Type:   info.Type,
+				Field:  info.Name,
+			}
+
+			err = tp.Execute(&doc, data)
+			if err != nil {
+				return "", fmt.Errorf("template execute error: %w", err)
+			}
+		}
+		txt += doc.String()
+	}
+
+	{
+		// append templates
+		var doc bytes.Buffer
+		tp, err := template.New("").Parse(templMap)
 		if err != nil {
 			return "", fmt.Errorf("template parse error: %w", err)
 		}
