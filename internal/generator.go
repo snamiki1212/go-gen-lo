@@ -34,9 +34,10 @@ type loMethodsExtend string
 
 const (
 	loMethodsExtendFilter loMethodsExtend = "FilterBy"
+	loMethodsExtendKeyBy  loMethodsExtend = "KeyBy"
 )
 
-var loMethodExtendAll = []loMethodsExtend{loMethodsExtendFilter}
+var loMethodExtendAll = []loMethodsExtend{loMethodsExtendFilter, loMethodsExtendKeyBy}
 
 var loMethodExtendTemplates = map[loMethodsExtend]string{
 	loMethodsExtendFilter: `
@@ -44,6 +45,14 @@ var loMethodExtendTemplates = map[loMethodsExtend]string{
 func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice }} {
 	return lo.Filter(xs, func(item {{ .Entity }}, index int) bool {
 		return item.{{ .Field }} == {{ .Field }}
+	})
+}
+`,
+	loMethodsExtendKeyBy: `
+// KeyBy{{ .Field }}
+func (xs {{ .Slice }}) KeyBy{{ .Field }}() {{ .Type }} {
+	return lo.KeyBy(xs, func(item {{ .Entity }}) {{ .Type }} {
+		return item.{{ .Field }}
 	})
 }
 `,
