@@ -50,7 +50,13 @@ func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice 
 }
 
 // Replace variable from key to value in template.
-type templateMapper struct {
+type loMethodTemplateMapper struct {
+	Slice  string // Slice name for target struct (ex. Users).
+	Entity string // Entity name for target struct (ex. User / *User).
+}
+
+// Replace variable from key to value in template.
+type loMethodExtendTemplateMapper struct {
 	Slice  string // Slice name for target struct (ex. Users).
 	Entity string // Entity name for target struct (ex. User / *User).
 	Type   string // Type name of field (ex. string).
@@ -92,7 +98,7 @@ func Generate(args arguments, data data) (string, error) {
 			}
 
 			// Generate txt from template
-			data := &templateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
+			data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
 			if err = tp.Execute(&doc, data); err != nil {
 				return "", fmt.Errorf("template execute error: %w", err)
 			}
@@ -118,7 +124,7 @@ func Generate(args arguments, data data) (string, error) {
 
 			// Generate txt from template
 			for _, info := range infos {
-				data := &templateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: info.Type, Field: info.Name}
+				data := &loMethodExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: info.Type, Field: info.Name}
 				err = tp.Execute(&doc, data)
 				if err != nil {
 					return "", fmt.Errorf("template execute error: %w", err)
