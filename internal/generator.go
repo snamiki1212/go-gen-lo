@@ -67,11 +67,7 @@ type loMethodExtendTemplateMapper struct {
 func Generate(args arguments, data data) (string, error) {
 	pkgName := data.pkgName
 	sliceName := data.sliceName
-	infos := data.fields
-
-	if len(infos) == 0 {
-		return "", nil
-	}
+	fields := data.fields
 
 	var txt string
 
@@ -80,59 +76,75 @@ func Generate(args arguments, data data) (string, error) {
 	txt += "package " + pkgName + "\n\n"
 	txt += `import "github.com/samber/lo"` + "\n\n"
 
-	{
-		// append loMethodTemplates
-		var doc bytes.Buffer
+	// append lo
+	lo, err := generateLo(args, sliceName)
+	if err != nil {
+		return "", fmt.Errorf("generate lo error: %w", err)
+	}
+	txt += lo
 
-		for _, method := range loMethodAll {
-			// Get template src
-			rawTp, ok := loMethodTemplates[method]
-			if !ok {
-				return "", fmt.Errorf("template not found: %s", method)
-			}
+	// append extend
+	lo, err = generateLoExtend(args, sliceName, fields)
+	if err != nil {
+		return "", fmt.Errorf("generate lo extend error: %w", err)
+	}
+	txt += lo
 
-			// New Template
-			tp, err := template.New("").Parse(rawTp)
+	return txt, nil
+}
+
+func generateLo(args arguments, sliceName string) (string, error) {
+	// append loMethodTemplates
+	var doc bytes.Buffer
+
+	for _, method := range loMethodAll {
+		// Get template src
+		rawTp, ok := loMethodTemplates[method]
+		if !ok {
+			return "", fmt.Errorf("template not found: %s", method)
+		}
+
+		// New Template
+		tp, err := template.New("").Parse(rawTp)
+		if err != nil {
+			return "", fmt.Errorf("template parse error: %w", err)
+		}
+
+		// Generate txt from template
+		data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
+		if err = tp.Execute(&doc, data); err != nil {
+			return "", fmt.Errorf("template execute error: %w", err)
+		}
+	}
+	return doc.String(), nil
+}
+
+func generateLoExtend(args arguments, sliceName string, fields fields) (string, error) {
+	if len(fields) == 0 {
+		return "", nil
+	}
+	var doc bytes.Buffer
+	for _, method := range loMethodExtendAll {
+		// Get template src
+		rawTp, ok := loMethodExtendTemplates[method]
+		if !ok {
+			return "", fmt.Errorf("template not found: %s", method)
+		}
+
+		// New Template
+		tp, err := template.New("").Parse(rawTp)
+		if err != nil {
+			return "", fmt.Errorf("template parse error: %w", err)
+		}
+
+		// Generate txt from template
+		for _, field := range fields {
+			data := &loMethodExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name}
+			err = tp.Execute(&doc, data)
 			if err != nil {
-				return "", fmt.Errorf("template parse error: %w", err)
-			}
-
-			// Generate txt from template
-			data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
-			if err = tp.Execute(&doc, data); err != nil {
 				return "", fmt.Errorf("template execute error: %w", err)
 			}
 		}
-		txt += doc.String()
 	}
-
-	// append filter by
-	{
-		var doc bytes.Buffer
-		for _, method := range loMethodExtendAll {
-			// Get template src
-			rawTp, ok := loMethodExtendTemplates[method]
-			if !ok {
-				return "", fmt.Errorf("template not found: %s", method)
-			}
-
-			// New Template
-			tp, err := template.New("").Parse(rawTp)
-			if err != nil {
-				return "", fmt.Errorf("template parse error: %w", err)
-			}
-
-			// Generate txt from template
-			for _, info := range infos {
-				data := &loMethodExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: info.Type, Field: info.Name}
-				err = tp.Execute(&doc, data)
-				if err != nil {
-					return "", fmt.Errorf("template execute error: %w", err)
-				}
-			}
-		}
-		txt += doc.String()
-	}
-
-	return txt, nil
+	return doc.String(), nil
 }
