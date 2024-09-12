@@ -6,6 +6,7 @@ import (
 	"go/parser"
 	"go/token"
 	"log"
+	"slices"
 	"strings"
 )
 
@@ -27,9 +28,7 @@ func Parse(args arguments, reader func(path string) (*ast.File, error)) (data, e
 	fs := newFields(fields)
 
 	// Transform data
-	// fs = fs
-	// exclude(args.fieldNamesToExclude).
-	// buildAccessor(newPluralizer(), args.accessors)
+	fs = fs.excludeUncomparable()
 
 	return data{
 		fields:    fs,
@@ -82,9 +81,8 @@ type (
 
 	// Struct field from entity in source code.
 	field struct {
-		Name     string // field name
-		Type     string // field type like string,int64...
-		Accessor string // accessor name
+		Name string // field name
+		Type string // field type like string,int64...
 	}
 )
 
@@ -206,3 +204,26 @@ func (f field) display() string {
 // 		return slices.Contains(targets, f.Name)
 // 	})
 // }
+
+// excludeNoncomparable
+func (fs fields) excludeUncomparable() fields {
+	return slices.DeleteFunc(fs, func(f field) bool {
+		return f.isUncomparable()
+	})
+}
+
+// isComparable
+func (f field) isUncomparable() bool {
+	NGs := []string{
+		"func(",
+		"map[",
+		"chan ",
+		"interface{",
+	}
+	for _, ng := range NGs {
+		if strings.Contains(f.Type, ng) {
+			return true
+		}
+	}
+	return false
+}
