@@ -50,7 +50,7 @@ func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice 
 `,
 	loMethodsExtendKeyBy: `
 // KeyBy{{ .Field }}
-func (xs {{ .Slice }}) KeyBy{{ .Field }}() {{ .Type }} {
+func (xs {{ .Slice }}) KeyBy{{ .Field }}() map[{{ .Type }}]{{ .Entity }} {
 	return lo.KeyBy(xs, func(item {{ .Entity }}) {{ .Type }} {
 		return item.{{ .Field }}
 	})

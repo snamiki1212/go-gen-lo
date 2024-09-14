@@ -15,6 +15,7 @@ v0
 - Filter / FilterByID
 - Map
 - KeyBy / KeyByID
+- GroupBy
 - Find / FindByID
 
 ## E2E
