@@ -30,13 +30,19 @@ Flags:
 
 ## Spec
 
-v0
+- ✅ Support
+- 🚫 Cannot Support(TODO: add issue)
+- ☑️ Not supported yet
 
-- Filter / FilterByID
-- Map
-- KeyBy / KeyByID
-- GroupBy
-- Find / FindByID
+| samber/lo | Basic | Extend |
+| --------- | ----- | ------ |
+| Filter    | ✅    | ✅     |
+| Map       | ✅    | 🚫     |
+| KeyBy     | 🚫    | ✅     |
+| GroupBy   | ☑️    | ☑️     |
+| Find      | ☑️    | ☑️     |
+
+- TODO: https://github.com/samber/lo?tab=readme-ov-file#-spec
 
 ## E2E
 
