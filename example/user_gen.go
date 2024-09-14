@@ -22,17 +22,87 @@ func (xs Users) FilterByUserID(field string) Users {
 	})
 }
 
-// FilterByAge
-func (xs Users) FilterByAge(field int64) Users {
+// FilterByInt
+func (xs Users) FilterByInt(field int) Users {
 	return lo.Filter(xs, func(entity *User, index int) bool {
-		return entity.Age == field
+		return entity.Int == field
 	})
 }
 
-// FilterByitem
-func (xs Users) FilterByitem(field Item) Users {
+// FilterByIntPtr
+func (xs Users) FilterByIntPtr(field *int) Users {
 	return lo.Filter(xs, func(entity *User, index int) bool {
-		return entity.item == field
+		return entity.IntPtr == field
+	})
+}
+
+// FilterByBool
+func (xs Users) FilterByBool(field bool) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.Bool == field
+	})
+}
+
+// FilterByBoolPtr
+func (xs Users) FilterByBoolPtr(field *bool) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.BoolPtr == field
+	})
+}
+
+// FilterByStr
+func (xs Users) FilterByStr(field string) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.Str == field
+	})
+}
+
+// FilterByStrPtr
+func (xs Users) FilterByStrPtr(field *string) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.StrPtr == field
+	})
+}
+
+// FilterByStruct0
+func (xs Users) FilterByStruct0(field DefinedStruct0) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.Struct0 == field
+	})
+}
+
+// FilterByStructPtr0
+func (xs Users) FilterByStructPtr0(field *DefinedStruct0) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.StructPtr0 == field
+	})
+}
+
+// FilterByStruct1
+func (xs Users) FilterByStruct1(field DefinedStruct1) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.Struct1 == field
+	})
+}
+
+// FilterByStructPtr1
+func (xs Users) FilterByStructPtr1(field *DefinedStruct1) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.StructPtr1 == field
+	})
+}
+
+// FilterByChanSend0
+func (xs Users) FilterByChanSend0(field chan<- int) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.ChanSend0 == field
+	})
+}
+
+// FilterByChanSendPtr0
+func (xs Users) FilterByChanSendPtr0(field *chan<- int) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.ChanSendPtr0 == field
 	})
 }
 
@@ -43,16 +113,86 @@ func (xs Users) KeyByUserID() map[string]*User {
 	})
 }
 
-// KeyByAge
-func (xs Users) KeyByAge() map[int64]*User {
-	return lo.KeyBy(xs, func(entity *User) int64 {
-		return entity.Age
+// KeyByInt
+func (xs Users) KeyByInt() map[int]*User {
+	return lo.KeyBy(xs, func(entity *User) int {
+		return entity.Int
 	})
 }
 
-// KeyByitem
-func (xs Users) KeyByitem() map[Item]*User {
-	return lo.KeyBy(xs, func(entity *User) Item {
-		return entity.item
+// KeyByIntPtr
+func (xs Users) KeyByIntPtr() map[*int]*User {
+	return lo.KeyBy(xs, func(entity *User) *int {
+		return entity.IntPtr
+	})
+}
+
+// KeyByBool
+func (xs Users) KeyByBool() map[bool]*User {
+	return lo.KeyBy(xs, func(entity *User) bool {
+		return entity.Bool
+	})
+}
+
+// KeyByBoolPtr
+func (xs Users) KeyByBoolPtr() map[*bool]*User {
+	return lo.KeyBy(xs, func(entity *User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// KeyByStr
+func (xs Users) KeyByStr() map[string]*User {
+	return lo.KeyBy(xs, func(entity *User) string {
+		return entity.Str
+	})
+}
+
+// KeyByStrPtr
+func (xs Users) KeyByStrPtr() map[*string]*User {
+	return lo.KeyBy(xs, func(entity *User) *string {
+		return entity.StrPtr
+	})
+}
+
+// KeyByStruct0
+func (xs Users) KeyByStruct0() map[DefinedStruct0]*User {
+	return lo.KeyBy(xs, func(entity *User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// KeyByStructPtr0
+func (xs Users) KeyByStructPtr0() map[*DefinedStruct0]*User {
+	return lo.KeyBy(xs, func(entity *User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// KeyByStruct1
+func (xs Users) KeyByStruct1() map[DefinedStruct1]*User {
+	return lo.KeyBy(xs, func(entity *User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// KeyByStructPtr1
+func (xs Users) KeyByStructPtr1() map[*DefinedStruct1]*User {
+	return lo.KeyBy(xs, func(entity *User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// KeyByChanSend0
+func (xs Users) KeyByChanSend0() map[chan<- int]*User {
+	return lo.KeyBy(xs, func(entity *User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// KeyByChanSendPtr0
+func (xs Users) KeyByChanSendPtr0() map[*chan<- int]*User {
+	return lo.KeyBy(xs, func(entity *User) *chan<- int {
+		return entity.ChanSendPtr0
 	})
 }
