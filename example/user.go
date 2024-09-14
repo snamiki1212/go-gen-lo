@@ -1,8 +1,8 @@
 package main
 
-//go:generate go run ../. --entity=*User --slice=Users --input=user.go --output=user_gen.go
+//go:generate go run ../main.go --entity=*User --slice=Users --input=user.go --output=user_gen.go
 type User struct {
-	// UserID   string
+	UserID string
 	// Age      int64
 	// Callback func() string
 	Map map[string]string
