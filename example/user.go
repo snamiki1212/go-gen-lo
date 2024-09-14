@@ -1,6 +1,5 @@
 package main
 
-//go:generate go run ../main.go --entity=*User --slice=Users --input=user.go --output=user_gen.go
 type User struct {
 	// Example
 	UserID string
@@ -79,7 +78,12 @@ type User struct {
 	// InlineStruct0 struct{ Name string } // NOTE: not supported
 	// InlineStruct1 struct { Name string } // NOTE: not supported
 }
-type Users []*User
+
+//go:generate go run ../main.go --entity=*User --slice=UserPtrs --input=user.go --output=users_ptr_gen.go
+type UserPtrs []*User
+
+//go:generate go run ../main.go --entity=User --slice=UserList --input=user.go --output=users_list_gen.go
+type UserList []User
 
 type DefinedStruct0 struct{}
 
