@@ -42,17 +42,17 @@ var loMethodExtendAll = []loMethodsExtend{loMethodsExtendFilter, loMethodsExtend
 var loMethodExtendTemplates = map[loMethodsExtend]string{
 	loMethodsExtendFilter: `
 // FilterBy{{ .Field }}
-func (xs {{ .Slice }}) FilterBy{{ .Field }}({{ .Field }} {{ .Type }}) {{ .Slice }} {
-	return lo.Filter(xs, func(item {{ .Entity }}, index int) bool {
-		return item.{{ .Field }} == {{ .Field }}
+func (xs {{ .Slice }}) FilterBy{{ .Field }}(field {{ .Type }}) {{ .Slice }} {
+	return lo.Filter(xs, func(entity {{ .Entity }}, index int) bool {
+		return entity.{{ .Field }} == field
 	})
 }
 `,
 	loMethodsExtendKeyBy: `
 // KeyBy{{ .Field }}
 func (xs {{ .Slice }}) KeyBy{{ .Field }}() map[{{ .Type }}]{{ .Entity }} {
-	return lo.KeyBy(xs, func(item {{ .Entity }}) {{ .Type }} {
-		return item.{{ .Field }}
+	return lo.KeyBy(xs, func(entity {{ .Entity }}) {{ .Type }} {
+		return entity.{{ .Field }}
 	})
 }
 `,

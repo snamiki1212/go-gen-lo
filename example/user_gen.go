@@ -16,15 +16,43 @@ func (xs Users) Map(iteratee func(item *User, index int) *User) Users {
 }
 
 // FilterByUserID
-func (xs Users) FilterByUserID(UserID string) Users {
-	return lo.Filter(xs, func(item *User, index int) bool {
-		return item.UserID == UserID
+func (xs Users) FilterByUserID(field string) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.UserID == field
+	})
+}
+
+// FilterByAge
+func (xs Users) FilterByAge(field int64) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.Age == field
+	})
+}
+
+// FilterByitem
+func (xs Users) FilterByitem(field Item) Users {
+	return lo.Filter(xs, func(entity *User, index int) bool {
+		return entity.item == field
 	})
 }
 
 // KeyByUserID
 func (xs Users) KeyByUserID() map[string]*User {
-	return lo.KeyBy(xs, func(item *User) string {
-		return item.UserID
+	return lo.KeyBy(xs, func(entity *User) string {
+		return entity.UserID
+	})
+}
+
+// KeyByAge
+func (xs Users) KeyByAge() map[int64]*User {
+	return lo.KeyBy(xs, func(entity *User) int64 {
+		return entity.Age
+	})
+}
+
+// KeyByitem
+func (xs Users) KeyByitem() map[Item]*User {
+	return lo.KeyBy(xs, func(entity *User) Item {
+		return entity.item
 	})
 }
