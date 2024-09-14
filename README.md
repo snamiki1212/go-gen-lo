@@ -34,13 +34,13 @@ Flags:
 - 🚫 Cannot Support(TODO: add issue)
 - ☑️ Not supported yet
 
-| samber/lo | Basic | Extend |
-| --------- | ----- | ------ |
-| Filter    | ✅    | ✅     |
-| Map       | ✅    | 🚫     |
-| KeyBy     | 🚫    | ✅     |
-| GroupBy   | ☑️    | ☑️     |
-| Find      | ☑️    | ☑️     |
+| samber/lo | Struct  | Basic | Extend |
+| --------- | ------- | ----- | ------ |
+| Filter    | `Slice` | ✅    | ✅     |
+| Map       | `Slice` | ✅    | 🚫     |
+| KeyBy     | `Slice` | 🚫    | ✅     |
+| GroupBy   | `Slice` | ☑️    | ☑️     |
+| Find      | `Slice` | ☑️    | ☑️     |
 
 - TODO: https://github.com/samber/lo?tab=readme-ov-file#-spec
 
@@ -50,6 +50,11 @@ Flags:
 $ go generate ./example
 $ go run ./example
 ```
+
+## TODO
+
+- Support all slice lo.
+- Support map struct as well as slice.
 
 ## LICENSE
 
