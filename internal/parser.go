@@ -255,6 +255,7 @@ func (f field) isUncomparable() bool {
 		"map[",
 		"chan ",
 		"interface{",
+		"[]",
 	}
 	for _, ng := range NGs {
 		if strings.Contains(f.Type, ng) {
