@@ -14,11 +14,11 @@ Generate lo methods for slice struct.
 Generate lo methods for slice struct.
 
 Usage:
-  gen-slice-accessors [flags]
+  go-gen-lo [flags]
 
 Flags:
   -e, --entity string   target entity name. e.g. User or *User
-  -h, --help            help for gen-slice-accessors
+  -h, --help            help for go-gen-lo
   -i, --input string    input file name
   -o, --output string   output file name
   -s, --slice string    target slice name. e.g. Users
