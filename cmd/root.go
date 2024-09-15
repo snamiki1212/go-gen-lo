@@ -47,7 +47,8 @@ var rootCmd = &cobra.Command{
 		}
 
 		// Generate code
-		txt, err := internal.Generate(internal.Args, dt)
+		g := internal.NewGenerator()
+		txt, err := g.Generate(internal.Args, dt)
 		if err != nil {
 			return fmt.Errorf("generate error: %w", err)
 		}
