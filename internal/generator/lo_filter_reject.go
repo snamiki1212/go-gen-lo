@@ -27,8 +27,3 @@ func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}(_{{ .Field }} {{ .Type }}) (kep
 }
 `, true
 }
-
-// // FilterReject
-// func (us UserVals) FilterReject(predicate func(User, int) bool) (UserVals, UserVals) {
-// 	return lo.FilterReject(us, predicate)
-// }
