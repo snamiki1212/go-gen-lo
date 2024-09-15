@@ -94,6 +94,6 @@ func init() {
 	// exclude
 	rootCmd.Flags().StringSliceVarP(&internal.Args.LoMethodsToExclude, "exclude", "x", []string{}, "exclude lo method e.g. --exclude=Map,Filter")
 
-	// // rename
-	// rootCmd.Flags().StringSliceVarP(&internal.Args.RawRename, "rename", "r", []string{}, "rename method e.g. --rename=Map:Loop")
+	// rename
+	rootCmd.Flags().StringSliceVarP(&internal.Args.RawRename, "rename", "r", []string{}, "rename method e.g. --rename=Map:Loop")
 }

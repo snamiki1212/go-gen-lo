@@ -8,8 +8,8 @@ func (l LoMap) Kind() string { return "Map" }
 
 func (l LoMap) StdTemplate() (string, bool) {
 	return `
-// Map
-func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
+// {{ .Method }}
+func (xs {{ .Slice }}) {{ .Method }}(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
 	return lo.Map(xs, iteratee)
 }
 `, true

@@ -8,8 +8,8 @@ func (l LoFilter) Kind() string { return "Filter" }
 
 func (l LoFilter) StdTemplate() (string, bool) {
 	return `
-// Filter
-func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
+// {{ .Method }}
+func (xs {{ .Slice }}) {{ .Method }}(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
 	return lo.Filter(xs, predicate)
 }
 `, true
