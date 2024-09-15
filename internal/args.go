@@ -29,6 +29,9 @@ type Arguments struct {
 
 	// Raw entity
 	RawEntity string
+
+	// Excluded lo methods
+	LoMethodsToExclude []string
 }
 
 var Args = Arguments{

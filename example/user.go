@@ -79,14 +79,17 @@ type User struct {
 	// InlineStruct1 struct { Name string } // NOTE: not supported
 }
 
+type DefinedStruct0 struct{}
+
+type DefinedStruct1 struct {
+	Name string
+}
+
 //go:generate go run ../main.go --entity=*User --slice=UserPtrs --input=user.go --output=users_ptr_gen.go
 type UserPtrs []*User
 
 //go:generate go run ../main.go --entity=User --slice=UserList --input=user.go --output=users_list_gen.go
 type UserList []User
 
-type DefinedStruct0 struct{}
-
-type DefinedStruct1 struct {
-	Name string
-}
+//go:generate go run ../main.go --entity=User --slice=UserExclude --input=user.go --output=users_exclude_gen.go --exclude=Map,Filter,KeyBy
+type UserExclude []User
