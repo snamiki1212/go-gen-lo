@@ -28,5 +28,6 @@ func NewAllLoList() []Lo {
 		NewLoFilter(),
 		NewLoMap(),
 		NewLoKeyBy(),
+		NewLoFind(),
 	}
 }

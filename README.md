@@ -149,7 +149,7 @@ Flags:
 | [WithoutEmpty](https://github.com/samber/lo?tab=readme-ov-file#withoutempty)                                           | `[]T`         | ー  | ー     |
 | [IndexOf](https://github.com/samber/lo?tab=readme-ov-file#indexof)                                                     | `[]T`         | ☑️  | ー     |
 | [LastIndexOf](https://github.com/samber/lo?tab=readme-ov-file#lastindexof)                                             | `[]T`         | ☑️  | ー     |
-| [Find](https://github.com/samber/lo?tab=readme-ov-file#find)                                                           | `[]T`         | ☑️  | ☑️     |
+| [Find](https://github.com/samber/lo?tab=readme-ov-file#find)                                                           | `[]T`         | ✅  | ✅     |
 | [FindIndexOf](https://github.com/samber/lo?tab=readme-ov-file#findindexof)                                             | `[]T`         | ☑️  | ー     |
 | [FindLastIndexOf](https://github.com/samber/lo?tab=readme-ov-file#findlastindexof)                                     | `[]T`         | ☑️  | ー     |
 | [FindOrElse](https://github.com/samber/lo?tab=readme-ov-file#findorelse)                                               | `[]T`         | ー  | ー     |

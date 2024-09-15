@@ -15,6 +15,11 @@ func (xs UserRename) Loop(iteratee func(item User, index int) User) UserRename {
 	return lo.Map(xs, iteratee)
 }
 
+// Find
+func (xs UserRename) Find(predicate func(item User) bool) (User, bool) {
+	return lo.Find(xs, predicate)
+}
+
 // LoFilterUserID
 func (xs UserRename) LoFilterUserID(field string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
@@ -194,5 +199,96 @@ func (xs UserRename) LoKeyByChanSend0() map[chan<- int]User {
 func (xs UserRename) LoKeyByChanSendPtr0() map[*chan<- int]User {
 	return lo.KeyBy(xs, func(entity User) *chan<- int {
 		return entity.ChanSendPtr0
+	})
+}
+
+// FindByUserID
+func (xs UserRename) FindByUserID(field string) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.UserID == field
+	})
+}
+
+// FindByInt
+func (xs UserRename) FindByInt(field int) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.Int == field
+	})
+}
+
+// FindByIntPtr
+func (xs UserRename) FindByIntPtr(field *int) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.IntPtr == field
+	})
+}
+
+// FindByBool
+func (xs UserRename) FindByBool(field bool) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.Bool == field
+	})
+}
+
+// FindByBoolPtr
+func (xs UserRename) FindByBoolPtr(field *bool) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.BoolPtr == field
+	})
+}
+
+// FindByStr
+func (xs UserRename) FindByStr(field string) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.Str == field
+	})
+}
+
+// FindByStrPtr
+func (xs UserRename) FindByStrPtr(field *string) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.StrPtr == field
+	})
+}
+
+// FindByStruct0
+func (xs UserRename) FindByStruct0(field DefinedStruct0) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.Struct0 == field
+	})
+}
+
+// FindByStructPtr0
+func (xs UserRename) FindByStructPtr0(field *DefinedStruct0) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.StructPtr0 == field
+	})
+}
+
+// FindByStruct1
+func (xs UserRename) FindByStruct1(field DefinedStruct1) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.Struct1 == field
+	})
+}
+
+// FindByStructPtr1
+func (xs UserRename) FindByStructPtr1(field *DefinedStruct1) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.StructPtr1 == field
+	})
+}
+
+// FindByChanSend0
+func (xs UserRename) FindByChanSend0(field chan<- int) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.ChanSend0 == field
+	})
+}
+
+// FindByChanSendPtr0
+func (xs UserRename) FindByChanSendPtr0(field *chan<- int) (User, bool) {
+	return lo.Find(xs, func(entity User) bool {
+		return entity.ChanSendPtr0 == field
 	})
 }
