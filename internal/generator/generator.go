@@ -83,7 +83,7 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 		}
 
 		// Generate code block from template
-		data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
+		data := &loStdTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
 		if err = tp.Execute(&doc, data); err != nil {
 			return "", fmt.Errorf("template execute error: %w", err)
 		}
@@ -113,7 +113,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 		// Generate txt from template
 		for _, field := range fields {
-			data := &loMethodExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name}
+			data := &loExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name}
 			err = tp.Execute(&doc, data)
 			if err != nil {
 				return "", fmt.Errorf("template execute error: %w", err)
