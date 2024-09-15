@@ -11,15 +11,7 @@ import (
 
 type Generator struct{ LoList []Lo }
 
-func NewGenerator() Generator {
-	return Generator{
-		LoList: []Lo{
-			NewLoFilter(),
-			NewLoMap(),
-			NewLoKeyBy(),
-		},
-	}
-}
+func NewGenerator() Generator { return Generator{LoList: NewAllLoList()} }
 
 // Generate code
 func (g Generator) Generate(args internal.Arguments, data internal.Data) (string, error) {

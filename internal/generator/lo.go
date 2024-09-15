@@ -21,3 +21,11 @@ type loExtendTemplateMapper struct {
 	Field  string // Field name of struct (ex. UserID).
 	Method string // Method name of struct (ex. Filter).
 }
+
+func NewAllLoList() []Lo {
+	return []Lo{
+		NewLoFilter(),
+		NewLoMap(),
+		NewLoKeyBy(),
+	}
+}
