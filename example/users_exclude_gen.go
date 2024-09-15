@@ -11,7 +11,7 @@ func (xs UserExclude) Map(iteratee func(item User, index int) User) UserExclude 
 }
 
 // Find
-func (xs UserExclude) Find(predicate func(item User) bool) (User, bool) {
+func (xs UserExclude) Find(predicate func(User) bool) (User, bool) {
 	return lo.Find(xs, predicate)
 }
 

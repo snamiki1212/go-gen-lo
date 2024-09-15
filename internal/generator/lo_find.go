@@ -11,7 +11,7 @@ func (l LoFind) ExtendMethodName() (string, bool) { return "FindBy", true }
 func (l LoFind) StdTemplate() (string, bool) {
 	return `
 // {{ .Method }}
-func (xs {{ .Slice }}) {{ .Method }}(predicate func(item {{ .Entity }}) bool) ({{ .Entity }}, bool) {
+func (xs {{ .Slice }}) {{ .Method }}(predicate func({{ .Entity }}) bool) ({{ .Entity }}, bool) {
 	return lo.Find(xs, predicate)
 }
 `, true

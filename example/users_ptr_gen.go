@@ -6,7 +6,7 @@ package main
 import "github.com/samber/lo"
 
 // Filter
-func (xs UserPtrs) Filter(predicate func(item *User, index int) bool) UserPtrs {
+func (xs UserPtrs) Filter(predicate func(*User, int) bool) UserPtrs {
 	return lo.Filter(xs, predicate)
 }
 
@@ -16,7 +16,7 @@ func (xs UserPtrs) Map(iteratee func(item *User, index int) *User) UserPtrs {
 }
 
 // Find
-func (xs UserPtrs) Find(predicate func(item *User) bool) (*User, bool) {
+func (xs UserPtrs) Find(predicate func(*User) bool) (*User, bool) {
 	return lo.Find(xs, predicate)
 }
 

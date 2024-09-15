@@ -11,7 +11,7 @@ func (l LoFilter) ExtendMethodName() (string, bool) { return "FilterBy", true }
 func (l LoFilter) StdTemplate() (string, bool) {
 	return `
 // {{ .Method }}
-func (xs {{ .Slice }}) {{ .Method }}(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
+func (xs {{ .Slice }}) {{ .Method }}(predicate func({{ .Entity }}, int) bool) {{ .Slice }} {
 	return lo.Filter(xs, predicate)
 }
 `, true
