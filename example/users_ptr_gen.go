@@ -39,6 +39,11 @@ func (xs UserPtrs) EveryBy(predicate func(item *User) bool) bool {
 	return lo.EveryBy(xs, predicate)
 }
 
+// SomeBy
+func (xs UserPtrs) SomeBy(predicate func(item *User) bool) bool {
+	return lo.SomeBy(xs, predicate)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/

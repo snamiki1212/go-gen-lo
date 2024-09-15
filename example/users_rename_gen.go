@@ -39,6 +39,11 @@ func (xs UserRename) EveryBy(predicate func(item User) bool) bool {
 	return lo.EveryBy(xs, predicate)
 }
 
+// SomeBy
+func (xs UserRename) SomeBy(predicate func(item User) bool) bool {
+	return lo.SomeBy(xs, predicate)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/

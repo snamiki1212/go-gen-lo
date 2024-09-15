@@ -40,5 +40,6 @@ func NewAllLoList() []Lo {
 		NewLoFind(),
 		NewLoContainsBy(),
 		NewLoEveryBy(),
+		NewLoSomeBy(),
 	}
 }
