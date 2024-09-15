@@ -10,6 +10,11 @@ func (xs UserExclude) Map(iteratee func(item User, index int) User) UserExclude 
 	return lo.Map(xs, iteratee)
 }
 
+// FilterReject
+func (xs UserExclude) FilterReject(predicate func(User, int) bool) (UserExclude, UserExclude) {
+	return lo.FilterReject(xs, predicate)
+}
+
 // Find
 func (xs UserExclude) Find(predicate func(User) bool) (User, bool) {
 	return lo.Find(xs, predicate)
@@ -103,6 +108,97 @@ func (xs UserExclude) GroupByChanSend0() map[chan<- int]UserExclude {
 func (xs UserExclude) GroupByChanSendPtr0() map[*chan<- int]UserExclude {
 	return lo.GroupBy(xs, func(entity User) *chan<- int {
 		return entity.ChanSendPtr0
+	})
+}
+
+// FilterRejectByUserID
+func (xs UserExclude) FilterRejectByUserID(_UserID string) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.UserID == _UserID
+	})
+}
+
+// FilterRejectByInt
+func (xs UserExclude) FilterRejectByInt(_Int int) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Int == _Int
+	})
+}
+
+// FilterRejectByIntPtr
+func (xs UserExclude) FilterRejectByIntPtr(_IntPtr *int) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.IntPtr == _IntPtr
+	})
+}
+
+// FilterRejectByBool
+func (xs UserExclude) FilterRejectByBool(_Bool bool) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Bool == _Bool
+	})
+}
+
+// FilterRejectByBoolPtr
+func (xs UserExclude) FilterRejectByBoolPtr(_BoolPtr *bool) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.BoolPtr == _BoolPtr
+	})
+}
+
+// FilterRejectByStr
+func (xs UserExclude) FilterRejectByStr(_Str string) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Str == _Str
+	})
+}
+
+// FilterRejectByStrPtr
+func (xs UserExclude) FilterRejectByStrPtr(_StrPtr *string) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.StrPtr == _StrPtr
+	})
+}
+
+// FilterRejectByStruct0
+func (xs UserExclude) FilterRejectByStruct0(_Struct0 DefinedStruct0) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Struct0 == _Struct0
+	})
+}
+
+// FilterRejectByStructPtr0
+func (xs UserExclude) FilterRejectByStructPtr0(_StructPtr0 *DefinedStruct0) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.StructPtr0 == _StructPtr0
+	})
+}
+
+// FilterRejectByStruct1
+func (xs UserExclude) FilterRejectByStruct1(_Struct1 DefinedStruct1) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Struct1 == _Struct1
+	})
+}
+
+// FilterRejectByStructPtr1
+func (xs UserExclude) FilterRejectByStructPtr1(_StructPtr1 *DefinedStruct1) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.StructPtr1 == _StructPtr1
+	})
+}
+
+// FilterRejectByChanSend0
+func (xs UserExclude) FilterRejectByChanSend0(_ChanSend0 chan<- int) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.ChanSend0 == _ChanSend0
+	})
+}
+
+// FilterRejectByChanSendPtr0
+func (xs UserExclude) FilterRejectByChanSendPtr0(_ChanSendPtr0 *chan<- int) (kept UserExclude, rejected UserExclude) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.ChanSendPtr0 == _ChanSendPtr0
 	})
 }
 

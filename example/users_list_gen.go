@@ -15,6 +15,11 @@ func (xs UserList) Map(iteratee func(item User, index int) User) UserList {
 	return lo.Map(xs, iteratee)
 }
 
+// FilterReject
+func (xs UserList) FilterReject(predicate func(User, int) bool) (UserList, UserList) {
+	return lo.FilterReject(xs, predicate)
+}
+
 // Find
 func (xs UserList) Find(predicate func(User) bool) (User, bool) {
 	return lo.Find(xs, predicate)
@@ -290,6 +295,97 @@ func (xs UserList) GroupByChanSend0() map[chan<- int]UserList {
 func (xs UserList) GroupByChanSendPtr0() map[*chan<- int]UserList {
 	return lo.GroupBy(xs, func(entity User) *chan<- int {
 		return entity.ChanSendPtr0
+	})
+}
+
+// FilterRejectByUserID
+func (xs UserList) FilterRejectByUserID(_UserID string) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.UserID == _UserID
+	})
+}
+
+// FilterRejectByInt
+func (xs UserList) FilterRejectByInt(_Int int) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Int == _Int
+	})
+}
+
+// FilterRejectByIntPtr
+func (xs UserList) FilterRejectByIntPtr(_IntPtr *int) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.IntPtr == _IntPtr
+	})
+}
+
+// FilterRejectByBool
+func (xs UserList) FilterRejectByBool(_Bool bool) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Bool == _Bool
+	})
+}
+
+// FilterRejectByBoolPtr
+func (xs UserList) FilterRejectByBoolPtr(_BoolPtr *bool) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.BoolPtr == _BoolPtr
+	})
+}
+
+// FilterRejectByStr
+func (xs UserList) FilterRejectByStr(_Str string) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Str == _Str
+	})
+}
+
+// FilterRejectByStrPtr
+func (xs UserList) FilterRejectByStrPtr(_StrPtr *string) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.StrPtr == _StrPtr
+	})
+}
+
+// FilterRejectByStruct0
+func (xs UserList) FilterRejectByStruct0(_Struct0 DefinedStruct0) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Struct0 == _Struct0
+	})
+}
+
+// FilterRejectByStructPtr0
+func (xs UserList) FilterRejectByStructPtr0(_StructPtr0 *DefinedStruct0) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.StructPtr0 == _StructPtr0
+	})
+}
+
+// FilterRejectByStruct1
+func (xs UserList) FilterRejectByStruct1(_Struct1 DefinedStruct1) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.Struct1 == _Struct1
+	})
+}
+
+// FilterRejectByStructPtr1
+func (xs UserList) FilterRejectByStructPtr1(_StructPtr1 *DefinedStruct1) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.StructPtr1 == _StructPtr1
+	})
+}
+
+// FilterRejectByChanSend0
+func (xs UserList) FilterRejectByChanSend0(_ChanSend0 chan<- int) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.ChanSend0 == _ChanSend0
+	})
+}
+
+// FilterRejectByChanSendPtr0
+func (xs UserList) FilterRejectByChanSendPtr0(_ChanSendPtr0 *chan<- int) (kept UserList, rejected UserList) {
+	return lo.FilterReject(xs, func(entity User, index int) bool {
+		return entity.ChanSendPtr0 == _ChanSendPtr0
 	})
 }
 

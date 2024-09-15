@@ -113,7 +113,7 @@ Flags:
 | [DropByIndex](https://github.com/samber/lo?tab=readme-ov-file#DropByIndex)                                             | `[]T`         | ☑️  | ー     |
 | [Reject](https://github.com/samber/lo?tab=readme-ov-file#reject)                                                       | `[]T`         | ☑️  | ☑️     |
 | [RejectMap](https://github.com/samber/lo?tab=readme-ov-file#rejectmap)                                                 | `[]T`         | ☑️  | ー     |
-| [FilterReject](https://github.com/samber/lo?tab=readme-ov-file#filterreject)                                           | `[]T`         | ☑️  | ?      |
+| [FilterReject](https://github.com/samber/lo?tab=readme-ov-file#filterreject)                                           | `[]T`         | ✅  | ✅     |
 | [Count](https://github.com/samber/lo?tab=readme-ov-file#count)                                                         | `[]T`         | ー  | ー     |
 | [CountBy](https://github.com/samber/lo?tab=readme-ov-file#countby)                                                     | `[]T`         | ☑️  | ー     |
 | [CountValues](https://github.com/samber/lo?tab=readme-ov-file#countvalues)                                             | `[]T`         | ー  | ー     |
