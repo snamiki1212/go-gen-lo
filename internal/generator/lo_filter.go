@@ -4,7 +4,7 @@ type LoFilter struct{}
 
 func NewLoFilter() LoFilter { return LoFilter{} }
 
-func (l LoFilter) Kind() string { return "Filter" }
+func (l LoFilter) Name() string { return "Filter" }
 
 func (l LoFilter) ExtendMethodName() (string, bool) { return "FilterBy", true }
 

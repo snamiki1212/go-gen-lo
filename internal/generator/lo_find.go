@@ -4,7 +4,7 @@ type LoFind struct{}
 
 func NewLoFind() LoFind { return LoFind{} }
 
-func (l LoFind) Kind() string { return "Find" }
+func (l LoFind) Name() string { return "Find" }
 
 func (l LoFind) ExtendMethodName() (string, bool) { return "FindBy", true }
 

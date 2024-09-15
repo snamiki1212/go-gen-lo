@@ -4,7 +4,7 @@ type LoMap struct{}
 
 func NewLoMap() LoMap { return LoMap{} }
 
-func (l LoMap) Kind() string { return "Map" }
+func (l LoMap) Name() string { return "Map" }
 
 func (l LoMap) ExtendMethodName() (string, bool) { return "", false }
 

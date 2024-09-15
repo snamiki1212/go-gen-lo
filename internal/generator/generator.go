@@ -65,7 +65,7 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 
 	for _, elem := range g.LoList {
 		// Skip if method should be excluded.
-		if slices.Contains(args.LoMethodsToExclude, elem.Kind()) {
+		if slices.Contains(args.LoMethodsToExclude, elem.Name()) {
 			continue
 		}
 
@@ -83,7 +83,7 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 
 		// Get method name
 		method := func() string {
-			ki := elem.Kind()
+			ki := elem.Name()
 			str, ok := args.RenameMap[ki]
 			if !ok {
 				return ki
@@ -109,7 +109,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 	for _, elem := range g.LoList {
 		// Skip if method should be excluded.
-		if slices.Contains(args.LoMethodsToExclude, elem.Kind()) {
+		if slices.Contains(args.LoMethodsToExclude, elem.Name()) {
 			continue
 		}
 
@@ -127,7 +127,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 		// Get method name
 		method := func() string {
-			ki := elem.Kind()
+			ki := elem.Name()
 			str, ok := args.RenameMap[ki]
 			if ok {
 				return str
