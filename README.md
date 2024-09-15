@@ -36,7 +36,7 @@ Flags:
 - `ー` No Need
 
 <details>
-<summary>🚀 Support List for all lo method</summary>
+  <summary><b>🚀🚀🚀Support List for all lo🚀🚀🚀</b></summary>
 
 | samber/lo                                                                                                              | Struct        | Std | Extend |
 | ---------------------------------------------------------------------------------------------------------------------- | ------------- | --- | ------ |
