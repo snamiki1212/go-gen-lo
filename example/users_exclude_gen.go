@@ -24,6 +24,11 @@ func (xs UserExclude) EveryBy(predicate func(item User) bool) bool {
 	return lo.EveryBy(xs, predicate)
 }
 
+// SomeBy
+func (xs UserExclude) SomeBy(predicate func(item User) bool) bool {
+	return lo.SomeBy(xs, predicate)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/
