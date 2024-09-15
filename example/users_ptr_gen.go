@@ -39,6 +39,7 @@ func (xs UserPtrs) ContainsBy(predicate func(*User) bool) bool {
  ************************************************/
 
 // -- Filter ------------------------------------
+
 // FilterByUserID
 func (xs UserPtrs) FilterByUserID(_UserID string) UserPtrs {
 	return lo.Filter(xs, func(entity *User, index int) bool {
@@ -131,6 +132,7 @@ func (xs UserPtrs) FilterByChanSendPtr0(_ChanSendPtr0 *chan<- int) UserPtrs {
 }
 
 // -- KeyBy ------------------------------------
+
 // KeyByUserID
 func (xs UserPtrs) KeyByUserID() map[string]*User {
 	return lo.KeyBy(xs, func(entity *User) string {
@@ -223,6 +225,7 @@ func (xs UserPtrs) KeyByChanSendPtr0() map[*chan<- int]*User {
 }
 
 // -- GroupBy ------------------------------------
+
 // GroupByUserID
 func (xs UserPtrs) GroupByUserID() map[string]UserPtrs {
 	return lo.GroupBy(xs, func(entity *User) string {
@@ -315,6 +318,7 @@ func (xs UserPtrs) GroupByChanSendPtr0() map[*chan<- int]UserPtrs {
 }
 
 // -- FilterReject ------------------------------------
+
 // FilterRejectByUserID
 func (xs UserPtrs) FilterRejectByUserID(_UserID string) (kept UserPtrs, rejected UserPtrs) {
 	return lo.FilterReject(xs, func(entity *User, index int) bool {
@@ -407,6 +411,7 @@ func (xs UserPtrs) FilterRejectByChanSendPtr0(_ChanSendPtr0 *chan<- int) (kept U
 }
 
 // -- Find ------------------------------------
+
 // FindByUserID
 func (xs UserPtrs) FindByUserID(_UserID string) (*User, bool) {
 	return lo.Find(xs, func(entity *User) bool {
@@ -499,6 +504,7 @@ func (xs UserPtrs) FindByChanSendPtr0(_ChanSendPtr0 *chan<- int) (*User, bool) {
 }
 
 // -- ContainsBy ------------------------------------
+
 // ContainsByUserID
 func (xs UserPtrs) ContainsByUserID(_UserID string) bool {
 	return lo.ContainsBy(xs, func(entity *User) bool {

@@ -24,6 +24,7 @@ func (xs UserExclude) ContainsBy(predicate func(User) bool) bool {
  ************************************************/
 
 // -- ContainsBy ------------------------------------
+
 // ContainsByUserID
 func (xs UserExclude) ContainsByUserID(_UserID string) bool {
 	return lo.ContainsBy(xs, func(entity User) bool {

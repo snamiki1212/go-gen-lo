@@ -135,7 +135,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 		}
 
 		// Add header
-		_, err := io.WriteString(&doc, fmt.Sprintf("\n// -- %s ------------------------------------", elem.Name()))
+		_, err := io.WriteString(&doc, fmt.Sprintf("\n// -- %s ------------------------------------\n", elem.Name()))
 		if err != nil {
 			return "", fmt.Errorf("write error: %w", err)
 		}
