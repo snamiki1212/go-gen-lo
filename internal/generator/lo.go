@@ -39,5 +39,6 @@ func NewAllLoList() []Lo {
 		NewLoFilterReject(),
 		NewLoFind(),
 		NewLoContainsBy(),
+		NewLoEveryBy(),
 	}
 }
