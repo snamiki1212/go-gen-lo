@@ -91,5 +91,5 @@ type UserPtrs []*User
 //go:generate go run ../main.go --entity=User --slice=UserList --input=user.go --output=users_list_gen.go
 type UserList []User
 
-//go:generate go run ../main.go --entity=User --slice=UserExclude --input=user.go --output=users_exclude_gen.go --exclude=Map,Filter,KeyBy
+//go:generate go run ../main.go --entity=User --slice=UserExclude --input=user.go --output=users_exclude_gen.go --exclude=Filter,KeyBy
 type UserExclude []User

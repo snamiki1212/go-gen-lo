@@ -3,3 +3,9 @@
 
 package main
 
+import "github.com/samber/lo"
+
+// Map
+func (xs UserExclude) Map(iteratee func(item User, index int) User) UserExclude {
+	return lo.Map(xs, iteratee)
+}
