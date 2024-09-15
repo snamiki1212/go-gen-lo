@@ -34,6 +34,11 @@ func (xs UserList) ContainsBy(predicate func(User) bool) bool {
 	return lo.ContainsBy(xs, predicate)
 }
 
+// EveryBy
+func (xs UserList) EveryBy(predicate func(item User) bool) bool {
+	return lo.EveryBy(xs, predicate)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/
