@@ -1,9 +1,11 @@
-package internal
+package generator
 
 import (
 	"bytes"
 	"fmt"
 	"text/template"
+
+	"github.com/snamiki1212/go-gen-lo/internal"
 )
 
 func NewGenerator() Generator {
@@ -27,10 +29,10 @@ type Lo interface {
 }
 
 // Generate code
-func (g Generator) Generate(args arguments, data data) (string, error) {
-	pkgName := data.pkgName
-	sliceName := data.sliceName
-	fields := data.fields
+func (g Generator) Generate(args internal.Arguments, data internal.Data) (string, error) {
+	pkgName := data.PackageName
+	sliceName := data.SliceName
+	fields := data.Fields
 
 	var txt string
 
@@ -64,7 +66,7 @@ func genHeader(pkgName string) string {
 	return txt
 }
 
-func (g Generator) genStd(args arguments, sliceName string) (string, error) {
+func (g Generator) genStd(args internal.Arguments, sliceName string) (string, error) {
 	// append loMethodTemplates
 	var doc bytes.Buffer
 
@@ -90,7 +92,7 @@ func (g Generator) genStd(args arguments, sliceName string) (string, error) {
 	return doc.String(), nil
 }
 
-func (g Generator) genExtend(args arguments, sliceName string, fields fields) (string, error) {
+func (g Generator) genExtend(args internal.Arguments, sliceName string, fields internal.Fields) (string, error) {
 	if len(fields) == 0 {
 		return "", nil
 	}

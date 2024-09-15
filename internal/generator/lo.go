@@ -1,4 +1,4 @@
-package internal
+package generator
 
 // Replace variable from key to value in template.
 type loMethodTemplateMapper struct {

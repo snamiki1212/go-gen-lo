@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-type arguments struct {
+type Arguments struct {
 	// Target Entity name
 	Entity string
 
@@ -31,11 +31,11 @@ type arguments struct {
 	RawEntity string
 }
 
-var Args = arguments{
+var Args = Arguments{
 	// RenameMap: map[string]string{},
 }
 
-func (a *arguments) Load() error {
+func (a *Arguments) Load() error {
 	// // Load rename
 	// if err := a.loadRename(a.RawRename); err != nil {
 	// 	return fmt.Errorf("load accessor error: %w", err)
@@ -49,7 +49,7 @@ func (a *arguments) Load() error {
 	return nil
 }
 
-func (a arguments) DisplayEntity() string {
+func (a Arguments) DisplayEntity() string {
 	if a.IsPtrEntity {
 		return "*" + a.Entity
 	}
@@ -73,7 +73,7 @@ func (a arguments) DisplayEntity() string {
 // 	return nil
 // }
 
-func (a *arguments) loadEntity(e string) error {
+func (a *Arguments) loadEntity(e string) error {
 	a.IsPtrEntity = strings.HasPrefix(e, "*")
 	if a.IsPtrEntity {
 		e = strings.TrimPrefix(e, "*")

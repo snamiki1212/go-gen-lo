@@ -1,4 +1,4 @@
-package internal
+package generator
 
 type LoKeyBy struct{}
 

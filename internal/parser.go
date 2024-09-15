@@ -11,17 +11,17 @@ import (
 )
 
 // Parse sorce code to own struct.
-func Parse(args arguments, reader func(path string) (*ast.File, error)) (data, error) {
+func Parse(args Arguments, reader func(path string) (*ast.File, error)) (Data, error) {
 	// Convert source code to ast
 	file, err := reader(args.Input)
 	if err != nil {
-		return data{}, fmt.Errorf("parse error: %w", err)
+		return Data{}, fmt.Errorf("parse error: %w", err)
 	}
 
 	// Parse ast
 	fields, err := parseFile(file, args)
 	if err != nil {
-		return data{}, err
+		return Data{}, err
 	}
 
 	// Convert ast to own struct
@@ -30,10 +30,10 @@ func Parse(args arguments, reader func(path string) (*ast.File, error)) (data, e
 	// Transform data
 	fs = fs.excludeUncomparable()
 
-	return data{
-		fields:    fs,
-		pkgName:   getPackageNameFromFile(file),
-		sliceName: args.Slice,
+	return Data{
+		Fields:      fs,
+		PackageName: getPackageNameFromFile(file),
+		SliceName:   args.Slice,
 	}, nil
 }
 
@@ -47,7 +47,7 @@ func Reader(path string) (*ast.File, error) {
 func getPackageNameFromFile(node *ast.File) string { return node.Name.Name }
 
 // Parse file.
-func parseFile(node *ast.File, args arguments) ([]*ast.Field, error) {
+func parseFile(node *ast.File, args Arguments) ([]*ast.Field, error) {
 	// Find entity object
 	obj, ok := node.Scope.Objects[args.Entity]
 	if !ok {
@@ -72,12 +72,12 @@ func parseFile(node *ast.File, args arguments) ([]*ast.Field, error) {
 
 type (
 	// Data from parsed source code and will be used in code generation.
-	data struct {
-		fields    fields
-		pkgName   string
-		sliceName string
+	Data struct {
+		Fields      Fields
+		PackageName string
+		SliceName   string
 	}
-	fields []field
+	Fields []field
 
 	// Struct field from entity in source code.
 	field struct {
@@ -184,8 +184,8 @@ func parseEllipsis(x *ast.Ellipsis) string {
 }
 
 // Constructor for fields.
-func newFields(raws []*ast.Field) fields {
-	fs := make(fields, 0, len(raws))
+func newFields(raws []*ast.Field) Fields {
+	fs := make(Fields, 0, len(raws))
 	for _, raw := range raws {
 		fs = append(fs, newField(raw))
 	}
@@ -215,7 +215,7 @@ func newField(raw *ast.Field) field {
 }
 
 // Display fields.
-func (fs fields) display() string {
+func (fs Fields) display() string {
 	if len(fs) == 0 {
 		return ""
 	}
@@ -242,7 +242,7 @@ func (f field) display() string {
 // }
 
 // excludeNoncomparable
-func (fs fields) excludeUncomparable() fields {
+func (fs Fields) excludeUncomparable() Fields {
 	return slices.DeleteFunc(fs, func(f field) bool {
 		return f.isUncomparable()
 	})

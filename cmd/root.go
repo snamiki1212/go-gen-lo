@@ -27,6 +27,7 @@ import (
 	"os"
 
 	"github.com/snamiki1212/go-gen-lo/internal"
+	"github.com/snamiki1212/go-gen-lo/internal/generator"
 	"github.com/spf13/cobra"
 )
 
@@ -47,7 +48,7 @@ var rootCmd = &cobra.Command{
 		}
 
 		// Generate code
-		g := internal.NewGenerator()
+		g := generator.NewGenerator()
 		txt, err := g.Generate(internal.Args, dt)
 		if err != nil {
 			return fmt.Errorf("generate error: %w", err)
