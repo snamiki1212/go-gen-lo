@@ -9,19 +9,12 @@ import (
 type loMethods string
 
 const (
-	// loMethodsFilter loMethods = "Filter"
 	loMethodsMap loMethods = "Map"
 )
 
 var loMethodAll = []loMethods{loMethodsMap}
 
 var loMethodTemplates = map[loMethods]string{
-	// 	loMethodsFilter: `
-	// // Filter
-	// func (xs {{ .Slice }}) Filter(predicate func(item {{ .Entity }}, index int) bool) {{ .Slice }} {
-	// 	return lo.Filter(xs, predicate)
-	// }
-	// `,
 	loMethodsMap: `
 // Map
 func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
@@ -33,21 +26,12 @@ func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Enti
 type loMethodsExtend string
 
 const (
-	loMethodsExtendFilter loMethodsExtend = "FilterBy"
-	loMethodsExtendKeyBy  loMethodsExtend = "KeyBy"
+	loMethodsExtendKeyBy loMethodsExtend = "KeyBy"
 )
 
-var loMethodExtendAll = []loMethodsExtend{loMethodsExtendFilter, loMethodsExtendKeyBy}
+var loMethodExtendAll = []loMethodsExtend{loMethodsExtendKeyBy}
 
 var loMethodExtendTemplates = map[loMethodsExtend]string{
-	loMethodsExtendFilter: `
-// FilterBy{{ .Field }}
-func (xs {{ .Slice }}) FilterBy{{ .Field }}(field {{ .Type }}) {{ .Slice }} {
-	return lo.Filter(xs, func(entity {{ .Entity }}, index int) bool {
-		return entity.{{ .Field }} == field
-	})
-}
-`,
 	loMethodsExtendKeyBy: `
 // KeyBy{{ .Field }}
 func (xs {{ .Slice }}) KeyBy{{ .Field }}() map[{{ .Type }}]{{ .Entity }} {
@@ -151,6 +135,28 @@ func generateLoExtend(args arguments, sliceName string, fields fields) (string, 
 		return "", nil
 	}
 	var doc bytes.Buffer
+
+	elem := NewLoFilter()
+
+	// Get template src
+	rawTemp, ok := elem.ExtendTemplate()
+	if ok {
+		// New Template
+		tp, err := template.New("").Parse(rawTemp)
+		if err != nil {
+			return "", fmt.Errorf("template parse error: %w", err)
+		}
+
+		// Generate txt from template
+		for _, field := range fields {
+			data := &loMethodExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name}
+			err = tp.Execute(&doc, data)
+			if err != nil {
+				return "", fmt.Errorf("template execute error: %w", err)
+			}
+		}
+	}
+
 	for _, method := range loMethodExtendAll {
 		// Get template src
 		rawTp, ok := loMethodExtendTemplates[method]

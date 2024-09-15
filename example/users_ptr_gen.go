@@ -5,7 +5,6 @@ package main
 
 import "github.com/samber/lo"
 
-
 // Filter
 func (xs UserPtrs) Filter(predicate func(item *User, index int) bool) UserPtrs {
 	return lo.Filter(xs, predicate)
