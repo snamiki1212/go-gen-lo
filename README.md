@@ -74,8 +74,8 @@ Flags:
 ## Support
 
 - ✅ Support
-- 🚫 Cannot Support(TODO: add issue)
-- ☑️ Not supported yet
+- 🚫 Cannot Support (See [issue](https://github.com/snamiki1212/go-gen-lo/issues/2))
+- ☑️ Not supported yet (Welcome PRs)
 - `ー` No Need
 
 <details>
