@@ -8,23 +8,6 @@ import (
 
 type loMethodsExtend string
 
-const (
-	loMethodsExtendKeyBy loMethodsExtend = "KeyBy"
-)
-
-var loMethodExtendAll = []loMethodsExtend{loMethodsExtendKeyBy}
-
-var loMethodExtendTemplates = map[loMethodsExtend]string{
-	loMethodsExtendKeyBy: `
-// KeyBy{{ .Field }}
-func (xs {{ .Slice }}) KeyBy{{ .Field }}() map[{{ .Type }}]{{ .Entity }} {
-	return lo.KeyBy(xs, func(entity {{ .Entity }}) {{ .Type }} {
-		return entity.{{ .Field }}
-	})
-}
-`,
-}
-
 // Replace variable from key to value in template.
 type loMethodTemplateMapper struct {
 	Slice  string // Slice name for target struct (ex. Users).
@@ -78,6 +61,7 @@ func generateLo(args arguments, sliceName string) (string, error) {
 	list := []interface{ StdTemplate() (string, bool) }{
 		NewLoFilter(),
 		NewLoMap(),
+		NewLoKeyBy(),
 	}
 
 	for _, elem := range list {
@@ -111,6 +95,7 @@ func generateLoExtend(args arguments, sliceName string, fields fields) (string, 
 	list := []interface{ ExtendTemplate() (string, bool) }{
 		NewLoFilter(),
 		NewLoMap(),
+		NewLoKeyBy(),
 	}
 
 	for _, elem := range list {
@@ -136,27 +121,5 @@ func generateLoExtend(args arguments, sliceName string, fields fields) (string, 
 		}
 	}
 
-	for _, method := range loMethodExtendAll {
-		// Get template src
-		rawTp, ok := loMethodExtendTemplates[method]
-		if !ok {
-			return "", fmt.Errorf("template not found: %s", method)
-		}
-
-		// New Template
-		tp, err := template.New("").Parse(rawTp)
-		if err != nil {
-			return "", fmt.Errorf("template parse error: %w", err)
-		}
-
-		// Generate txt from template
-		for _, field := range fields {
-			data := &loMethodExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name}
-			err = tp.Execute(&doc, data)
-			if err != nil {
-				return "", fmt.Errorf("template execute error: %w", err)
-			}
-		}
-	}
 	return doc.String(), nil
 }
