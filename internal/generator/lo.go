@@ -4,6 +4,7 @@ type Lo interface {
 	Kind() string
 	StdTemplate() (string, bool)
 	ExtendTemplate() (string, bool)
+	ExtendMethodName() (string, bool)
 }
 
 // Replace variable from key to value in template.

@@ -129,10 +129,14 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 		method := func() string {
 			ki := elem.Kind()
 			str, ok := args.RenameMap[ki]
-			if !ok {
-				return ki
+			if ok {
+				return str
 			}
-			return str
+			me, ok := elem.ExtendMethodName()
+			if ok {
+				return me
+			}
+			return ki
 		}()
 
 		// Generate txt from template

@@ -6,6 +6,8 @@ func NewLoFilter() LoFilter { return LoFilter{} }
 
 func (l LoFilter) Kind() string { return "Filter" }
 
+func (l LoFilter) ExtendMethodName() (string, bool) { return "FilterBy", true }
+
 func (l LoFilter) StdTemplate() (string, bool) {
 	return `
 // {{ .Method }}
