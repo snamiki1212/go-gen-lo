@@ -8,6 +8,8 @@ import (
 	"github.com/snamiki1212/go-gen-lo/internal"
 )
 
+type Generator struct{ LoList []Lo }
+
 func NewGenerator() Generator {
 	return Generator{
 		LoList: []Lo{
@@ -18,16 +20,6 @@ func NewGenerator() Generator {
 	}
 }
 
-type Generator struct {
-	LoList []Lo
-}
-
-type Lo interface {
-	Kind() string
-	StdTemplate() (string, bool)
-	ExtendTemplate() (string, bool)
-}
-
 // Generate code
 func (g Generator) Generate(args internal.Arguments, data internal.Data) (string, error) {
 	pkgName := data.PackageName
@@ -35,23 +27,24 @@ func (g Generator) Generate(args internal.Arguments, data internal.Data) (string
 	fields := data.Fields
 
 	var txt string
+	var tmp string
 
 	// append header
 	txt += genHeader(pkgName)
 
 	// append lo
-	lo, err := g.genStd(args, sliceName)
+	tmp, err := g.genStd(args, sliceName)
 	if err != nil {
 		return "", fmt.Errorf("generate lo error: %w", err)
 	}
-	txt += lo
+	txt += tmp
 
 	// append extend
-	lo, err = g.genExtend(args, sliceName, fields)
+	tmp, err = g.genExtend(args, sliceName, fields)
 	if err != nil {
 		return "", fmt.Errorf("generate lo extend error: %w", err)
 	}
-	txt += lo
+	txt += tmp
 
 	return txt, nil
 }

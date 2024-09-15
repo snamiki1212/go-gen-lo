@@ -1,5 +1,11 @@
 package generator
 
+type Lo interface {
+	Kind() string
+	StdTemplate() (string, bool)
+	ExtendTemplate() (string, bool)
+}
+
 // Replace variable from key to value in template.
 type loStdTemplateMapper struct {
 	Slice  string // Slice name for target struct (ex. Users).
