@@ -108,11 +108,18 @@ func generateLoExtend(args arguments, sliceName string, fields fields) (string, 
 	}
 	var doc bytes.Buffer
 
-	elem := NewLoFilter()
+	list := []interface{ ExtendTemplate() (string, bool) }{
+		NewLoFilter(),
+		NewLoMap(),
+	}
 
-	// Get template src
-	rawTemp, ok := elem.ExtendTemplate()
-	if ok {
+	for _, elem := range list {
+		// Get template src
+		rawTemp, ok := elem.ExtendTemplate()
+		if !ok {
+			continue
+		}
+
 		// New Template
 		tp, err := template.New("").Parse(rawTemp)
 		if err != nil {
