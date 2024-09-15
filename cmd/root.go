@@ -76,11 +76,11 @@ func Execute() {
 
 func init() {
 	// entity
-	rootCmd.Flags().StringVarP(&internal.Args.RawEntity, "entity", "e", "", "target entity name. e.g. User or *User")
+	rootCmd.Flags().StringVarP(&internal.Args.RawEntity, "entity", "e", "", "target entity name. e.g. --entity=User or --entity=*User")
 	_ = rootCmd.MarkFlagRequired("entity")
 
 	// slice
-	rootCmd.Flags().StringVarP(&internal.Args.Slice, "slice", "s", "", "target slice name. e.g. Users")
+	rootCmd.Flags().StringVarP(&internal.Args.Slice, "slice", "s", "", "target slice name. e.g. --slice=Users")
 	_ = rootCmd.MarkFlagRequired("slice")
 
 	// input

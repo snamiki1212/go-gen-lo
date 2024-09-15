@@ -17,11 +17,13 @@ Usage:
   go-gen-lo [flags]
 
 Flags:
-  -e, --entity string   target entity name. e.g. User or *User
-  -h, --help            help for go-gen-lo
-  -i, --input string    input file name
-  -o, --output string   output file name
-  -s, --slice string    target slice name. e.g. Users
+  -e, --entity string     target entity name. e.g. --entity=User or --entity=*User
+  -x, --exclude strings   exclude lo method e.g. --exclude=Map,Filter
+  -h, --help              help for go-gen-lo
+  -i, --input string      input file name
+  -o, --output string     output file name
+  -r, --rename strings    rename method e.g. --rename=Map:Loop
+  -s, --slice string      target slice name. e.g. --slice=Users
 ```
 
 ## [Example](./example)
