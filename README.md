@@ -1,6 +1,6 @@
 # `go-gen-lo`
 
-Generate lo methods for slice struct.
+Generate lo methods for struct.
 
 ## Usage
 
@@ -51,7 +51,7 @@ func main() {
 ## Help
 
 ```shell
-Generate lo methods for slice struct.
+Generate lo methods for struct.
 
 Usage:
   go-gen-lo [flags]

@@ -34,7 +34,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "go-gen-lo",
-	Short: "Generate lo methods for slice struct.",
+	Short: "Generate lo methods for struct.",
 	RunE: func(cmd *cobra.Command, _ []string) error {
 		// Load arguments
 		if err := internal.Args.Load(); err != nil {
