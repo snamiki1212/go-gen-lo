@@ -16,92 +16,92 @@ func (xs UserExclude) Find(predicate func(User) bool) (User, bool) {
 }
 
 // FindByUserID
-func (xs UserExclude) FindByUserID(field string) (User, bool) {
+func (xs UserExclude) FindByUserID(_UserID string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.UserID == field
+		return entity.UserID == _UserID
 	})
 }
 
 // FindByInt
-func (xs UserExclude) FindByInt(field int) (User, bool) {
+func (xs UserExclude) FindByInt(_Int int) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.Int == field
+		return entity.Int == _Int
 	})
 }
 
 // FindByIntPtr
-func (xs UserExclude) FindByIntPtr(field *int) (User, bool) {
+func (xs UserExclude) FindByIntPtr(_IntPtr *int) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.IntPtr == field
+		return entity.IntPtr == _IntPtr
 	})
 }
 
 // FindByBool
-func (xs UserExclude) FindByBool(field bool) (User, bool) {
+func (xs UserExclude) FindByBool(_Bool bool) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.Bool == field
+		return entity.Bool == _Bool
 	})
 }
 
 // FindByBoolPtr
-func (xs UserExclude) FindByBoolPtr(field *bool) (User, bool) {
+func (xs UserExclude) FindByBoolPtr(_BoolPtr *bool) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.BoolPtr == field
+		return entity.BoolPtr == _BoolPtr
 	})
 }
 
 // FindByStr
-func (xs UserExclude) FindByStr(field string) (User, bool) {
+func (xs UserExclude) FindByStr(_Str string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.Str == field
+		return entity.Str == _Str
 	})
 }
 
 // FindByStrPtr
-func (xs UserExclude) FindByStrPtr(field *string) (User, bool) {
+func (xs UserExclude) FindByStrPtr(_StrPtr *string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.StrPtr == field
+		return entity.StrPtr == _StrPtr
 	})
 }
 
 // FindByStruct0
-func (xs UserExclude) FindByStruct0(field DefinedStruct0) (User, bool) {
+func (xs UserExclude) FindByStruct0(_Struct0 DefinedStruct0) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.Struct0 == field
+		return entity.Struct0 == _Struct0
 	})
 }
 
 // FindByStructPtr0
-func (xs UserExclude) FindByStructPtr0(field *DefinedStruct0) (User, bool) {
+func (xs UserExclude) FindByStructPtr0(_StructPtr0 *DefinedStruct0) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.StructPtr0 == field
+		return entity.StructPtr0 == _StructPtr0
 	})
 }
 
 // FindByStruct1
-func (xs UserExclude) FindByStruct1(field DefinedStruct1) (User, bool) {
+func (xs UserExclude) FindByStruct1(_Struct1 DefinedStruct1) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.Struct1 == field
+		return entity.Struct1 == _Struct1
 	})
 }
 
 // FindByStructPtr1
-func (xs UserExclude) FindByStructPtr1(field *DefinedStruct1) (User, bool) {
+func (xs UserExclude) FindByStructPtr1(_StructPtr1 *DefinedStruct1) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.StructPtr1 == field
+		return entity.StructPtr1 == _StructPtr1
 	})
 }
 
 // FindByChanSend0
-func (xs UserExclude) FindByChanSend0(field chan<- int) (User, bool) {
+func (xs UserExclude) FindByChanSend0(_ChanSend0 chan<- int) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.ChanSend0 == field
+		return entity.ChanSend0 == _ChanSend0
 	})
 }
 
 // FindByChanSendPtr0
-func (xs UserExclude) FindByChanSendPtr0(field *chan<- int) (User, bool) {
+func (xs UserExclude) FindByChanSendPtr0(_ChanSendPtr0 *chan<- int) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
-		return entity.ChanSendPtr0 == field
+		return entity.ChanSendPtr0 == _ChanSendPtr0
 	})
 }

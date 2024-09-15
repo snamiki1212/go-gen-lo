@@ -20,9 +20,9 @@ func (xs {{ .Slice }}) {{ .Method }}(predicate func({{ .Entity }}) bool) ({{ .En
 func (l LoFind) ExtendTemplate() (string, bool) {
 	return `
 // {{ .Method }}{{ .Field }}
-func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}(field {{ .Type }}) ({{ .Entity }}, bool) {
+func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}(_{{ .Field }} {{ .Type }}) ({{ .Entity }}, bool) {
 	return lo.Find(xs, func(entity {{ .Entity }}) bool {
-		return entity.{{ .Field }} == field
+		return entity.{{ .Field }} == _{{ .Field }}
 	})
 }
 `, true
