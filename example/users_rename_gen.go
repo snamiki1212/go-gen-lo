@@ -29,6 +29,11 @@ func (xs UserRename) Find(predicate func(User) bool) (User, bool) {
 	return lo.Find(xs, predicate)
 }
 
+// ContainsBy
+func (xs UserRename) ContainsBy(predicate func(User) bool) bool {
+	return lo.ContainsBy(xs, predicate)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/
@@ -489,6 +494,98 @@ func (xs UserRename) FindByChanSend0(_ChanSend0 chan<- int) (User, bool) {
 // FindByChanSendPtr0
 func (xs UserRename) FindByChanSendPtr0(_ChanSendPtr0 *chan<- int) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {
+		return entity.ChanSendPtr0 == _ChanSendPtr0
+	})
+}
+
+// -- ContainsBy ------------------------------------
+// ContainsByUserID
+func (xs UserRename) ContainsByUserID(_UserID string) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.UserID == _UserID
+	})
+}
+
+// ContainsByInt
+func (xs UserRename) ContainsByInt(_Int int) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.Int == _Int
+	})
+}
+
+// ContainsByIntPtr
+func (xs UserRename) ContainsByIntPtr(_IntPtr *int) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.IntPtr == _IntPtr
+	})
+}
+
+// ContainsByBool
+func (xs UserRename) ContainsByBool(_Bool bool) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.Bool == _Bool
+	})
+}
+
+// ContainsByBoolPtr
+func (xs UserRename) ContainsByBoolPtr(_BoolPtr *bool) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.BoolPtr == _BoolPtr
+	})
+}
+
+// ContainsByStr
+func (xs UserRename) ContainsByStr(_Str string) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.Str == _Str
+	})
+}
+
+// ContainsByStrPtr
+func (xs UserRename) ContainsByStrPtr(_StrPtr *string) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.StrPtr == _StrPtr
+	})
+}
+
+// ContainsByStruct0
+func (xs UserRename) ContainsByStruct0(_Struct0 DefinedStruct0) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.Struct0 == _Struct0
+	})
+}
+
+// ContainsByStructPtr0
+func (xs UserRename) ContainsByStructPtr0(_StructPtr0 *DefinedStruct0) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.StructPtr0 == _StructPtr0
+	})
+}
+
+// ContainsByStruct1
+func (xs UserRename) ContainsByStruct1(_Struct1 DefinedStruct1) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.Struct1 == _Struct1
+	})
+}
+
+// ContainsByStructPtr1
+func (xs UserRename) ContainsByStructPtr1(_StructPtr1 *DefinedStruct1) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.StructPtr1 == _StructPtr1
+	})
+}
+
+// ContainsByChanSend0
+func (xs UserRename) ContainsByChanSend0(_ChanSend0 chan<- int) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
+		return entity.ChanSend0 == _ChanSend0
+	})
+}
+
+// ContainsByChanSendPtr0
+func (xs UserRename) ContainsByChanSendPtr0(_ChanSendPtr0 *chan<- int) bool {
+	return lo.ContainsBy(xs, func(entity User) bool {
 		return entity.ChanSendPtr0 == _ChanSendPtr0
 	})
 }
