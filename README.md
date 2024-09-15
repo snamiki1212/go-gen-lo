@@ -177,7 +177,7 @@ Flags:
 | [FanIn](https://github.com/samber/lo?tab=readme-ov-file#fanin)                                                         | ー            | ー  | ー     |
 | [FanOut](https://github.com/samber/lo?tab=readme-ov-file#fanout)                                                       | ー            | ー  | ー     |
 | [Contains](https://github.com/samber/lo?tab=readme-ov-file#contains)                                                   | `[]T`         | ー  | ー     |
-| [ContainsBy](https://github.com/samber/lo?tab=readme-ov-file#containsby)                                               | `[]T`         | ☑️  | ー     |
+| [ContainsBy](https://github.com/samber/lo?tab=readme-ov-file#containsby)                                               | `[]T`         | ✅  | ✅     |
 | [Every](https://github.com/samber/lo?tab=readme-ov-file#every)                                                         | `[]T`         | ー  | ー     |
 | [EveryBy](https://github.com/samber/lo?tab=readme-ov-file#everyby)                                                     | `[]T`         | ☑️  | ー     |
 | [Some](https://github.com/samber/lo?tab=readme-ov-file#some)                                                           | `[]T`         | ー  | ー     |
