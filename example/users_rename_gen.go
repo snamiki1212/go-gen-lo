@@ -5,6 +5,10 @@ package main
 
 import "github.com/samber/lo"
 
+/************************************************
+ ** lo basic methods
+ ************************************************/
+
 // LoFilter
 func (xs UserRename) LoFilter(predicate func(User, int) bool) UserRename {
 	return lo.Filter(xs, predicate)
@@ -25,6 +29,11 @@ func (xs UserRename) Find(predicate func(User) bool) (User, bool) {
 	return lo.Find(xs, predicate)
 }
 
+/************************************************
+ ** lo extended methods
+ ************************************************/
+
+// -- Filter ------------------------------------
 // LoFilterUserID
 func (xs UserRename) LoFilterUserID(_UserID string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
@@ -116,6 +125,7 @@ func (xs UserRename) LoFilterChanSendPtr0(_ChanSendPtr0 *chan<- int) UserRename 
 	})
 }
 
+// -- KeyBy ------------------------------------
 // LoKeyByUserID
 func (xs UserRename) LoKeyByUserID() map[string]User {
 	return lo.KeyBy(xs, func(entity User) string {
@@ -207,6 +217,7 @@ func (xs UserRename) LoKeyByChanSendPtr0() map[*chan<- int]User {
 	})
 }
 
+// -- GroupBy ------------------------------------
 // GroupByUserID
 func (xs UserRename) GroupByUserID() map[string]UserRename {
 	return lo.GroupBy(xs, func(entity User) string {
@@ -298,6 +309,7 @@ func (xs UserRename) GroupByChanSendPtr0() map[*chan<- int]UserRename {
 	})
 }
 
+// -- FilterReject ------------------------------------
 // FilterRejectByUserID
 func (xs UserRename) FilterRejectByUserID(_UserID string) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
@@ -389,6 +401,7 @@ func (xs UserRename) FilterRejectByChanSendPtr0(_ChanSendPtr0 *chan<- int) (kept
 	})
 }
 
+// -- Find ------------------------------------
 // FindByUserID
 func (xs UserRename) FindByUserID(_UserID string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {

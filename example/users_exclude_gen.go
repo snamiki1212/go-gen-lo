@@ -5,6 +5,10 @@ package main
 
 import "github.com/samber/lo"
 
+/************************************************
+ ** lo basic methods
+ ************************************************/
+
 // Map
 func (xs UserExclude) Map(iteratee func(item User, index int) User) UserExclude {
 	return lo.Map(xs, iteratee)
@@ -20,6 +24,11 @@ func (xs UserExclude) Find(predicate func(User) bool) (User, bool) {
 	return lo.Find(xs, predicate)
 }
 
+/************************************************
+ ** lo extended methods
+ ************************************************/
+
+// -- GroupBy ------------------------------------
 // GroupByUserID
 func (xs UserExclude) GroupByUserID() map[string]UserExclude {
 	return lo.GroupBy(xs, func(entity User) string {
@@ -111,6 +120,7 @@ func (xs UserExclude) GroupByChanSendPtr0() map[*chan<- int]UserExclude {
 	})
 }
 
+// -- FilterReject ------------------------------------
 // FilterRejectByUserID
 func (xs UserExclude) FilterRejectByUserID(_UserID string) (kept UserExclude, rejected UserExclude) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
@@ -202,6 +212,7 @@ func (xs UserExclude) FilterRejectByChanSendPtr0(_ChanSendPtr0 *chan<- int) (kep
 	})
 }
 
+// -- Find ------------------------------------
 // FindByUserID
 func (xs UserExclude) FindByUserID(_UserID string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {

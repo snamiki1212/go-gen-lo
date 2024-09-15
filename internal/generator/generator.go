@@ -3,6 +3,7 @@ package generator
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"slices"
 	"text/template"
 
@@ -29,12 +30,26 @@ func (g Generator) Generate(args internal.Arguments, data internal.Data) (string
 		if err != nil {
 			return "", fmt.Errorf("generate lo error: %w", err)
 		}
+		if tmp != "" {
+			txt += `
+/************************************************
+ ** lo basic methods
+ ************************************************/
+`
+		}
 		txt += tmp
 
 		// append extend
 		tmp, err = g.genExtend(args, sliceName, fields)
 		if err != nil {
 			return "", fmt.Errorf("generate lo extend error: %w", err)
+		}
+		if tmp != "" {
+			txt += `
+/************************************************
+ ** lo extended methods
+ ************************************************/
+`
 		}
 		txt += tmp
 	}
@@ -117,6 +132,12 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 		rawTemp, ok := elem.ExtendTemplate()
 		if !ok {
 			continue
+		}
+
+		// Add header
+		_, err := io.WriteString(&doc, fmt.Sprintf("\n// -- %s ------------------------------------", elem.Name()))
+		if err != nil {
+			return "", fmt.Errorf("write error: %w", err)
 		}
 
 		// New Template
