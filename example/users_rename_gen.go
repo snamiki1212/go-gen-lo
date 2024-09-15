@@ -5,7 +5,194 @@ package main
 
 import "github.com/samber/lo"
 
+// LoFilter
+func (xs UserRename) LoFilter(predicate func(item User, index int) bool) UserRename {
+	return lo.Filter(xs, predicate)
+}
+
 // Loop
 func (xs UserRename) Loop(iteratee func(item User, index int) User) UserRename {
 	return lo.Map(xs, iteratee)
+}
+
+// LoFilterUserID
+func (xs UserRename) LoFilterUserID(field string) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.UserID == field
+	})
+}
+
+// LoFilterInt
+func (xs UserRename) LoFilterInt(field int) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.Int == field
+	})
+}
+
+// LoFilterIntPtr
+func (xs UserRename) LoFilterIntPtr(field *int) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.IntPtr == field
+	})
+}
+
+// LoFilterBool
+func (xs UserRename) LoFilterBool(field bool) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.Bool == field
+	})
+}
+
+// LoFilterBoolPtr
+func (xs UserRename) LoFilterBoolPtr(field *bool) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.BoolPtr == field
+	})
+}
+
+// LoFilterStr
+func (xs UserRename) LoFilterStr(field string) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.Str == field
+	})
+}
+
+// LoFilterStrPtr
+func (xs UserRename) LoFilterStrPtr(field *string) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.StrPtr == field
+	})
+}
+
+// LoFilterStruct0
+func (xs UserRename) LoFilterStruct0(field DefinedStruct0) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.Struct0 == field
+	})
+}
+
+// LoFilterStructPtr0
+func (xs UserRename) LoFilterStructPtr0(field *DefinedStruct0) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.StructPtr0 == field
+	})
+}
+
+// LoFilterStruct1
+func (xs UserRename) LoFilterStruct1(field DefinedStruct1) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.Struct1 == field
+	})
+}
+
+// LoFilterStructPtr1
+func (xs UserRename) LoFilterStructPtr1(field *DefinedStruct1) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.StructPtr1 == field
+	})
+}
+
+// LoFilterChanSend0
+func (xs UserRename) LoFilterChanSend0(field chan<- int) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.ChanSend0 == field
+	})
+}
+
+// LoFilterChanSendPtr0
+func (xs UserRename) LoFilterChanSendPtr0(field *chan<- int) UserRename {
+	return lo.Filter(xs, func(entity User, index int) bool {
+		return entity.ChanSendPtr0 == field
+	})
+}
+
+// LoKeyByUserID
+func (xs UserRename) LoKeyByUserID() map[string]User {
+	return lo.KeyBy(xs, func(entity User) string {
+		return entity.UserID
+	})
+}
+
+// LoKeyByInt
+func (xs UserRename) LoKeyByInt() map[int]User {
+	return lo.KeyBy(xs, func(entity User) int {
+		return entity.Int
+	})
+}
+
+// LoKeyByIntPtr
+func (xs UserRename) LoKeyByIntPtr() map[*int]User {
+	return lo.KeyBy(xs, func(entity User) *int {
+		return entity.IntPtr
+	})
+}
+
+// LoKeyByBool
+func (xs UserRename) LoKeyByBool() map[bool]User {
+	return lo.KeyBy(xs, func(entity User) bool {
+		return entity.Bool
+	})
+}
+
+// LoKeyByBoolPtr
+func (xs UserRename) LoKeyByBoolPtr() map[*bool]User {
+	return lo.KeyBy(xs, func(entity User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// LoKeyByStr
+func (xs UserRename) LoKeyByStr() map[string]User {
+	return lo.KeyBy(xs, func(entity User) string {
+		return entity.Str
+	})
+}
+
+// LoKeyByStrPtr
+func (xs UserRename) LoKeyByStrPtr() map[*string]User {
+	return lo.KeyBy(xs, func(entity User) *string {
+		return entity.StrPtr
+	})
+}
+
+// LoKeyByStruct0
+func (xs UserRename) LoKeyByStruct0() map[DefinedStruct0]User {
+	return lo.KeyBy(xs, func(entity User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// LoKeyByStructPtr0
+func (xs UserRename) LoKeyByStructPtr0() map[*DefinedStruct0]User {
+	return lo.KeyBy(xs, func(entity User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// LoKeyByStruct1
+func (xs UserRename) LoKeyByStruct1() map[DefinedStruct1]User {
+	return lo.KeyBy(xs, func(entity User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// LoKeyByStructPtr1
+func (xs UserRename) LoKeyByStructPtr1() map[*DefinedStruct1]User {
+	return lo.KeyBy(xs, func(entity User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// LoKeyByChanSend0
+func (xs UserRename) LoKeyByChanSend0() map[chan<- int]User {
+	return lo.KeyBy(xs, func(entity User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// LoKeyByChanSendPtr0
+func (xs UserRename) LoKeyByChanSendPtr0() map[*chan<- int]User {
+	return lo.KeyBy(xs, func(entity User) *chan<- int {
+		return entity.ChanSendPtr0
+	})
 }

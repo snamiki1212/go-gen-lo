@@ -19,4 +19,5 @@ type loExtendTemplateMapper struct {
 	Entity string // Entity name for target struct (ex. User / *User).
 	Type   string // Type name of field (ex. string).
 	Field  string // Field name of struct (ex. UserID).
+	Method string // Method name of struct (ex. Filter).
 }

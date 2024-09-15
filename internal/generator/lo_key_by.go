@@ -12,8 +12,8 @@ func (l LoKeyBy) StdTemplate() (string, bool) {
 
 func (l LoKeyBy) ExtendTemplate() (string, bool) {
 	return `
-// KeyBy{{ .Field }}
-func (xs {{ .Slice }}) KeyBy{{ .Field }}() map[{{ .Type }}]{{ .Entity }} {
+// {{ .Method }}{{ .Field }}
+func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}() map[{{ .Type }}]{{ .Entity }} {
 	return lo.KeyBy(xs, func(entity {{ .Entity }}) {{ .Type }} {
 		return entity.{{ .Field }}
 	})

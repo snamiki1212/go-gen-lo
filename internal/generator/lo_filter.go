@@ -17,8 +17,8 @@ func (xs {{ .Slice }}) {{ .Method }}(predicate func(item {{ .Entity }}, index in
 
 func (l LoFilter) ExtendTemplate() (string, bool) {
 	return `
-// FilterBy{{ .Field }}
-func (xs {{ .Slice }}) FilterBy{{ .Field }}(field {{ .Type }}) {{ .Slice }} {
+// {{ .Method }}{{ .Field }}
+func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}(field {{ .Type }}) {{ .Slice }} {
 	return lo.Filter(xs, func(entity {{ .Entity }}, index int) bool {
 		return entity.{{ .Field }} == field
 	})

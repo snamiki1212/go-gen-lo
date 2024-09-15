@@ -133,9 +133,19 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 			return "", fmt.Errorf("template parse error: %w", err)
 		}
 
+		// Get method name
+		method := func() string {
+			ki := elem.Kind()
+			str, ok := args.RenameMap[ki]
+			if !ok {
+				return ki
+			}
+			return str
+		}()
+
 		// Generate txt from template
 		for _, field := range fields {
-			data := &loExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name}
+			data := &loExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name, Method: method}
 			err = tp.Execute(&doc, data)
 			if err != nil {
 				return "", fmt.Errorf("template execute error: %w", err)
