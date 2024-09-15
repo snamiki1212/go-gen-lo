@@ -6,23 +6,6 @@ import (
 	"text/template"
 )
 
-type loMethods string
-
-const (
-	loMethodsMap loMethods = "Map"
-)
-
-var loMethodAll = []loMethods{loMethodsMap}
-
-var loMethodTemplates = map[loMethods]string{
-	loMethodsMap: `
-// Map
-func (xs {{ .Slice }}) Map(iteratee func(item {{ .Entity }}, index int) {{ .Entity }}) {{ .Slice }} {
-	return lo.Map(xs, iteratee)
-}
-`,
-}
-
 type loMethodsExtend string
 
 const (
@@ -92,41 +75,42 @@ func generateLo(args arguments, sliceName string) (string, error) {
 	// append loMethodTemplates
 	var doc bytes.Buffer
 
-	elem := NewLoFilter()
-	rawTemp, ok := elem.StdTemplate()
-	if ok {
-		// New Template
-		tp, err := template.New("").Parse(rawTemp)
-		if err != nil {
-			return "", fmt.Errorf("template parse error: %w", err)
-		}
+	{
+		elem := NewLoFilter()
+		rawTemp, ok := elem.StdTemplate()
+		if ok {
+			// New Template
+			tp, err := template.New("").Parse(rawTemp)
+			if err != nil {
+				return "", fmt.Errorf("template parse error: %w", err)
+			}
 
-		// Generate txt from template
-		data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
-		if err = tp.Execute(&doc, data); err != nil {
-			return "", fmt.Errorf("template execute error: %w", err)
+			// Generate txt from template
+			data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
+			if err = tp.Execute(&doc, data); err != nil {
+				return "", fmt.Errorf("template execute error: %w", err)
+			}
 		}
 	}
 
-	for _, method := range loMethodAll {
-		// Get template src
-		rawTemp, ok := loMethodTemplates[method]
-		if !ok {
-			return "", fmt.Errorf("template not found: %s", method)
-		}
+	{
+		elem := NewLoMap()
+		rawTemp, ok := elem.StdTemplate()
+		if ok {
+			// New Template
+			tp, err := template.New("").Parse(rawTemp)
+			if err != nil {
+				return "", fmt.Errorf("template parse error: %w", err)
+			}
 
-		// New Template
-		tp, err := template.New("").Parse(rawTemp)
-		if err != nil {
-			return "", fmt.Errorf("template parse error: %w", err)
-		}
-
-		// Generate txt from template
-		data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
-		if err = tp.Execute(&doc, data); err != nil {
-			return "", fmt.Errorf("template execute error: %w", err)
+			// Generate txt from template
+			data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
+			if err = tp.Execute(&doc, data); err != nil {
+				return "", fmt.Errorf("template execute error: %w", err)
+			}
 		}
 	}
+
 	return doc.String(), nil
 }
 
