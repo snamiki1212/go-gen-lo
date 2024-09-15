@@ -75,39 +75,27 @@ func generateLo(args arguments, sliceName string) (string, error) {
 	// append loMethodTemplates
 	var doc bytes.Buffer
 
-	{
-		elem := NewLoFilter()
-		rawTemp, ok := elem.StdTemplate()
-		if ok {
-			// New Template
-			tp, err := template.New("").Parse(rawTemp)
-			if err != nil {
-				return "", fmt.Errorf("template parse error: %w", err)
-			}
-
-			// Generate txt from template
-			data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
-			if err = tp.Execute(&doc, data); err != nil {
-				return "", fmt.Errorf("template execute error: %w", err)
-			}
-		}
+	list := []interface{ StdTemplate() (string, bool) }{
+		NewLoFilter(),
+		NewLoMap(),
 	}
 
-	{
-		elem := NewLoMap()
+	for _, elem := range list {
 		rawTemp, ok := elem.StdTemplate()
-		if ok {
-			// New Template
-			tp, err := template.New("").Parse(rawTemp)
-			if err != nil {
-				return "", fmt.Errorf("template parse error: %w", err)
-			}
+		if !ok {
+			continue
+		}
 
-			// Generate txt from template
-			data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
-			if err = tp.Execute(&doc, data); err != nil {
-				return "", fmt.Errorf("template execute error: %w", err)
-			}
+		// New Template
+		tp, err := template.New("").Parse(rawTemp)
+		if err != nil {
+			return "", fmt.Errorf("template parse error: %w", err)
+		}
+
+		// Generate code block from template
+		data := &loMethodTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity()}
+		if err = tp.Execute(&doc, data); err != nil {
+			return "", fmt.Errorf("template execute error: %w", err)
 		}
 	}
 
