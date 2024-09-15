@@ -202,6 +202,97 @@ func (xs UserRename) LoKeyByChanSendPtr0() map[*chan<- int]User {
 	})
 }
 
+// GroupByUserID
+func (xs UserRename) GroupByUserID() map[string]UserRename {
+	return lo.GroupBy(xs, func(entity User) string {
+		return entity.UserID
+	})
+}
+
+// GroupByInt
+func (xs UserRename) GroupByInt() map[int]UserRename {
+	return lo.GroupBy(xs, func(entity User) int {
+		return entity.Int
+	})
+}
+
+// GroupByIntPtr
+func (xs UserRename) GroupByIntPtr() map[*int]UserRename {
+	return lo.GroupBy(xs, func(entity User) *int {
+		return entity.IntPtr
+	})
+}
+
+// GroupByBool
+func (xs UserRename) GroupByBool() map[bool]UserRename {
+	return lo.GroupBy(xs, func(entity User) bool {
+		return entity.Bool
+	})
+}
+
+// GroupByBoolPtr
+func (xs UserRename) GroupByBoolPtr() map[*bool]UserRename {
+	return lo.GroupBy(xs, func(entity User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// GroupByStr
+func (xs UserRename) GroupByStr() map[string]UserRename {
+	return lo.GroupBy(xs, func(entity User) string {
+		return entity.Str
+	})
+}
+
+// GroupByStrPtr
+func (xs UserRename) GroupByStrPtr() map[*string]UserRename {
+	return lo.GroupBy(xs, func(entity User) *string {
+		return entity.StrPtr
+	})
+}
+
+// GroupByStruct0
+func (xs UserRename) GroupByStruct0() map[DefinedStruct0]UserRename {
+	return lo.GroupBy(xs, func(entity User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// GroupByStructPtr0
+func (xs UserRename) GroupByStructPtr0() map[*DefinedStruct0]UserRename {
+	return lo.GroupBy(xs, func(entity User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// GroupByStruct1
+func (xs UserRename) GroupByStruct1() map[DefinedStruct1]UserRename {
+	return lo.GroupBy(xs, func(entity User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// GroupByStructPtr1
+func (xs UserRename) GroupByStructPtr1() map[*DefinedStruct1]UserRename {
+	return lo.GroupBy(xs, func(entity User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// GroupByChanSend0
+func (xs UserRename) GroupByChanSend0() map[chan<- int]UserRename {
+	return lo.GroupBy(xs, func(entity User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// GroupByChanSendPtr0
+func (xs UserRename) GroupByChanSendPtr0() map[*chan<- int]UserRename {
+	return lo.GroupBy(xs, func(entity User) *chan<- int {
+		return entity.ChanSendPtr0
+	})
+}
+
 // FindByUserID
 func (xs UserRename) FindByUserID(_UserID string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {

@@ -202,6 +202,97 @@ func (xs UserList) KeyByChanSendPtr0() map[*chan<- int]User {
 	})
 }
 
+// GroupByUserID
+func (xs UserList) GroupByUserID() map[string]UserList {
+	return lo.GroupBy(xs, func(entity User) string {
+		return entity.UserID
+	})
+}
+
+// GroupByInt
+func (xs UserList) GroupByInt() map[int]UserList {
+	return lo.GroupBy(xs, func(entity User) int {
+		return entity.Int
+	})
+}
+
+// GroupByIntPtr
+func (xs UserList) GroupByIntPtr() map[*int]UserList {
+	return lo.GroupBy(xs, func(entity User) *int {
+		return entity.IntPtr
+	})
+}
+
+// GroupByBool
+func (xs UserList) GroupByBool() map[bool]UserList {
+	return lo.GroupBy(xs, func(entity User) bool {
+		return entity.Bool
+	})
+}
+
+// GroupByBoolPtr
+func (xs UserList) GroupByBoolPtr() map[*bool]UserList {
+	return lo.GroupBy(xs, func(entity User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// GroupByStr
+func (xs UserList) GroupByStr() map[string]UserList {
+	return lo.GroupBy(xs, func(entity User) string {
+		return entity.Str
+	})
+}
+
+// GroupByStrPtr
+func (xs UserList) GroupByStrPtr() map[*string]UserList {
+	return lo.GroupBy(xs, func(entity User) *string {
+		return entity.StrPtr
+	})
+}
+
+// GroupByStruct0
+func (xs UserList) GroupByStruct0() map[DefinedStruct0]UserList {
+	return lo.GroupBy(xs, func(entity User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// GroupByStructPtr0
+func (xs UserList) GroupByStructPtr0() map[*DefinedStruct0]UserList {
+	return lo.GroupBy(xs, func(entity User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// GroupByStruct1
+func (xs UserList) GroupByStruct1() map[DefinedStruct1]UserList {
+	return lo.GroupBy(xs, func(entity User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// GroupByStructPtr1
+func (xs UserList) GroupByStructPtr1() map[*DefinedStruct1]UserList {
+	return lo.GroupBy(xs, func(entity User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// GroupByChanSend0
+func (xs UserList) GroupByChanSend0() map[chan<- int]UserList {
+	return lo.GroupBy(xs, func(entity User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// GroupByChanSendPtr0
+func (xs UserList) GroupByChanSendPtr0() map[*chan<- int]UserList {
+	return lo.GroupBy(xs, func(entity User) *chan<- int {
+		return entity.ChanSendPtr0
+	})
+}
+
 // FindByUserID
 func (xs UserList) FindByUserID(_UserID string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {

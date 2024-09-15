@@ -15,6 +15,97 @@ func (xs UserExclude) Find(predicate func(User) bool) (User, bool) {
 	return lo.Find(xs, predicate)
 }
 
+// GroupByUserID
+func (xs UserExclude) GroupByUserID() map[string]UserExclude {
+	return lo.GroupBy(xs, func(entity User) string {
+		return entity.UserID
+	})
+}
+
+// GroupByInt
+func (xs UserExclude) GroupByInt() map[int]UserExclude {
+	return lo.GroupBy(xs, func(entity User) int {
+		return entity.Int
+	})
+}
+
+// GroupByIntPtr
+func (xs UserExclude) GroupByIntPtr() map[*int]UserExclude {
+	return lo.GroupBy(xs, func(entity User) *int {
+		return entity.IntPtr
+	})
+}
+
+// GroupByBool
+func (xs UserExclude) GroupByBool() map[bool]UserExclude {
+	return lo.GroupBy(xs, func(entity User) bool {
+		return entity.Bool
+	})
+}
+
+// GroupByBoolPtr
+func (xs UserExclude) GroupByBoolPtr() map[*bool]UserExclude {
+	return lo.GroupBy(xs, func(entity User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// GroupByStr
+func (xs UserExclude) GroupByStr() map[string]UserExclude {
+	return lo.GroupBy(xs, func(entity User) string {
+		return entity.Str
+	})
+}
+
+// GroupByStrPtr
+func (xs UserExclude) GroupByStrPtr() map[*string]UserExclude {
+	return lo.GroupBy(xs, func(entity User) *string {
+		return entity.StrPtr
+	})
+}
+
+// GroupByStruct0
+func (xs UserExclude) GroupByStruct0() map[DefinedStruct0]UserExclude {
+	return lo.GroupBy(xs, func(entity User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// GroupByStructPtr0
+func (xs UserExclude) GroupByStructPtr0() map[*DefinedStruct0]UserExclude {
+	return lo.GroupBy(xs, func(entity User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// GroupByStruct1
+func (xs UserExclude) GroupByStruct1() map[DefinedStruct1]UserExclude {
+	return lo.GroupBy(xs, func(entity User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// GroupByStructPtr1
+func (xs UserExclude) GroupByStructPtr1() map[*DefinedStruct1]UserExclude {
+	return lo.GroupBy(xs, func(entity User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// GroupByChanSend0
+func (xs UserExclude) GroupByChanSend0() map[chan<- int]UserExclude {
+	return lo.GroupBy(xs, func(entity User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// GroupByChanSendPtr0
+func (xs UserExclude) GroupByChanSendPtr0() map[*chan<- int]UserExclude {
+	return lo.GroupBy(xs, func(entity User) *chan<- int {
+		return entity.ChanSendPtr0
+	})
+}
+
 // FindByUserID
 func (xs UserExclude) FindByUserID(_UserID string) (User, bool) {
 	return lo.Find(xs, func(entity User) bool {

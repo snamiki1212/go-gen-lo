@@ -94,7 +94,7 @@ Flags:
 | [Times](https://github.com/samber/lo?tab=readme-ov-file#times)                                                         | `int`         | ー  | ー     |
 | [Uniq](https://github.com/samber/lo?tab=readme-ov-file#uniq)                                                           | `[]T`         | ー  | ー     |
 | [UniqBy](https://github.com/samber/lo?tab=readme-ov-file#uniqby)                                                       | `[]T`         | 🚫  | ☑️     |
-| [GroupBy](https://github.com/samber/lo?tab=readme-ov-file#groupby)                                                     | `[]T`         | 🚫  | ☑️     |
+| [GroupBy](https://github.com/samber/lo?tab=readme-ov-file#groupby)                                                     | `[]T`         | 🚫  | ✅     |
 | [Chunk](https://github.com/samber/lo?tab=readme-ov-file#chunk)                                                         | `[]T`         | ☑️  | ー     |
 | [PartitionBy](https://github.com/samber/lo?tab=readme-ov-file#partitionby)                                             | `[]T`         | 🚫  | ー     |
 | [Flatten](https://github.com/samber/lo?tab=readme-ov-file#flatten)                                                     | `[]T`         | ー  | ー     |
