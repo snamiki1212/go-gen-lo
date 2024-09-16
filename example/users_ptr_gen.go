@@ -327,6 +327,99 @@ func (xs UserPtrs) GroupByChanSendPtr0() map[*chan<- int]UserPtrs {
 	})
 }
 
+// -- UniqBy ------------------------------------
+
+// UniqByUserID
+func (xs UserPtrs) UniqByUserID() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) string {
+		return entity.UserID
+	})
+}
+
+// UniqByInt
+func (xs UserPtrs) UniqByInt() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) int {
+		return entity.Int
+	})
+}
+
+// UniqByIntPtr
+func (xs UserPtrs) UniqByIntPtr() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) *int {
+		return entity.IntPtr
+	})
+}
+
+// UniqByBool
+func (xs UserPtrs) UniqByBool() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) bool {
+		return entity.Bool
+	})
+}
+
+// UniqByBoolPtr
+func (xs UserPtrs) UniqByBoolPtr() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// UniqByStr
+func (xs UserPtrs) UniqByStr() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) string {
+		return entity.Str
+	})
+}
+
+// UniqByStrPtr
+func (xs UserPtrs) UniqByStrPtr() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) *string {
+		return entity.StrPtr
+	})
+}
+
+// UniqByStruct0
+func (xs UserPtrs) UniqByStruct0() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// UniqByStructPtr0
+func (xs UserPtrs) UniqByStructPtr0() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// UniqByStruct1
+func (xs UserPtrs) UniqByStruct1() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// UniqByStructPtr1
+func (xs UserPtrs) UniqByStructPtr1() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// UniqByChanSend0
+func (xs UserPtrs) UniqByChanSend0() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// UniqByChanSendPtr0
+func (xs UserPtrs) UniqByChanSendPtr0() UserPtrs {
+	return lo.UniqBy(xs, func(entity *User) *chan<- int {
+		return entity.ChanSendPtr0
+	})
+}
+
 // -- FilterReject ------------------------------------
 
 // FilterRejectByUserID

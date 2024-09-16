@@ -327,6 +327,99 @@ func (xs UserRename) GroupByChanSendPtr0() map[*chan<- int]UserRename {
 	})
 }
 
+// -- UniqBy ------------------------------------
+
+// UniqByUserID
+func (xs UserRename) UniqByUserID() UserRename {
+	return lo.UniqBy(xs, func(entity User) string {
+		return entity.UserID
+	})
+}
+
+// UniqByInt
+func (xs UserRename) UniqByInt() UserRename {
+	return lo.UniqBy(xs, func(entity User) int {
+		return entity.Int
+	})
+}
+
+// UniqByIntPtr
+func (xs UserRename) UniqByIntPtr() UserRename {
+	return lo.UniqBy(xs, func(entity User) *int {
+		return entity.IntPtr
+	})
+}
+
+// UniqByBool
+func (xs UserRename) UniqByBool() UserRename {
+	return lo.UniqBy(xs, func(entity User) bool {
+		return entity.Bool
+	})
+}
+
+// UniqByBoolPtr
+func (xs UserRename) UniqByBoolPtr() UserRename {
+	return lo.UniqBy(xs, func(entity User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// UniqByStr
+func (xs UserRename) UniqByStr() UserRename {
+	return lo.UniqBy(xs, func(entity User) string {
+		return entity.Str
+	})
+}
+
+// UniqByStrPtr
+func (xs UserRename) UniqByStrPtr() UserRename {
+	return lo.UniqBy(xs, func(entity User) *string {
+		return entity.StrPtr
+	})
+}
+
+// UniqByStruct0
+func (xs UserRename) UniqByStruct0() UserRename {
+	return lo.UniqBy(xs, func(entity User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// UniqByStructPtr0
+func (xs UserRename) UniqByStructPtr0() UserRename {
+	return lo.UniqBy(xs, func(entity User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// UniqByStruct1
+func (xs UserRename) UniqByStruct1() UserRename {
+	return lo.UniqBy(xs, func(entity User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// UniqByStructPtr1
+func (xs UserRename) UniqByStructPtr1() UserRename {
+	return lo.UniqBy(xs, func(entity User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// UniqByChanSend0
+func (xs UserRename) UniqByChanSend0() UserRename {
+	return lo.UniqBy(xs, func(entity User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// UniqByChanSendPtr0
+func (xs UserRename) UniqByChanSendPtr0() UserRename {
+	return lo.UniqBy(xs, func(entity User) *chan<- int {
+		return entity.ChanSendPtr0
+	})
+}
+
 // -- FilterReject ------------------------------------
 
 // FilterRejectByUserID
