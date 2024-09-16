@@ -4,9 +4,9 @@ type LoContainsBy struct{}
 
 func NewLoContainsBy() LoContainsBy { return LoContainsBy{} }
 
-func (l LoContainsBy) Name() string { return "ContainsBy" }
+func (l LoContainsBy) StdName() string { return "ContainsBy" }
 
-func (l LoContainsBy) ExtendMethodName() (string, bool) { return "", false }
+func (l LoContainsBy) ExtendName() (string, bool) { return "", false }
 
 func (l LoContainsBy) StdTemplate() (string, bool) {
 	return `

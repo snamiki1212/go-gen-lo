@@ -4,9 +4,9 @@ type LoFilter struct{}
 
 func NewLoFilter() LoFilter { return LoFilter{} }
 
-func (l LoFilter) Name() string { return "Filter" }
+func (l LoFilter) StdName() string { return "Filter" }
 
-func (l LoFilter) ExtendMethodName() (string, bool) { return "FilterBy", true }
+func (l LoFilter) ExtendName() (string, bool) { return "FilterBy", true }
 
 func (l LoFilter) StdTemplate() (string, bool) {
 	return `

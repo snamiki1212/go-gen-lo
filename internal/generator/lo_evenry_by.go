@@ -4,9 +4,9 @@ type LoEveryBy struct{}
 
 func NewLoEveryBy() LoEveryBy { return LoEveryBy{} }
 
-func (l LoEveryBy) Name() string { return "EveryBy" }
+func (l LoEveryBy) StdName() string { return "EveryBy" }
 
-func (l LoEveryBy) ExtendMethodName() (string, bool) { return "", false }
+func (l LoEveryBy) ExtendName() (string, bool) { return "", false }
 
 func (l LoEveryBy) StdTemplate() (string, bool) {
 	return `

@@ -4,9 +4,9 @@ type LoGroupBy struct{}
 
 func NewLoGroupBy() LoGroupBy { return LoGroupBy{} }
 
-func (l LoGroupBy) Name() string { return "GroupBy" }
+func (l LoGroupBy) StdName() string { return "GroupBy" }
 
-func (l LoGroupBy) ExtendMethodName() (string, bool) { return "", false }
+func (l LoGroupBy) ExtendName() (string, bool) { return "", false }
 
 func (l LoGroupBy) StdTemplate() (string, bool) {
 	return ``, false

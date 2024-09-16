@@ -80,7 +80,7 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 
 	for _, elem := range g.LoList {
 		// Skip if method should be excluded.
-		if slices.Contains(args.LoMethodsToExclude, elem.Name()) {
+		if slices.Contains(args.LoMethodsToExclude, elem.StdName()) {
 			continue
 		}
 
@@ -98,7 +98,7 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 
 		// Get method name
 		method := func() string {
-			ki := elem.Name()
+			ki := elem.StdName()
 			str, ok := args.RenameMap[ki]
 			if !ok {
 				return ki
@@ -124,7 +124,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 	for _, elem := range g.LoList {
 		// Skip if method should be excluded.
-		if slices.Contains(args.LoMethodsToExclude, elem.Name()) {
+		if slices.Contains(args.LoMethodsToExclude, elem.StdName()) {
 			continue
 		}
 
@@ -135,7 +135,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 		}
 
 		// Add header
-		_, err := io.WriteString(&doc, fmt.Sprintf("\n// -- %s ------------------------------------\n", elem.Name()))
+		_, err := io.WriteString(&doc, fmt.Sprintf("\n// -- %s ------------------------------------\n", elem.StdName()))
 		if err != nil {
 			return "", fmt.Errorf("write error: %w", err)
 		}
@@ -148,12 +148,12 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 		// Get method name
 		method := func() string {
-			ki := elem.Name()
+			ki := elem.StdName()
 			str, ok := args.RenameMap[ki]
 			if ok {
 				return str
 			}
-			me, ok := elem.ExtendMethodName()
+			me, ok := elem.ExtendName()
 			if ok {
 				return me
 			}

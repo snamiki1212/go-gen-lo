@@ -4,9 +4,9 @@ type LoKeyBy struct{}
 
 func NewLoKeyBy() LoKeyBy { return LoKeyBy{} }
 
-func (l LoKeyBy) Name() string { return "KeyBy" }
+func (l LoKeyBy) StdName() string { return "KeyBy" }
 
-func (l LoKeyBy) ExtendMethodName() (string, bool) { return "", false }
+func (l LoKeyBy) ExtendName() (string, bool) { return "", false }
 
 func (l LoKeyBy) StdTemplate() (string, bool) {
 	return ``, false

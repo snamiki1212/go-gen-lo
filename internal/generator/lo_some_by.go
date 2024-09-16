@@ -4,9 +4,9 @@ type LoSomeBy struct{}
 
 func NewLoSomeBy() LoSomeBy { return LoSomeBy{} }
 
-func (l LoSomeBy) Name() string { return "SomeBy" }
+func (l LoSomeBy) StdName() string { return "SomeBy" }
 
-func (l LoSomeBy) ExtendMethodName() (string, bool) { return "", false }
+func (l LoSomeBy) ExtendName() (string, bool) { return "", false }
 
 func (l LoSomeBy) StdTemplate() (string, bool) {
 	return `

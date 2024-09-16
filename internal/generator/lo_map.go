@@ -4,9 +4,9 @@ type LoMap struct{}
 
 func NewLoMap() LoMap { return LoMap{} }
 
-func (l LoMap) Name() string { return "Map" }
+func (l LoMap) StdName() string { return "Map" }
 
-func (l LoMap) ExtendMethodName() (string, bool) { return "", false }
+func (l LoMap) ExtendName() (string, bool) { return "", false }
 
 func (l LoMap) StdTemplate() (string, bool) {
 	return `

@@ -4,9 +4,9 @@ type LoFilterReject struct{}
 
 func NewLoFilterReject() LoFilterReject { return LoFilterReject{} }
 
-func (l LoFilterReject) Name() string { return "FilterReject" }
+func (l LoFilterReject) StdName() string { return "FilterReject" }
 
-func (l LoFilterReject) ExtendMethodName() (string, bool) { return "FilterRejectBy", true }
+func (l LoFilterReject) ExtendName() (string, bool) { return "FilterRejectBy", true }
 
 func (l LoFilterReject) StdTemplate() (string, bool) {
 	return `

@@ -2,16 +2,16 @@ package generator
 
 type Lo interface {
 	// Function name of lo
-	Name() string
+	StdName() string
+
+	// Method name of lo with extend. Return false if no need.
+	ExtendName() (string, bool)
 
 	// Template for lo. Return false if not implemented.
 	StdTemplate() (string, bool)
 
 	// Template for lo with extend. Return false if not implemented.
 	ExtendTemplate() (string, bool)
-
-	// Method name of lo with extend. Return false if no need.
-	ExtendMethodName() (string, bool)
 }
 
 // Replace variable from key to value in template.
