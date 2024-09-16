@@ -33,6 +33,99 @@ func (xs UserExclude) SomeBy(predicate func(item User) bool) bool {
  ** lo extended methods
  ************************************************/
 
+// -- UniqBy ------------------------------------
+
+// UniqByUserID
+func (xs UserExclude) UniqByUserID() UserExclude {
+	return lo.UniqBy(xs, func(entity User) string {
+		return entity.UserID
+	})
+}
+
+// UniqByInt
+func (xs UserExclude) UniqByInt() UserExclude {
+	return lo.UniqBy(xs, func(entity User) int {
+		return entity.Int
+	})
+}
+
+// UniqByIntPtr
+func (xs UserExclude) UniqByIntPtr() UserExclude {
+	return lo.UniqBy(xs, func(entity User) *int {
+		return entity.IntPtr
+	})
+}
+
+// UniqByBool
+func (xs UserExclude) UniqByBool() UserExclude {
+	return lo.UniqBy(xs, func(entity User) bool {
+		return entity.Bool
+	})
+}
+
+// UniqByBoolPtr
+func (xs UserExclude) UniqByBoolPtr() UserExclude {
+	return lo.UniqBy(xs, func(entity User) *bool {
+		return entity.BoolPtr
+	})
+}
+
+// UniqByStr
+func (xs UserExclude) UniqByStr() UserExclude {
+	return lo.UniqBy(xs, func(entity User) string {
+		return entity.Str
+	})
+}
+
+// UniqByStrPtr
+func (xs UserExclude) UniqByStrPtr() UserExclude {
+	return lo.UniqBy(xs, func(entity User) *string {
+		return entity.StrPtr
+	})
+}
+
+// UniqByStruct0
+func (xs UserExclude) UniqByStruct0() UserExclude {
+	return lo.UniqBy(xs, func(entity User) DefinedStruct0 {
+		return entity.Struct0
+	})
+}
+
+// UniqByStructPtr0
+func (xs UserExclude) UniqByStructPtr0() UserExclude {
+	return lo.UniqBy(xs, func(entity User) *DefinedStruct0 {
+		return entity.StructPtr0
+	})
+}
+
+// UniqByStruct1
+func (xs UserExclude) UniqByStruct1() UserExclude {
+	return lo.UniqBy(xs, func(entity User) DefinedStruct1 {
+		return entity.Struct1
+	})
+}
+
+// UniqByStructPtr1
+func (xs UserExclude) UniqByStructPtr1() UserExclude {
+	return lo.UniqBy(xs, func(entity User) *DefinedStruct1 {
+		return entity.StructPtr1
+	})
+}
+
+// UniqByChanSend0
+func (xs UserExclude) UniqByChanSend0() UserExclude {
+	return lo.UniqBy(xs, func(entity User) chan<- int {
+		return entity.ChanSend0
+	})
+}
+
+// UniqByChanSendPtr0
+func (xs UserExclude) UniqByChanSendPtr0() UserExclude {
+	return lo.UniqBy(xs, func(entity User) *chan<- int {
+		return entity.ChanSendPtr0
+	})
+}
+
 // -- ContainsBy ------------------------------------
 
 // ContainsByUserID

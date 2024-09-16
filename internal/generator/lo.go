@@ -36,6 +36,7 @@ func NewAllLoList() []Lo {
 		NewLoMap(),
 		NewLoKeyBy(),
 		NewLoGroupBy(),
+		NewLoUniqBy(),
 		NewLoFilterReject(),
 		NewLoFind(),
 		NewLoContainsBy(),
