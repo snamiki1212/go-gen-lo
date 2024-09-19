@@ -79,8 +79,13 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 	var doc bytes.Buffer
 
 	for _, elem := range g.LoList {
-		// Skip if method should be excluded.
+		// Skip if method is excluded.
 		if slices.Contains(args.LoMethodsToExclude, elem.StdName()) {
+			continue
+		}
+
+		// Skip if method is NOT included.
+		if !args.IsIncluded(elem.StdName()) {
 			continue
 		}
 
@@ -123,8 +128,13 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 	var doc bytes.Buffer
 
 	for _, elem := range g.LoList {
-		// Skip if method should be excluded.
+		// Skip if method is excluded.
 		if slices.Contains(args.LoMethodsToExclude, elem.StdName()) {
+			continue
+		}
+
+		// Skip if method is NOT included.
+		if !args.IsIncluded(elem.StdName()) {
 			continue
 		}
 
