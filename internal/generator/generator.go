@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"slices"
 	"text/template"
 
 	"github.com/snamiki1212/go-gen-lo/internal"
@@ -80,7 +79,7 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 
 	for _, elem := range g.LoList {
 		// Skip if method is excluded.
-		if slices.Contains(args.LoMethodsToExclude, elem.StdName()) {
+		if args.IsExcluded(elem.StdName()) {
 			continue
 		}
 
@@ -129,7 +128,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 	for _, elem := range g.LoList {
 		// Skip if method is excluded.
-		if slices.Contains(args.LoMethodsToExclude, elem.StdName()) {
+		if args.IsExcluded(elem.StdName()) {
 			continue
 		}
 

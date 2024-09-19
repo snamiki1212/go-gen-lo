@@ -3,7 +3,6 @@ package internal
 import (
 	"fmt"
 	"regexp"
-	"slices"
 	"strings"
 )
 
@@ -33,7 +32,8 @@ type Arguments struct {
 	RawEntity string
 
 	// Excluded lo methods
-	LoMethodsToExclude []string
+	RawLoMethodsToExclude []string
+	LoMethodsToExclude    []regexp.Regexp
 
 	// Included lo methods
 	RawLoMethodsToInclude []string
@@ -57,6 +57,11 @@ func (a *Arguments) Load() error {
 		container = append(container, fmt.Errorf("load entity error: %w", err))
 	}
 
+	// Load exclude
+	if err := a.loadLoMethodsToExclude(); err != nil {
+		container = append(container, fmt.Errorf("load exclude error: %w", err))
+	}
+
 	// Load include
 	if err := a.loadLoMethodsToInclude(); err != nil {
 		container = append(container, fmt.Errorf("load include error: %w", err))
@@ -77,9 +82,13 @@ func (a Arguments) DisplayEntity() string {
 }
 
 // Exclude
-// TODO: support regex
 func (a Arguments) IsExcluded(method string) bool {
-	return slices.Contains(a.LoMethodsToExclude, method)
+	for _, re := range a.LoMethodsToExclude {
+		if re.MatchString(method) {
+			return true
+		}
+	}
+	return false
 }
 
 // Include with regex
@@ -120,6 +129,23 @@ func (a *Arguments) loadEntity(e string) error {
 		e = strings.TrimPrefix(e, "*")
 	}
 	a.Entity = e
+	return nil
+}
+
+// load LoMethodsToExclude flag
+func (a *Arguments) loadLoMethodsToExclude() error {
+	container := make([]error, 0)
+	for _, raw := range a.RawLoMethodsToExclude {
+		re, err := regexp.Compile(raw)
+		if err != nil {
+			container = append(container, fmt.Errorf("invalid regex: %s", raw))
+			continue
+		}
+		a.LoMethodsToExclude = append(a.LoMethodsToExclude, *re)
+	}
+	if len(container) != 0 {
+		return fmt.Errorf("%v", container)
+	}
 	return nil
 }
 
