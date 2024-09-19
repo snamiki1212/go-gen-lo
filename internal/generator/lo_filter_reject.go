@@ -19,8 +19,8 @@ func (xs {{ .Slice }}) {{ .Method }}(predicate func({{ .Entity }}, int) bool) ({
 
 func (l LoFilterReject) ExtendTemplate() (string, bool) {
 	return `
-// {{ .Method }}{{ .Field }}
-func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}(_{{ .Field }} {{ .Type }}) (kept {{ .Slice }}, rejected {{ .Slice }}) {
+// {{ .Method }}
+func (xs {{ .Slice }}) {{ .Method }}(_{{ .Field }} {{ .Type }}) (kept {{ .Slice }}, rejected {{ .Slice }}) {
 	return lo.FilterReject(xs, func(entity {{ .Entity }}, index int) bool {
 		return entity.{{ .Field }} == _{{ .Field }}
 	})

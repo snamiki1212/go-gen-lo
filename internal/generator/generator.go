@@ -162,7 +162,8 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 		// Generate txt from template
 		for _, field := range fields {
-			data := &loExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name, Method: method}
+			me := method + field.Name
+			data := &loExtendTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Type: field.Type, Field: field.Name, Method: me}
 			err = tp.Execute(&doc, data)
 			if err != nil {
 				return "", fmt.Errorf("template execute error: %w", err)

@@ -14,8 +14,8 @@ func (l LoUniqBy) StdTemplate() (string, bool) {
 
 func (l LoUniqBy) ExtendTemplate() (string, bool) {
 	return `
-// {{ .Method }}{{ .Field }}
-func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}() {{ .Slice }} {
+// {{ .Method }}
+func (xs {{ .Slice }}) {{ .Method }}() {{ .Slice }} {
 	return lo.UniqBy(xs, func(entity {{ .Entity }}) {{ .Type }} {
 		return entity.{{ .Field }}
 	})

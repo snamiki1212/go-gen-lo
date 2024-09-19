@@ -19,8 +19,8 @@ func (xs {{ .Slice }}) {{ .Method }}(predicate func({{ .Entity }}) bool) bool {
 
 func (l LoContainsBy) ExtendTemplate() (string, bool) {
 	return `
-// {{ .Method }}{{ .Field }}
-func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}(_{{ .Field }} {{ .Type }}) bool {
+// {{ .Method }}
+func (xs {{ .Slice }}) {{ .Method }}(_{{ .Field }} {{ .Type }}) bool {
 	return lo.ContainsBy(xs, func(entity {{ .Entity }}) bool {
 		return entity.{{ .Field }} == _{{ .Field }}
 	})

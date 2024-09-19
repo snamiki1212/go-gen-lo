@@ -14,8 +14,8 @@ func (l LoGroupBy) StdTemplate() (string, bool) {
 
 func (l LoGroupBy) ExtendTemplate() (string, bool) {
 	return `
-// {{ .Method }}{{ .Field }}
-func (xs {{ .Slice }}) {{ .Method }}{{ .Field }}() map[{{ .Type }}]{{ .Slice }} {
+// {{ .Method }}
+func (xs {{ .Slice }}) {{ .Method }}() map[{{ .Type }}]{{ .Slice }} {
 	return lo.GroupBy(xs, func(entity {{ .Entity }}) {{ .Type }} {
 		return entity.{{ .Field }}
 	})
