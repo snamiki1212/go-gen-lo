@@ -23,10 +23,10 @@ type Arguments struct {
 	Output string
 
 	// Mapping field name to accessor name
-	RenameMap map[string]string // key: lo method name, value: generated method name.
+	RawRename []string
 
 	// Raw rename strings
-	RawRename []string
+	renameMap map[string]string // key: lo method name, value: generated method name.
 
 	// Raw entity
 	RawEntity string
@@ -41,7 +41,7 @@ type Arguments struct {
 }
 
 var Args = Arguments{
-	RenameMap: map[string]string{},
+	renameMap: map[string]string{},
 }
 
 func (a *Arguments) Load() error {
@@ -83,7 +83,7 @@ func (a Arguments) DisplayEntity() string {
 
 // Rename
 func (a Arguments) Rename(src string) (string, bool) {
-	if dst, ok := a.RenameMap[src]; ok {
+	if dst, ok := a.renameMap[src]; ok {
 		changed := src != dst
 		return dst, changed
 	}
@@ -123,7 +123,7 @@ func (a *Arguments) loadRename(as []string) error {
 			continue
 		}
 		src, dst := pair[0], pair[1]
-		a.RenameMap[src] = dst
+		a.renameMap[src] = dst
 	}
 	if len(container) != 0 {
 		return fmt.Errorf("%v", container)
