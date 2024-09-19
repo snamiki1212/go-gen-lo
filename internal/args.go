@@ -81,7 +81,16 @@ func (a Arguments) DisplayEntity() string {
 	return a.Entity
 }
 
-// Exclude
+// Rename
+func (a Arguments) Rename(src string) (string, bool) {
+	if dst, ok := a.RenameMap[src]; ok {
+		changed := src != dst
+		return dst, changed
+	}
+	return src, false
+}
+
+// Exclude with regex
 func (a Arguments) IsExcluded(method string) bool {
 	for _, re := range a.LoMethodsToExclude {
 		if re.MatchString(method) {
