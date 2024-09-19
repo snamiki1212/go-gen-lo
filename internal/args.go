@@ -32,6 +32,9 @@ type Arguments struct {
 
 	// Excluded lo methods
 	LoMethodsToExclude []string
+
+	// Included lo methods
+	LoMethodsToInclude []string
 }
 
 var Args = Arguments{
