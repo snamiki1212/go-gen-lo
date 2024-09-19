@@ -60,6 +60,7 @@ Flags:
   -e, --entity string     target entity name. e.g. --entity=User or --entity=*User
   -x, --exclude strings   exclude lo method e.g. --exclude=Map,Filter
   -h, --help              help for go-gen-lo
+  -n, --include strings   include lo method with regex e.g. --include=Filter*,Map
   -i, --input string      input file name
   -o, --output string     output file name
   -r, --rename strings    rename method e.g. --rename=Map:Loop
