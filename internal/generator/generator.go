@@ -101,14 +101,7 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 		}
 
 		// Get method name
-		method := func() string {
-			ki := elem.StdName()
-			str, ok := args.RenameMap[ki]
-			if !ok {
-				return ki
-			}
-			return str
-		}()
+		method, _ := args.Rename(elem.StdName())
 
 		// Generate code block from template
 		data := &loStdTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Method: method}
@@ -158,7 +151,7 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 		// Get method name
 		method := func() string {
 			ki := elem.StdName()
-			str, ok := args.RenameMap[ki]
+			str, ok := args.Rename(ki)
 			if ok {
 				return str
 			}
