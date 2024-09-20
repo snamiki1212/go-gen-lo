@@ -6,7 +6,7 @@ func NewLoFind() LoFind { return LoFind{} }
 
 func (l LoFind) StdName() string { return "Find" }
 
-func (l LoFind) ExtendName() (string, bool) { return "FindBy", true }
+func (l LoFind) ExtendName() string { return "FindBy" }
 
 func (l LoFind) StdTemplate() (string, bool) {
 	return `

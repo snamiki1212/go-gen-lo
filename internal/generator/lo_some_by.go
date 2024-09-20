@@ -6,7 +6,7 @@ func NewLoSomeBy() LoSomeBy { return LoSomeBy{} }
 
 func (l LoSomeBy) StdName() string { return "SomeBy" }
 
-func (l LoSomeBy) ExtendName() (string, bool) { return "", false }
+func (l LoSomeBy) ExtendName() string { return "SomeBy" }
 
 func (l LoSomeBy) StdTemplate() (string, bool) {
 	return `

@@ -6,7 +6,7 @@ func NewLoFilter() LoFilter { return LoFilter{} }
 
 func (l LoFilter) StdName() string { return "Filter" }
 
-func (l LoFilter) ExtendName() (string, bool) { return "FilterBy", true }
+func (l LoFilter) ExtendName() string { return "FilterBy" }
 
 func (l LoFilter) StdTemplate() (string, bool) {
 	return `

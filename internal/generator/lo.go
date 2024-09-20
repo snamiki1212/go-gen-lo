@@ -5,7 +5,7 @@ type Lo interface {
 	StdName() string
 
 	// Method name of lo with extend. Return false if no need.
-	ExtendName() (string, bool)
+	ExtendName() string
 
 	// Template for lo. Return false if not implemented.
 	StdTemplate() (string, bool)

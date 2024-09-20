@@ -76,27 +76,37 @@ func Execute() {
 
 func init() {
 	// entity
-	rootCmd.Flags().StringVarP(&internal.Args.RawEntity, "entity", "e", "", "target entity name. e.g. --entity=User or --entity=*User")
+	rootCmd.Flags().StringVarP(&internal.Args.RawEntity, "entity", "e", "", `Target entity name.
+ex) --entity=User
+ex) --entity=*User`)
 	_ = rootCmd.MarkFlagRequired("entity")
 
 	// slice
-	rootCmd.Flags().StringVarP(&internal.Args.Slice, "slice", "s", "", "target slice name. e.g. --slice=Users")
+	rootCmd.Flags().StringVarP(&internal.Args.Slice, "slice", "s", "", `Target slice name.
+ex) --slice=Users`)
 	_ = rootCmd.MarkFlagRequired("slice")
 
 	// input
-	rootCmd.Flags().StringVarP(&internal.Args.Input, "input", "i", "", "input file name")
+	rootCmd.Flags().StringVarP(&internal.Args.Input, "input", "i", "", "Input file name")
 	_ = rootCmd.MarkFlagRequired("input")
 
 	// output
-	rootCmd.Flags().StringVarP(&internal.Args.Output, "output", "o", "", "output file name")
+	rootCmd.Flags().StringVarP(&internal.Args.Output, "output", "o", "", "Output file name")
 	_ = rootCmd.MarkFlagRequired("output")
 
 	// exclude
-	rootCmd.Flags().StringSliceVarP(&internal.Args.RawLoMethodsToExclude, "exclude", "x", []string{}, "exclude lo method with regex e.g. --exclude=Filter$,Map")
+	rootCmd.Flags().StringSliceVarP(&internal.Args.RawLoMethodsToExclude, "exclude", "x", []string{}, `Exclude lo method with regex
+ex) --exclude=Filter$,Map`)
 
 	// include
-	rootCmd.Flags().StringSliceVarP(&internal.Args.RawLoMethodsToInclude, "include", "n", []string{}, "include lo method with regex e.g. --include=Filter$,Map")
+	rootCmd.Flags().StringSliceVarP(&internal.Args.RawLoMethodsToInclude, "include", "n", []string{}, `Include lo method with regex
+ex) --include=Filter$,Map`)
 
 	// rename
-	rootCmd.Flags().StringSliceVarP(&internal.Args.RawRename, "rename", "r", []string{}, "rename method e.g. --rename=Map:Loop")
+	rootCmd.Flags().StringSliceVarP(&internal.Args.RawRename, "rename", "r", []string{}, `Rename lo method with regex
+ex) --rename=Map:Loop
+
+NOTE: Placeholders are available but not dollar($) but backslash(\).
+ex) --rename="Filter(.*):Lo\{0}" # FilterUserID -> LoFilterUserID
+`)
 }

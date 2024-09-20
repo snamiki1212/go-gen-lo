@@ -6,7 +6,7 @@ func NewLoGroupBy() LoGroupBy { return LoGroupBy{} }
 
 func (l LoGroupBy) StdName() string { return "GroupBy" }
 
-func (l LoGroupBy) ExtendName() (string, bool) { return "", false }
+func (l LoGroupBy) ExtendName() string { return "GroupBy" }
 
 func (l LoGroupBy) StdTemplate() (string, bool) {
 	return ``, false

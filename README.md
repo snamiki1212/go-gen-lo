@@ -57,14 +57,24 @@ Usage:
   go-gen-lo [flags]
 
 Flags:
-  -e, --entity string     target entity name. e.g. --entity=User or --entity=*User
-  -x, --exclude strings   exclude lo method e.g. --exclude=Map,Filter
+  -e, --entity string     Target entity name.
+                          ex) --entity=User
+                          ex) --entity=*User
+  -x, --exclude strings   Exclude lo method with regex
+                          ex) --exclude=Filter$,Map
   -h, --help              help for go-gen-lo
-  -n, --include strings   include lo method with regex e.g. --include=Filter*,Map
-  -i, --input string      input file name
-  -o, --output string     output file name
-  -r, --rename strings    rename method e.g. --rename=Map:Loop
-  -s, --slice string      target slice name. e.g. --slice=Users
+  -n, --include strings   Include lo method with regex
+                          ex) --include=Filter$,Map
+  -i, --input string      Input file name
+  -o, --output string     Output file name
+  -r, --rename strings    Rename lo method with regex
+                          ex) --rename=Map:Loop
+
+                          NOTE: Placeholders are available but not dollar($) but backslash(\).
+                          ex) --rename="Filter(.*):Lo\{0}" # FilterUserID -> LoFilterUserID
+
+  -s, --slice string      Target slice name.
+                          ex) --slice=Users
 ```
 
 ## [Example](./example)

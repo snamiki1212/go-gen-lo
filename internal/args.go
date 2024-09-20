@@ -22,11 +22,9 @@ type Arguments struct {
 	// Output file name
 	Output string
 
-	// Mapping field name to accessor name
-	RawRename []string
-
-	// Raw rename strings
-	renameMap map[string]string // key: lo method name, value: generated method name.
+	// Rename flag that is mapping field name to accessor name
+	RawRename      []string
+	renameInfoList []renameInfo
 
 	// Raw entity
 	RawEntity string
@@ -40,9 +38,7 @@ type Arguments struct {
 	LoMethodsToInclude    []regexp.Regexp
 }
 
-var Args = Arguments{
-	renameMap: map[string]string{},
-}
+var Args = Arguments{}
 
 func (a *Arguments) Load() error {
 	container := make([]error, 0)
@@ -81,11 +77,17 @@ func (a Arguments) DisplayEntity() string {
 	return a.Entity
 }
 
+type renameInfo struct {
+	pattern *regexp.Regexp
+	templ   string
+}
+
 // Rename
 func (a Arguments) Rename(src string) (string, bool) {
-	if dst, ok := a.renameMap[src]; ok {
-		changed := src != dst
-		return dst, changed
+	for _, info := range a.renameInfoList {
+		if info.pattern.MatchString(src) {
+			return info.pattern.ReplaceAllString(src, info.templ), true
+		}
 	}
 	return src, false
 }
@@ -122,8 +124,18 @@ func (a *Arguments) loadRename(as []string) error {
 			container = append(container, fmt.Errorf("invalid rename: %s", ac))
 			continue
 		}
-		src, dst := pair[0], pair[1]
-		a.renameMap[src] = dst
+
+		pattern, templ := pair[0], pair[1]
+
+		// NOTE: workaround for escape character
+		// dollar might not be supported for spf13/cobra using spf13/pflag.
+		// so, replace all backslash to dollar.
+		templ = strings.ReplaceAll(templ, "\\", "$")
+
+		a.renameInfoList = append(a.renameInfoList, renameInfo{
+			pattern: regexp.MustCompile(pattern),
+			templ:   templ,
+		})
 	}
 	if len(container) != 0 {
 		return fmt.Errorf("%v", container)
