@@ -81,6 +81,8 @@ Flags:
 
 - Common case ([src](./example/user.go) / [generated code 1](./example/users_list_gen.go) / [generated code 2](./example/users_ptr_gen.go))
 - Exclude ([src](./example/user.go) / [generated code](./example/users_exclude_gen.go))
+- Include ([src](./example/user.go) / [generated code](./example/users_include_gen.go))
+- Rename ([src](./example/user.go) / [generated code](./example/users_rename_gen.go))
 
 ## Support
 
