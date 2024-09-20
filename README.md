@@ -70,7 +70,7 @@ Flags:
   -r, --rename strings    Rename lo method with regex
                           ex) --rename=Map:Loop
 
-                          NOTE: Placeholders are available but not dollar($) but backslash(\).
+                          NOTE: Placeholders are available with not dollar($) but backslash(\).
                           ex) --rename="Filter(.*):Lo\{0}" # FilterUserID -> LoFilterUserID
 
   -s, --slice string      Target slice name.
