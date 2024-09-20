@@ -9,8 +9,8 @@ import "github.com/samber/lo"
  ** lo basic methods
  ************************************************/
 
-// LoFilter
-func (xs UserRename) LoFilter(predicate func(User, int) bool) UserRename {
+// Lo
+func (xs UserRename) Lo(predicate func(User, int) bool) UserRename {
 	return lo.Filter(xs, predicate)
 }
 
@@ -50,92 +50,92 @@ func (xs UserRename) SomeBy(predicate func(item User) bool) bool {
 
 // -- Filter ------------------------------------
 
-// LoFilterUserID
-func (xs UserRename) LoFilterUserID(_UserID string) UserRename {
+// LoUserID
+func (xs UserRename) LoUserID(_UserID string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.UserID == _UserID
 	})
 }
 
-// LoFilterInt
-func (xs UserRename) LoFilterInt(_Int int) UserRename {
+// LoInt
+func (xs UserRename) LoInt(_Int int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Int == _Int
 	})
 }
 
-// LoFilterIntPtr
-func (xs UserRename) LoFilterIntPtr(_IntPtr *int) UserRename {
+// LoIntPtr
+func (xs UserRename) LoIntPtr(_IntPtr *int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.IntPtr == _IntPtr
 	})
 }
 
-// LoFilterBool
-func (xs UserRename) LoFilterBool(_Bool bool) UserRename {
+// LoBool
+func (xs UserRename) LoBool(_Bool bool) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Bool == _Bool
 	})
 }
 
-// LoFilterBoolPtr
-func (xs UserRename) LoFilterBoolPtr(_BoolPtr *bool) UserRename {
+// LoBoolPtr
+func (xs UserRename) LoBoolPtr(_BoolPtr *bool) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.BoolPtr == _BoolPtr
 	})
 }
 
-// LoFilterStr
-func (xs UserRename) LoFilterStr(_Str string) UserRename {
+// LoStr
+func (xs UserRename) LoStr(_Str string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Str == _Str
 	})
 }
 
-// LoFilterStrPtr
-func (xs UserRename) LoFilterStrPtr(_StrPtr *string) UserRename {
+// LoStrPtr
+func (xs UserRename) LoStrPtr(_StrPtr *string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.StrPtr == _StrPtr
 	})
 }
 
-// LoFilterStruct0
-func (xs UserRename) LoFilterStruct0(_Struct0 DefinedStruct0) UserRename {
+// LoStruct0
+func (xs UserRename) LoStruct0(_Struct0 DefinedStruct0) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Struct0 == _Struct0
 	})
 }
 
-// LoFilterStructPtr0
-func (xs UserRename) LoFilterStructPtr0(_StructPtr0 *DefinedStruct0) UserRename {
+// LoStructPtr0
+func (xs UserRename) LoStructPtr0(_StructPtr0 *DefinedStruct0) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.StructPtr0 == _StructPtr0
 	})
 }
 
-// LoFilterStruct1
-func (xs UserRename) LoFilterStruct1(_Struct1 DefinedStruct1) UserRename {
+// LoStruct1
+func (xs UserRename) LoStruct1(_Struct1 DefinedStruct1) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Struct1 == _Struct1
 	})
 }
 
-// LoFilterStructPtr1
-func (xs UserRename) LoFilterStructPtr1(_StructPtr1 *DefinedStruct1) UserRename {
+// LoStructPtr1
+func (xs UserRename) LoStructPtr1(_StructPtr1 *DefinedStruct1) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.StructPtr1 == _StructPtr1
 	})
 }
 
-// LoFilterChanSend0
-func (xs UserRename) LoFilterChanSend0(_ChanSend0 chan<- int) UserRename {
+// LoChanSend0
+func (xs UserRename) LoChanSend0(_ChanSend0 chan<- int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.ChanSend0 == _ChanSend0
 	})
 }
 
-// LoFilterChanSendPtr0
-func (xs UserRename) LoFilterChanSendPtr0(_ChanSendPtr0 *chan<- int) UserRename {
+// LoChanSendPtr0
+func (xs UserRename) LoChanSendPtr0(_ChanSendPtr0 *chan<- int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.ChanSendPtr0 == _ChanSendPtr0
 	})

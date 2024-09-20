@@ -97,5 +97,5 @@ type UserExclude []User
 //go:generate go run ../main.go --entity=User --slice=UserInclude --input=user.go --output=users_include_gen.go --include=Filter$,FilterBy,Map,Key
 type UserInclude []User
 
-//go:generate go run ../main.go --entity=User --slice=UserRename --input=user.go --output=users_rename_gen.go --rename=Map:Loop --rename=Filter:LoFilter --rename=KeyBy:LoKeyBy
+//go:generate go run ../main.go --entity=User --slice=UserRename --input=user.go --output=users_rename_gen.go --rename=Map:Loop --rename=Filter$:Lo --rename=KeyBy:LoKeyBy
 type UserRename []User
