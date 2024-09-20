@@ -148,8 +148,6 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 			return "", fmt.Errorf("template parse error: %w", err)
 		}
 
-		// Get method name
-
 		// Generate txt from template
 		for _, field := range fields {
 			name := elem.ExtendName() + field.Name // e.g) SomeBy + UserID
