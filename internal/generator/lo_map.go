@@ -6,7 +6,7 @@ func NewLoMap() LoMap { return LoMap{} }
 
 func (l LoMap) StdName() string { return "Map" }
 
-func (l LoMap) ExtendName() (string, bool) { return "", false }
+func (l LoMap) ExtendName() string { return "Map" }
 
 func (l LoMap) StdTemplate() (string, bool) {
 	return `

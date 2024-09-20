@@ -6,7 +6,7 @@ func NewLoEveryBy() LoEveryBy { return LoEveryBy{} }
 
 func (l LoEveryBy) StdName() string { return "EveryBy" }
 
-func (l LoEveryBy) ExtendName() (string, bool) { return "", false }
+func (l LoEveryBy) ExtendName() string { return "EveryBy" }
 
 func (l LoEveryBy) StdTemplate() (string, bool) {
 	return `

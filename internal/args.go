@@ -126,6 +126,12 @@ func (a *Arguments) loadRename(as []string) error {
 		}
 
 		pattern, templ := pair[0], pair[1]
+
+		// NOTE: workaround for escape character
+		// dollar might not be supported for spf13/cobra using spf13/pflag.
+		// so, replace all backslash to dollar.
+		templ = strings.ReplaceAll(templ, "\\", "$")
+
 		a.renameInfoList = append(a.renameInfoList, renameInfo{
 			pattern: regexp.MustCompile(pattern),
 			templ:   templ,

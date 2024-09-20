@@ -9,8 +9,8 @@ import "github.com/samber/lo"
  ** lo basic methods
  ************************************************/
 
-// Lo
-func (xs UserRename) Lo(predicate func(User, int) bool) UserRename {
+// LoFilter
+func (xs UserRename) LoFilter(predicate func(User, int) bool) UserRename {
 	return lo.Filter(xs, predicate)
 }
 
@@ -19,8 +19,8 @@ func (xs UserRename) Loop(iteratee func(item User, index int) User) UserRename {
 	return lo.Map(xs, iteratee)
 }
 
-// FilterReject
-func (xs UserRename) FilterReject(predicate func(User, int) bool) (UserRename, UserRename) {
+// LoFilterReject
+func (xs UserRename) LoFilterReject(predicate func(User, int) bool) (UserRename, UserRename) {
 	return lo.FilterReject(xs, predicate)
 }
 
@@ -50,92 +50,92 @@ func (xs UserRename) SomeBy(predicate func(item User) bool) bool {
 
 // -- Filter ------------------------------------
 
-// LoUserID
-func (xs UserRename) LoUserID(_UserID string) UserRename {
+// LoFilterByUserID
+func (xs UserRename) LoFilterByUserID(_UserID string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.UserID == _UserID
 	})
 }
 
-// LoInt
-func (xs UserRename) LoInt(_Int int) UserRename {
+// LoFilterByInt
+func (xs UserRename) LoFilterByInt(_Int int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Int == _Int
 	})
 }
 
-// LoIntPtr
-func (xs UserRename) LoIntPtr(_IntPtr *int) UserRename {
+// LoFilterByIntPtr
+func (xs UserRename) LoFilterByIntPtr(_IntPtr *int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.IntPtr == _IntPtr
 	})
 }
 
-// LoBool
-func (xs UserRename) LoBool(_Bool bool) UserRename {
+// LoFilterByBool
+func (xs UserRename) LoFilterByBool(_Bool bool) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Bool == _Bool
 	})
 }
 
-// LoBoolPtr
-func (xs UserRename) LoBoolPtr(_BoolPtr *bool) UserRename {
+// LoFilterByBoolPtr
+func (xs UserRename) LoFilterByBoolPtr(_BoolPtr *bool) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.BoolPtr == _BoolPtr
 	})
 }
 
-// LoStr
-func (xs UserRename) LoStr(_Str string) UserRename {
+// LoFilterByStr
+func (xs UserRename) LoFilterByStr(_Str string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Str == _Str
 	})
 }
 
-// LoStrPtr
-func (xs UserRename) LoStrPtr(_StrPtr *string) UserRename {
+// LoFilterByStrPtr
+func (xs UserRename) LoFilterByStrPtr(_StrPtr *string) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.StrPtr == _StrPtr
 	})
 }
 
-// LoStruct0
-func (xs UserRename) LoStruct0(_Struct0 DefinedStruct0) UserRename {
+// LoFilterByStruct0
+func (xs UserRename) LoFilterByStruct0(_Struct0 DefinedStruct0) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Struct0 == _Struct0
 	})
 }
 
-// LoStructPtr0
-func (xs UserRename) LoStructPtr0(_StructPtr0 *DefinedStruct0) UserRename {
+// LoFilterByStructPtr0
+func (xs UserRename) LoFilterByStructPtr0(_StructPtr0 *DefinedStruct0) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.StructPtr0 == _StructPtr0
 	})
 }
 
-// LoStruct1
-func (xs UserRename) LoStruct1(_Struct1 DefinedStruct1) UserRename {
+// LoFilterByStruct1
+func (xs UserRename) LoFilterByStruct1(_Struct1 DefinedStruct1) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.Struct1 == _Struct1
 	})
 }
 
-// LoStructPtr1
-func (xs UserRename) LoStructPtr1(_StructPtr1 *DefinedStruct1) UserRename {
+// LoFilterByStructPtr1
+func (xs UserRename) LoFilterByStructPtr1(_StructPtr1 *DefinedStruct1) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.StructPtr1 == _StructPtr1
 	})
 }
 
-// LoChanSend0
-func (xs UserRename) LoChanSend0(_ChanSend0 chan<- int) UserRename {
+// LoFilterByChanSend0
+func (xs UserRename) LoFilterByChanSend0(_ChanSend0 chan<- int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.ChanSend0 == _ChanSend0
 	})
 }
 
-// LoChanSendPtr0
-func (xs UserRename) LoChanSendPtr0(_ChanSendPtr0 *chan<- int) UserRename {
+// LoFilterByChanSendPtr0
+func (xs UserRename) LoFilterByChanSendPtr0(_ChanSendPtr0 *chan<- int) UserRename {
 	return lo.Filter(xs, func(entity User, index int) bool {
 		return entity.ChanSendPtr0 == _ChanSendPtr0
 	})
@@ -422,92 +422,92 @@ func (xs UserRename) UniqByChanSendPtr0() UserRename {
 
 // -- FilterReject ------------------------------------
 
-// FilterRejectByUserID
-func (xs UserRename) FilterRejectByUserID(_UserID string) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByUserID
+func (xs UserRename) LoFilterRejectByUserID(_UserID string) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.UserID == _UserID
 	})
 }
 
-// FilterRejectByInt
-func (xs UserRename) FilterRejectByInt(_Int int) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByInt
+func (xs UserRename) LoFilterRejectByInt(_Int int) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.Int == _Int
 	})
 }
 
-// FilterRejectByIntPtr
-func (xs UserRename) FilterRejectByIntPtr(_IntPtr *int) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByIntPtr
+func (xs UserRename) LoFilterRejectByIntPtr(_IntPtr *int) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.IntPtr == _IntPtr
 	})
 }
 
-// FilterRejectByBool
-func (xs UserRename) FilterRejectByBool(_Bool bool) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByBool
+func (xs UserRename) LoFilterRejectByBool(_Bool bool) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.Bool == _Bool
 	})
 }
 
-// FilterRejectByBoolPtr
-func (xs UserRename) FilterRejectByBoolPtr(_BoolPtr *bool) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByBoolPtr
+func (xs UserRename) LoFilterRejectByBoolPtr(_BoolPtr *bool) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.BoolPtr == _BoolPtr
 	})
 }
 
-// FilterRejectByStr
-func (xs UserRename) FilterRejectByStr(_Str string) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByStr
+func (xs UserRename) LoFilterRejectByStr(_Str string) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.Str == _Str
 	})
 }
 
-// FilterRejectByStrPtr
-func (xs UserRename) FilterRejectByStrPtr(_StrPtr *string) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByStrPtr
+func (xs UserRename) LoFilterRejectByStrPtr(_StrPtr *string) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.StrPtr == _StrPtr
 	})
 }
 
-// FilterRejectByStruct0
-func (xs UserRename) FilterRejectByStruct0(_Struct0 DefinedStruct0) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByStruct0
+func (xs UserRename) LoFilterRejectByStruct0(_Struct0 DefinedStruct0) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.Struct0 == _Struct0
 	})
 }
 
-// FilterRejectByStructPtr0
-func (xs UserRename) FilterRejectByStructPtr0(_StructPtr0 *DefinedStruct0) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByStructPtr0
+func (xs UserRename) LoFilterRejectByStructPtr0(_StructPtr0 *DefinedStruct0) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.StructPtr0 == _StructPtr0
 	})
 }
 
-// FilterRejectByStruct1
-func (xs UserRename) FilterRejectByStruct1(_Struct1 DefinedStruct1) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByStruct1
+func (xs UserRename) LoFilterRejectByStruct1(_Struct1 DefinedStruct1) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.Struct1 == _Struct1
 	})
 }
 
-// FilterRejectByStructPtr1
-func (xs UserRename) FilterRejectByStructPtr1(_StructPtr1 *DefinedStruct1) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByStructPtr1
+func (xs UserRename) LoFilterRejectByStructPtr1(_StructPtr1 *DefinedStruct1) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.StructPtr1 == _StructPtr1
 	})
 }
 
-// FilterRejectByChanSend0
-func (xs UserRename) FilterRejectByChanSend0(_ChanSend0 chan<- int) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByChanSend0
+func (xs UserRename) LoFilterRejectByChanSend0(_ChanSend0 chan<- int) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.ChanSend0 == _ChanSend0
 	})
 }
 
-// FilterRejectByChanSendPtr0
-func (xs UserRename) FilterRejectByChanSendPtr0(_ChanSendPtr0 *chan<- int) (kept UserRename, rejected UserRename) {
+// LoFilterRejectByChanSendPtr0
+func (xs UserRename) LoFilterRejectByChanSendPtr0(_ChanSendPtr0 *chan<- int) (kept UserRename, rejected UserRename) {
 	return lo.FilterReject(xs, func(entity User, index int) bool {
 		return entity.ChanSendPtr0 == _ChanSendPtr0
 	})

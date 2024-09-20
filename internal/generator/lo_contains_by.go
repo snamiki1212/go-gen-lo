@@ -6,7 +6,7 @@ func NewLoContainsBy() LoContainsBy { return LoContainsBy{} }
 
 func (l LoContainsBy) StdName() string { return "ContainsBy" }
 
-func (l LoContainsBy) ExtendName() (string, bool) { return "", false }
+func (l LoContainsBy) ExtendName() string { return "ContainsBy" }
 
 func (l LoContainsBy) StdTemplate() (string, bool) {
 	return `

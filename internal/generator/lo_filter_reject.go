@@ -6,7 +6,7 @@ func NewLoFilterReject() LoFilterReject { return LoFilterReject{} }
 
 func (l LoFilterReject) StdName() string { return "FilterReject" }
 
-func (l LoFilterReject) ExtendName() (string, bool) { return "FilterRejectBy", true }
+func (l LoFilterReject) ExtendName() string { return "FilterRejectBy" }
 
 func (l LoFilterReject) StdTemplate() (string, bool) {
 	return `

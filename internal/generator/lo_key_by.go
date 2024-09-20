@@ -6,7 +6,7 @@ func NewLoKeyBy() LoKeyBy { return LoKeyBy{} }
 
 func (l LoKeyBy) StdName() string { return "KeyBy" }
 
-func (l LoKeyBy) ExtendName() (string, bool) { return "", false }
+func (l LoKeyBy) ExtendName() string { return "KeyBy" }
 
 func (l LoKeyBy) StdTemplate() (string, bool) {
 	return ``, false
