@@ -13,7 +13,8 @@ type User struct {
 	UserID string
 }
 
-+//go:generate go run -mod=mod github.com/snamiki1212/go-gen-lo --entity=User --slice=UserList --input=user.go --output=users_lo_gen.go
++//go:generate go install github.com/snamiki1212/go-gen-lo@latest
++//go:generate go-gen-lo --entity=User --slice=UserList --input=user.go --output=users_lo_gen.go
 type UserList []User
 ```
 
