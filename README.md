@@ -2,6 +2,10 @@
 
 Generate lo methods for struct.
 
+## Prerequirements
+
+- Need to install [samber/lo](https://github.com/samber/lo) in your project.
+
 ## Usage
 
 ### 1. Install binary
@@ -44,7 +48,7 @@ type UserList []User
 ```
 
 > [!TIP]
-> Install a binary in `go:generate` and no need care about pre requirements for team, just run `go generate .`.
+> Install a binary with `go:generate` and your team no need care about installation but just run `go generate .`.
 >
 > ```diff
 > +//go:generate go install github.com/snamiki1212/go-gen-lo@latest
