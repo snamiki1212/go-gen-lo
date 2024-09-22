@@ -1,6 +1,6 @@
 # `go-gen-lo`
 
-Generate lo methods for struct.
+Generate [samber/lo](https://github.com/samber/lo) methods for struct.
 
 - <b>Easy Setup & Removal</b>
 - <b>Zero Package Size, Code Genration</b>
@@ -52,7 +52,7 @@ type Users []User
 + ...
 ```
 
-### 4. Use lo from method.
+### 4. Use [samber/lo](https://github.com/samber/lo) from method.
 
 ```go
 package main
