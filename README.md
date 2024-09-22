@@ -6,7 +6,7 @@ Generate lo methods for struct.
 - <b>Zero Package Size, Code Genration</b>
 - <b>Extend [samber/lo](https://github.com/samber/lo)</b>
 
-![code](https://github.com/user-attachments/assets/41eb5545-7fd0-45c6-9e78-b1286e3bf16a)
+![code](https://github.com/user-attachments/assets/0a268da7-be76-40f7-8f04-be048ff20738)
 
 ## Prerequirements
 
@@ -64,6 +64,11 @@ func main() {
 	u, _ := us.Find(func(entity User) bool { return entity.UserID == "2" })
 
 	fmt.Println(u) // {UserID:2}
+
+	// 🚀 You can use Extended samber/lo
+	u, _ = us.FindByUserID("3")
+
+	fmt.Println(u) // {UserID:3}
 }
 ```
 
