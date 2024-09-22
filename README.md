@@ -10,7 +10,7 @@ Generate lo methods for struct.
 
 ## Prerequirements
 
-- Need to install [samber/lo](https://github.com/samber/lo) in your project.
+- Get [samber/lo](https://github.com/samber/lo) in your project.
 
 ## Usage
 
