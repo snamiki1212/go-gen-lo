@@ -2,6 +2,12 @@
 
 Generate lo methods for struct.
 
+- <b>Easy Setup & Removal</b>
+- <b>Zero Package Size, Code Genration</b>
+- <b>Extend [samber/lo](https://github.com/samber/lo)</b>
+
+![code](https://github.com/user-attachments/assets/41eb5545-7fd0-45c6-9e78-b1286e3bf16a)
+
 ## Prerequirements
 
 - Need to install [samber/lo](https://github.com/samber/lo) in your project.
