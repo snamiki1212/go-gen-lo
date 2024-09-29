@@ -4,6 +4,8 @@ type LoFilterReject struct{}
 
 func NewLoFilterReject() LoFilterReject { return LoFilterReject{} }
 
+func (l LoFilterReject) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoFilterReject) StdName() string { return "FilterReject" }
 
 func (l LoFilterReject) ExtendName() string { return "FilterRejectBy" }

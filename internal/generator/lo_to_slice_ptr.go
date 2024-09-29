@@ -4,6 +4,8 @@ type LoToSlicePtr struct{}
 
 func NewLoToSlicePtr() LoToSlicePtr { return LoToSlicePtr{} }
 
+func (l LoToSlicePtr) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoToSlicePtr) StdName() string { return "ToSlicePtr" }
 
 func (l LoToSlicePtr) ExtendName() string { return "" }

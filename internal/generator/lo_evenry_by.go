@@ -4,6 +4,8 @@ type LoEveryBy struct{}
 
 func NewLoEveryBy() LoEveryBy { return LoEveryBy{} }
 
+func (l LoEveryBy) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoEveryBy) StdName() string { return "EveryBy" }
 
 func (l LoEveryBy) ExtendName() string { return "EveryBy" }

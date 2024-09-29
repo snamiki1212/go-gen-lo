@@ -4,6 +4,8 @@ type LoContainsBy struct{}
 
 func NewLoContainsBy() LoContainsBy { return LoContainsBy{} }
 
+func (l LoContainsBy) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoContainsBy) StdName() string { return "ContainsBy" }
 
 func (l LoContainsBy) ExtendName() string { return "ContainsBy" }

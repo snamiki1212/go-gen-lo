@@ -4,6 +4,8 @@ type LoKeyBy struct{}
 
 func NewLoKeyBy() LoKeyBy { return LoKeyBy{} }
 
+func (l LoKeyBy) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoKeyBy) StdName() string { return "KeyBy" }
 
 func (l LoKeyBy) ExtendName() string { return "KeyBy" }

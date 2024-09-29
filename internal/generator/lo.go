@@ -12,13 +12,17 @@ type Lo interface {
 
 	// Template for lo with extend. Return false if not implemented.
 	ExtendTemplate() (string, bool)
+
+	// Skip generate lo method if true.
+	Skip(params loStdTemplateMapper) bool
 }
 
 // Replace variable from key to value in template.
 type loStdTemplateMapper struct {
-	Slice  string // Slice name for target struct (ex. Users).
-	Entity string // Entity name for target struct (ex. User / *User).
-	Method string // Method name of struct (ex. Filter).
+	Slice      string // Slice name for target struct (ex. Users).
+	Entity     string // Entity name with pointer for target struct (ex. User / *User).
+	EntityName string // Entity name without pointer for target struct (ex. User ).
+	Method     string // Method name of struct (ex. Filter).
 }
 
 // Replace variable from key to value in template.
@@ -42,5 +46,6 @@ func NewAllLoList() []Lo {
 		NewLoEveryBy(),
 		NewLoSomeBy(),
 		NewLoToSlicePtr(),
+		NewLoFromSlicePtr(),
 	}
 }

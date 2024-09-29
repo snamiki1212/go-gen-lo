@@ -7,27 +7,20 @@ import (
 )
 
 type Arguments struct {
-	// Target Entity name
-	Entity string
-
-	// Entitty is pointer or not
-	IsPtrEntity bool
+	// Filename
+	Input  string // for input
+	Output string // for output
 
 	// Target Slice name
 	Slice string
-
-	// Input file name
-	Input string
-
-	// Output file name
-	Output string
 
 	// Rename flag that is mapping field name to accessor name
 	RawRename      []string
 	renameInfoList []renameInfo
 
-	// Raw entity
-	RawEntity string
+	// Entity
+	RawEntity string // with maybe pointer (ex. *User or User)
+	Entity    string // without pointer (ex. User)
 
 	// Excluded lo methods
 	RawLoMethodsToExclude []string
@@ -70,11 +63,13 @@ func (a *Arguments) Load() error {
 	return nil
 }
 
+// EntityIsPtr
+func (a Arguments) EntityIsPtr() bool {
+	return strings.HasPrefix(a.Entity, "*")
+}
+
 func (a Arguments) DisplayEntity() string {
-	if a.IsPtrEntity {
-		return "*" + a.Entity
-	}
-	return a.Entity
+	return a.RawEntity
 }
 
 type renameInfo struct {
@@ -145,11 +140,7 @@ func (a *Arguments) loadRename(as []string) error {
 
 // load Entity flag
 func (a *Arguments) loadEntity(e string) error {
-	a.IsPtrEntity = strings.HasPrefix(e, "*")
-	if a.IsPtrEntity {
-		e = strings.TrimPrefix(e, "*")
-	}
-	a.Entity = e
+	a.Entity = strings.TrimPrefix(e, "*")
 	return nil
 }
 

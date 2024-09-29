@@ -4,6 +4,8 @@ type LoGroupBy struct{}
 
 func NewLoGroupBy() LoGroupBy { return LoGroupBy{} }
 
+func (l LoGroupBy) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoGroupBy) StdName() string { return "GroupBy" }
 
 func (l LoGroupBy) ExtendName() string { return "GroupBy" }

@@ -44,6 +44,11 @@ func (xs UserPtrs) ToSlicePtr() []**User {
 	return lo.ToSlicePtr(xs)
 }
 
+// FromSlicePtr
+func (xs UserPtrs) FromSlicePtr() []User {
+	return lo.FromSlicePtr(xs)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/
