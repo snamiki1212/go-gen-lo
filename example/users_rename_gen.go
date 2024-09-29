@@ -14,11 +14,6 @@ func (xs UserRename) LoFilter(predicate func(User, int) bool) UserRename {
 	return lo.Filter(xs, predicate)
 }
 
-// Loop
-func (xs UserRename) Loop(iteratee func(item User, index int) User) UserRename {
-	return lo.Map(xs, iteratee)
-}
-
 // LoFilterReject
 func (xs UserRename) LoFilterReject(predicate func(User, int) bool) (UserRename, UserRename) {
 	return lo.FilterReject(xs, predicate)

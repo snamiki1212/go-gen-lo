@@ -94,16 +94,16 @@ Flags:
                           ex) --entity=User
                           ex) --entity=*User
   -x, --exclude strings   Exclude lo method with regex
-                          ex) --exclude=Filter$,Map
+                          ex) --exclude=Filter$,Find
   -h, --help              help for go-gen-lo
   -n, --include strings   Include lo method with regex
-                          ex) --include=Filter$,Map
+                          ex) --include=Filter$,Find
   -i, --input string      Input file name
   -o, --output string     Output file name
   -r, --rename strings    Rename lo method with regex
-                          ex) --rename=Map:Loop
+                          ex) --rename=Find:Get
 
-                          NOTE: Placeholders are available with not dollar($) but backslash(\).
+                          NOTE: Placeholders are available but not dollar($) but backslash(\).
                           ex) --rename="Filter(.*):Lo\{0}" # FilterUserID -> LoFilterUserID
 
   -s, --slice string      Target slice name.
@@ -130,7 +130,7 @@ Flags:
 | samber/lo                                                                                                              | Struct        | Std | Extend |
 | ---------------------------------------------------------------------------------------------------------------------- | ------------- | --- | ------ |
 | [Filter](https://github.com/samber/lo?tab=readme-ov-file#filter)                                                       | `[]T`         | ✅  | ✅     |
-| [Map](https://github.com/samber/lo?tab=readme-ov-file#map)                                                             | `[]T`         | ✅  | 🚫     |
+| [Map](https://github.com/samber/lo?tab=readme-ov-file#map)                                                             | `[]T`         | 🚫  | ー     |
 | [FilterMap](https://github.com/samber/lo?tab=readme-ov-file#filtermap)                                                 | `[]T`         | ✅  | ー     |
 | [FlatMap](https://github.com/samber/lo?tab=readme-ov-file#flatmap)                                                     | `[]T`         | 🔨  | ー     |
 | [Reduce](https://github.com/samber/lo?tab=readme-ov-file#reduce)                                                       | `[]T`         | 🚫  | ー     |

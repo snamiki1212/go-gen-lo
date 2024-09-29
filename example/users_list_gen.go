@@ -14,11 +14,6 @@ func (xs UserList) Filter(predicate func(User, int) bool) UserList {
 	return lo.Filter(xs, predicate)
 }
 
-// Map
-func (xs UserList) Map(iteratee func(item User, index int) User) UserList {
-	return lo.Map(xs, iteratee)
-}
-
 // FilterReject
 func (xs UserList) FilterReject(predicate func(User, int) bool) (UserList, UserList) {
 	return lo.FilterReject(xs, predicate)
