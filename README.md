@@ -132,7 +132,7 @@ Flags:
 | [Filter](https://github.com/samber/lo?tab=readme-ov-file#filter)                                                       | `[]T`         | ✅  | ✅     |
 | [Map](https://github.com/samber/lo?tab=readme-ov-file#map)                                                             | `[]T`         | 🚫  | ー     |
 | [FilterMap](https://github.com/samber/lo?tab=readme-ov-file#filtermap)                                                 | `[]T`         | 🚫  | ー     |
-| [FlatMap](https://github.com/samber/lo?tab=readme-ov-file#flatmap)                                                     | `[]T`         | 🔨  | ー     |
+| [FlatMap](https://github.com/samber/lo?tab=readme-ov-file#flatmap)                                                     | `[]T`         | 🚫  | ー     |
 | [Reduce](https://github.com/samber/lo?tab=readme-ov-file#reduce)                                                       | `[]T`         | 🚫  | ー     |
 | [ReduceRight](https://github.com/samber/lo?tab=readme-ov-file#reduceright)                                             | `[]T`         | 🚫  | ー     |
 | [ForEach](https://github.com/samber/lo?tab=readme-ov-file#foreach)                                                     | `[]T`         | 🔨  | ー     |
@@ -158,7 +158,7 @@ Flags:
 | [DropRightWhile](https://github.com/samber/lo?tab=readme-ov-file#droprightwhile)                                       | `[]T`         | 🔨  | ー     |
 | [DropByIndex](https://github.com/samber/lo?tab=readme-ov-file#DropByIndex)                                             | `[]T`         | 🔨  | ー     |
 | [Reject](https://github.com/samber/lo?tab=readme-ov-file#reject)                                                       | `[]T`         | 🔨  | 🔨     |
-| [RejectMap](https://github.com/samber/lo?tab=readme-ov-file#rejectmap)                                                 | `[]T`         | 🔨  | ー     |
+| [RejectMap](https://github.com/samber/lo?tab=readme-ov-file#rejectmap)                                                 | `[]T`         | 🚫  | ー     |
 | [FilterReject](https://github.com/samber/lo?tab=readme-ov-file#filterreject)                                           | `[]T`         | ✅  | ✅     |
 | [Count](https://github.com/samber/lo?tab=readme-ov-file#count)                                                         | `[]T`         | ー  | ー     |
 | [CountBy](https://github.com/samber/lo?tab=readme-ov-file#countby)                                                     | `[]T`         | 🔨  | ー     |
@@ -169,8 +169,8 @@ Flags:
 | [Replace](https://github.com/samber/lo?tab=readme-ov-file#replace)                                                     | `[]T`         | ー  | ー     |
 | [ReplaceAll](https://github.com/samber/lo?tab=readme-ov-file#replaceall)                                               | `[]T`         | ー  | ー     |
 | [Compact](https://github.com/samber/lo?tab=readme-ov-file#compact)                                                     | `[]T`         | ー  | ー     |
-| [IsSorted](https://github.com/samber/lo?tab=readme-ov-file#issorted)                                                   | `[]T`         | ー  | 🔨     |
-| [IsSortedByKey](https://github.com/samber/lo?tab=readme-ov-file#issortedbykey)                                         | `[]T`         | 🚫  | ー     |
+| [IsSorted](https://github.com/samber/lo?tab=readme-ov-file#issorted)                                                   | `[]T`         | ー  | ー     |
+| [IsSortedByKey](https://github.com/samber/lo?tab=readme-ov-file#issortedbykey)                                         | `[]T`         | ー  | ー     |
 | [Splice](https://github.com/samber/lo?tab=readme-ov-file#Splice)                                                       | `[]T`         | 🔨  | ー     |
 | [Keys](https://github.com/samber/lo?tab=readme-ov-file#keys)                                                           | `map[any]T`   | 🔨  | ー     |
 | [UniqKeys](https://github.com/samber/lo?tab=readme-ov-file#uniqkeys)                                                   | `map[any]T`   | ー  | ー     |
