@@ -7,27 +7,21 @@ import (
 )
 
 type Arguments struct {
-	// Target Entity name
-	Entity string
-
-	// Entitty is pointer or not
-	IsPtrEntity bool
+	// Filename
+	Input  string // for input
+	Output string // for output
 
 	// Target Slice name
 	Slice string
-
-	// Input file name
-	Input string
-
-	// Output file name
-	Output string
 
 	// Rename flag that is mapping field name to accessor name
 	RawRename      []string
 	renameInfoList []renameInfo
 
-	// Raw entity
-	RawEntity string
+	// Entity
+	RawEntity   string
+	Entity      string
+	IsPtrEntity bool // Entitty is pointer or not
 
 	// Excluded lo methods
 	RawLoMethodsToExclude []string
