@@ -39,6 +39,11 @@ func (xs UserList) SomeBy(predicate func(item User) bool) bool {
 	return lo.SomeBy(xs, predicate)
 }
 
+// ToSlicePtr
+func (xs UserList) ToSlicePtr() []*User {
+	return lo.ToSlicePtr(xs)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/

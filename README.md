@@ -274,7 +274,7 @@ Flags:
 | [EmptyableToPtr](https://github.com/samber/lo?tab=readme-ov-file#emptyabletoptr)                                       | ー            | ー  | ー     |
 | [FromPtr](https://github.com/samber/lo?tab=readme-ov-file#fromptr)                                                     | ー            | ー  | ー     |
 | [FromPtrOr](https://github.com/samber/lo?tab=readme-ov-file#fromptror)                                                 | ー            | ー  | ー     |
-| [ToSlicePtr](https://github.com/samber/lo?tab=readme-ov-file#tosliceptr)                                               | `[]T`         | 🔨  | ー     |
+| [ToSlicePtr](https://github.com/samber/lo?tab=readme-ov-file#tosliceptr)                                               | `[]T`         | ✅  | ー     |
 | [FromSlicePtr](https://github.com/samber/lo?tab=readme-ov-file#fromsliceptr)                                           | `[]T`         | 🔨  | ー     |
 | [FromSlicePtrOr](https://github.com/samber/lo?tab=readme-ov-file#fromsliceptror)                                       | `[]T`         | 🔨  | ー     |
 | [ToAnySlice](https://github.com/samber/lo?tab=readme-ov-file#toanyslice)                                               | `[]T`         | ー  | ー     |
