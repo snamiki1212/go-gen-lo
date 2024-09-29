@@ -116,6 +116,7 @@ Flags:
 - Exclude ([src](./example/user.go) / [generated code](./example/users_exclude_gen.go))
 - Include ([src](./example/user.go) / [generated code](./example/users_include_gen.go))
 - Rename ([src](./example/user.go) / [generated code](./example/users_rename_gen.go))
+- Recommend case ([src](./example/recommend.go) / [generated code](./example/recommend_gen.go))
 
 ## Support
 
