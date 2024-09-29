@@ -131,7 +131,7 @@ Flags:
 | ---------------------------------------------------------------------------------------------------------------------- | ------------- | --- | ------ |
 | [Filter](https://github.com/samber/lo?tab=readme-ov-file#filter)                                                       | `[]T`         | ✅  | ✅     |
 | [Map](https://github.com/samber/lo?tab=readme-ov-file#map)                                                             | `[]T`         | ✅  | 🚫     |
-| [FilterMap](https://github.com/samber/lo?tab=readme-ov-file#filtermap)                                                 | `[]T`         | 🔨  | ー     |
+| [FilterMap](https://github.com/samber/lo?tab=readme-ov-file#filtermap)                                                 | `[]T`         | ✅  | ー     |
 | [FlatMap](https://github.com/samber/lo?tab=readme-ov-file#flatmap)                                                     | `[]T`         | 🔨  | ー     |
 | [Reduce](https://github.com/samber/lo?tab=readme-ov-file#reduce)                                                       | `[]T`         | 🚫  | ー     |
 | [ReduceRight](https://github.com/samber/lo?tab=readme-ov-file#reduceright)                                             | `[]T`         | 🚫  | ー     |
