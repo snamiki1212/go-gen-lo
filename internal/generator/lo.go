@@ -33,7 +33,6 @@ type loExtendTemplateMapper struct {
 func NewAllLoList() []Lo {
 	return []Lo{
 		NewLoFilter(),
-		NewLoMap(),
 		NewLoKeyBy(),
 		NewLoGroupBy(),
 		NewLoUniqBy(),

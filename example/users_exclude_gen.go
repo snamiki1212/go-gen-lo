@@ -9,11 +9,6 @@ import "github.com/samber/lo"
  ** lo basic methods
  ************************************************/
 
-// Map
-func (xs UserExclude) Map(iteratee func(item User, index int) User) UserExclude {
-	return lo.Map(xs, iteratee)
-}
-
 // ContainsBy
 func (xs UserExclude) ContainsBy(predicate func(User) bool) bool {
 	return lo.ContainsBy(xs, predicate)

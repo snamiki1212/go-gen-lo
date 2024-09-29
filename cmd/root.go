@@ -96,15 +96,15 @@ ex) --slice=Users`)
 
 	// exclude
 	rootCmd.Flags().StringSliceVarP(&internal.Args.RawLoMethodsToExclude, "exclude", "x", []string{}, `Exclude lo method with regex
-ex) --exclude=Filter$,Map`)
+ex) --exclude=Filter$,Find`)
 
 	// include
 	rootCmd.Flags().StringSliceVarP(&internal.Args.RawLoMethodsToInclude, "include", "n", []string{}, `Include lo method with regex
-ex) --include=Filter$,Map`)
+ex) --include=Filter$,Find`)
 
 	// rename
 	rootCmd.Flags().StringSliceVarP(&internal.Args.RawRename, "rename", "r", []string{}, `Rename lo method with regex
-ex) --rename=Map:Loop
+ex) --rename=Find:Get
 
 NOTE: Placeholders are available but not dollar($) but backslash(\).
 ex) --rename="Filter(.*):Lo\{0}" # FilterUserID -> LoFilterUserID

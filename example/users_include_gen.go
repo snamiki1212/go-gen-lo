@@ -14,11 +14,6 @@ func (xs UserInclude) Filter(predicate func(User, int) bool) UserInclude {
 	return lo.Filter(xs, predicate)
 }
 
-// Map
-func (xs UserInclude) Map(iteratee func(item User, index int) User) UserInclude {
-	return lo.Map(xs, iteratee)
-}
-
 /************************************************
  ** lo extended methods
  ************************************************/

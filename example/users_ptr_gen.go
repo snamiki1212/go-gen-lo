@@ -14,11 +14,6 @@ func (xs UserPtrs) Filter(predicate func(*User, int) bool) UserPtrs {
 	return lo.Filter(xs, predicate)
 }
 
-// Map
-func (xs UserPtrs) Map(iteratee func(item *User, index int) *User) UserPtrs {
-	return lo.Map(xs, iteratee)
-}
-
 // FilterReject
 func (xs UserPtrs) FilterReject(predicate func(*User, int) bool) (UserPtrs, UserPtrs) {
 	return lo.FilterReject(xs, predicate)
