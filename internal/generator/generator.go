@@ -103,8 +103,15 @@ func (g Generator) genStd(args internal.Arguments, sliceName string) (string, er
 		// Get method name
 		method, _ := args.Rename(elem.StdName())
 
+		// Generate data
+		data := &loStdTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Method: method, EntityName: args.Entity}
+
+		// Skip generate
+		if elem.Skip(*data) {
+			continue
+		}
+
 		// Generate code block from template
-		data := &loStdTemplateMapper{Slice: sliceName, Entity: args.DisplayEntity(), Method: method}
 		if err = tp.Execute(&doc, data); err != nil {
 			return "", fmt.Errorf("template execute error: %w", err)
 		}

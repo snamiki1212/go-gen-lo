@@ -4,6 +4,8 @@ type LoSomeBy struct{}
 
 func NewLoSomeBy() LoSomeBy { return LoSomeBy{} }
 
+func (l LoSomeBy) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoSomeBy) StdName() string { return "SomeBy" }
 
 func (l LoSomeBy) ExtendName() string { return "SomeBy" }

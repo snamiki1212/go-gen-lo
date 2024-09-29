@@ -4,6 +4,8 @@ type LoUniqBy struct{}
 
 func NewLoUniqBy() LoUniqBy { return LoUniqBy{} }
 
+func (l LoUniqBy) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoUniqBy) StdName() string { return "UniqBy" }
 
 func (l LoUniqBy) ExtendName() string { return "UniqBy" }

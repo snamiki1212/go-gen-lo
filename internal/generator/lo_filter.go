@@ -4,6 +4,8 @@ type LoFilter struct{}
 
 func NewLoFilter() LoFilter { return LoFilter{} }
 
+func (l LoFilter) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoFilter) StdName() string { return "Filter" }
 
 func (l LoFilter) ExtendName() string { return "FilterBy" }

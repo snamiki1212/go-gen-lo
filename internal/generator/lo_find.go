@@ -4,6 +4,8 @@ type LoFind struct{}
 
 func NewLoFind() LoFind { return LoFind{} }
 
+func (l LoFind) Skip(_ loStdTemplateMapper) bool { return false }
+
 func (l LoFind) StdName() string { return "Find" }
 
 func (l LoFind) ExtendName() string { return "FindBy" }
