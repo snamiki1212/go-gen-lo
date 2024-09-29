@@ -128,12 +128,12 @@ func (g Generator) genExtend(args internal.Arguments, sliceName string, fields i
 
 	for _, elem := range g.LoList {
 		// Skip if method is excluded.
-		if args.IsExcluded(elem.StdName()) {
+		if args.IsExcluded(elem.ExtendName()) {
 			continue
 		}
 
 		// Skip if method is NOT included.
-		if !args.IsIncluded(elem.StdName()) {
+		if !args.IsIncluded(elem.ExtendName()) {
 			continue
 		}
 
