@@ -41,5 +41,6 @@ func NewAllLoList() []Lo {
 		NewLoContainsBy(),
 		NewLoEveryBy(),
 		NewLoSomeBy(),
+		NewLoToSlicePtr(),
 	}
 }

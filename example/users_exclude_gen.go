@@ -24,6 +24,11 @@ func (xs UserExclude) SomeBy(predicate func(item User) bool) bool {
 	return lo.SomeBy(xs, predicate)
 }
 
+// ToSlicePtr
+func (xs UserExclude) ToSlicePtr() []*User {
+	return lo.ToSlicePtr(xs)
+}
+
 /************************************************
  ** lo extended methods
  ************************************************/
