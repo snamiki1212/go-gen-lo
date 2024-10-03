@@ -317,12 +317,20 @@ Generated example Codes.
 
 </details>
 
-## E2E
+## Contributions
+
+### E2E
 
 ```shell
 $ go generate ./example
 $ go run ./example
 ```
+
+## Alternatives
+
+If you like this package and would like to generate more, please refer to the following.
+
+- [go-gen-slice-accessors](https://github.com/snamiki1212/go-gen-slice-accessors): Generate accessors for each field in the struct.
 
 ## TODO
 
