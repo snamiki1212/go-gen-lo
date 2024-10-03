@@ -3,7 +3,7 @@
 Generate [samber/lo](https://github.com/samber/lo) methods for struct.
 
 - <b>Easy Setup & Removal</b>
-- <b>Zero Package Size, Code Genration</b>
+- <b>Code Generation & Zero Package Size</b>
 - <b>Extend [samber/lo](https://github.com/samber/lo)</b>
 
 ![code](https://github.com/user-attachments/assets/0a268da7-be76-40f7-8f04-be048ff20738)
@@ -110,13 +110,19 @@ Flags:
                           ex) --slice=Users
 ```
 
-## [Example](./example)
+## Example
 
-- Common case ([src](./example/user.go) / [generated code 1](./example/users_list_gen.go) / [generated code 2](./example/users_ptr_gen.go))
-- Exclude ([src](./example/user.go) / [generated code](./example/users_exclude_gen.go))
-- Include ([src](./example/user.go) / [generated code](./example/users_include_gen.go))
-- Rename ([src](./example/user.go) / [generated code](./example/users_rename_gen.go))
-- Recommend case ([src](./example/recommend.go) / [generated code](./example/recommend_gen.go))
+Generated example Codes.
+
+- Common case ([source](./example/user.go))
+  - [case1: slice for value](./example/users_list_gen.go)
+  - [case2: slice for pointer](./example/users_ptr_gen.go)
+- [Exclude](./example/users_exclude_gen.go) ([source](./example/user.go))
+- [Include](./example/users_include_gen.go) ([source](./example/user.go))
+- [Rename](./example/users_rename_gen.go) ([source](./example/user.go))
+- [Recommend case](./example/recommend_gen.go) ([source](./example/recommend.go))
+  - Rename to add `Lo~` prefix in order to search easily.
+  - Only pick up frequently used helper.
 
 ## Support
 
